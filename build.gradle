@@ -1,0 +1,43 @@
+group 'com.github.vbauer'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    provided.dependencies.all { dep ->
+        configurations.default.exclude group: dep.group, module: dep.name
+    }
+    compile.extendsFrom provided
+}
+
+dependencies {
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.google.guava:guava:18.0'
+    compile 'com.mashape.unirest:unirest-java:1.4.7'
+
+    compile files('build/classes/main')
+
+    provided 'org.immutables:value:2.0.21'
+    provided 'org.immutables:builder:2.0.21'
+    provided 'org.immutables:gson:2.0.21'
+    provided 'org.spockframework:spock-core:1.0-groovy-2.4'
+    provided 'com.pushtorefresh.java-private-constructor-checker:checker:1.1.0'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+jar {
+    exclude('**/*.java')
+}
