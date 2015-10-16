@@ -14,6 +14,36 @@ The following actions are required to work with this library:
 * Get a free [API key](https://tech.yandex.com/key/form.xml?service=trnsl).
 
 
+# Setup
+
+Maven configuration:
+```xml
+<repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+</repository>
+
+<dependency>
+    <groupId>com.github.vbauer</groupId>
+    <artifactId>yandex-translate-api</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+Gradle configuration:
+```groovy
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
+dependencies {
+    compile 'com.github.vbauer:yandex-translate-api:1.0.0'
+}
+```
+
+
 # Usage
 
 **FYI:**
@@ -61,10 +91,17 @@ def languages = api.languageApi().all(Language.RU)
 
 ## TranslationApi
 
-The following code should translate Russian's `"Как дела?"` to some English variant
-(`"How are you doing?" or something similar):`
+The following code should translate Russian's `"Как дела?"` to some English variant 
+(`"How are you doing?"` or something similar):
 
+```groovy
+def translation = api.translationApi().translate(
+    "Как дела?", Direction.of(Language.RU, Language.EN)
+)
 ```
+
+Source language could be also detected automatically (so you need to specify only target language):
+```groovy
 def translation = api.translationApi().translate("Как дела?", Language.EN)
 ```
 
