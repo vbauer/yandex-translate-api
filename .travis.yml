@@ -1,0 +1,5 @@
+language: java
+script: gradle build
+jdk:
+  - oraclejdk8
+sudo: false
