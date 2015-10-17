@@ -10,7 +10,7 @@ It supports more than 60 languages and can translate separate words or complete 
 
 The following actions are required to work with this library:
 
-* Install JRE 1.8
+* Install JDK 1.8
 * Get a free [API key](https://tech.yandex.com/key/form.xml?service=trnsl).
 
 
