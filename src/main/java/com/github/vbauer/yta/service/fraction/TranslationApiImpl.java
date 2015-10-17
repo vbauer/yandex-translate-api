@@ -9,7 +9,6 @@ import com.github.vbauer.yta.model.basic.TextFormat;
 import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
 import com.github.vbauer.yta.service.basic.ApiStatus;
-import com.github.vbauer.yta.service.basic.RestClient.RestMethodType;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 
@@ -48,7 +47,7 @@ public class TranslationApiImpl extends AbstractApi implements TranslationApi {
             .put(ATTR_FORMAT, TextFormat.getOrDefault(format).code())
             .build();
 
-        final TranslationInfo data = callMethod(TranslationInfo.class, RestMethodType.POST, METHOD_DETECT, params);
+        final TranslationInfo data = callMethod(TranslationInfo.class, METHOD_DETECT, params);
         ApiStatus.check(data.code());
 
         return TranslationInfoUtils.convert(data);

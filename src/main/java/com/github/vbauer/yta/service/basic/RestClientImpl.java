@@ -1,11 +1,9 @@
 package com.github.vbauer.yta.service.basic;
 
-import com.google.common.base.Preconditions;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.request.BaseRequest;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -44,7 +42,7 @@ public class RestClientImpl implements RestClient {
 
 
     @Override
-    public String callMethod(final RestMethodType type, final String method, final Map<String, Object> parameters) {
+    public String callMethod(final String method, final Map<String, Object> parameters) {
         final Map<String, Object> params = Maps.newHashMap();
         if (parameters != null) {
             params.putAll(parameters);
@@ -52,10 +50,9 @@ public class RestClientImpl implements RestClient {
         params.put(ATTR_KEY, key);
 
         try {
-            final BaseRequest request = createHttpRequest(type, method, params);
-            final HttpResponse<String> response = request.asString();
+            final String url = SERVICE_URL + method;
+            final HttpResponse<String> response = Unirest.post(url).fields(params).asString();
 
-            System.out.println(response.getBody());
             ApiStatus.check(response.getStatus());
 
             return response.getBody();
@@ -86,21 +83,6 @@ public class RestClientImpl implements RestClient {
                 .build();
         } catch (final NoSuchAlgorithmException | KeyManagementException | KeyStoreException ex) {
             throw Throwables.propagate(ex);
-        }
-    }
-
-
-    private BaseRequest createHttpRequest(
-        final RestMethodType type, final String method, final Map<String, Object> parameters
-    ) {
-        final String url = SERVICE_URL + method;
-        switch (Preconditions.checkNotNull(type)) {
-            case GET:
-                return Unirest.get(url).queryString(parameters);
-            case POST:
-                return Unirest.post(url).fields(parameters);
-            default:
-                throw new UnsupportedOperationException();
         }
     }
 

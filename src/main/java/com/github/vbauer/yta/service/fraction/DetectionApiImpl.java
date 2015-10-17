@@ -6,7 +6,6 @@ import com.github.vbauer.yta.model.basic.TextFormat;
 import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
 import com.github.vbauer.yta.service.basic.ApiStatus;
-import com.github.vbauer.yta.service.basic.RestClient.RestMethodType;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 
@@ -40,7 +39,7 @@ public class DetectionApiImpl extends AbstractApi implements DetectionApi {
             .put(ATTR_FORMAT, TextFormat.getOrDefault(format).code())
             .build();
 
-        final LanguageInfo data = callMethod(LanguageInfo.class, RestMethodType.POST, METHOD_DETECT, params);
+        final LanguageInfo data = callMethod(LanguageInfo.class, METHOD_DETECT, params);
         ApiStatus.check(data.code());
 
         return data.lang().map(Language::of);

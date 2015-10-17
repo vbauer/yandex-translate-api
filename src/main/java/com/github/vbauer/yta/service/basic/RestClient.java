@@ -8,12 +8,6 @@ import java.util.Map;
 
 public interface RestClient {
 
-    String callMethod(RestMethodType type, String method, Map<String, Object> parameters);
-
-
-    enum RestMethodType {
-        GET,
-        POST
-    }
+    String callMethod(String method, Map<String, Object> parameters);
 
 }

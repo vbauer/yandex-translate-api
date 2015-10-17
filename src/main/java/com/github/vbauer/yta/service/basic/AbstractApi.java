@@ -1,7 +1,5 @@
 package com.github.vbauer.yta.service.basic;
 
-import com.github.vbauer.yta.service.basic.RestClient.RestMethodType;
-
 import java.util.Map;
 
 /**
@@ -27,10 +25,9 @@ public abstract class AbstractApi {
     }
 
     protected final <T> T callMethod(
-        final Class<T> targetClass, final RestMethodType type, final String method,
-        final Map<String, Object> parameters
+        final Class<T> targetClass, final String method, final Map<String, Object> parameters
     ) {
-        final String data = client().callMethod(type, method, parameters);
+        final String data = client().callMethod(method, parameters);
         return converter().convert(data, targetClass);
     }
 

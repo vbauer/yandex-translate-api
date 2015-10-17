@@ -6,7 +6,6 @@ import com.github.vbauer.yta.model.artificial.LanguagesInfo;
 import com.github.vbauer.yta.model.artificial.LanguagesInfo.LanguagesInfoUtils;
 import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
-import com.github.vbauer.yta.service.basic.RestClient.RestMethodType;
 import com.google.common.collect.ImmutableMap;
 
 import java.util.Map;
@@ -39,9 +38,8 @@ public class LanguageApiImpl extends AbstractApi implements com.github.vbauer.yt
     @Override
     public Languages all(final String ui) {
         final Map<String, Object> data = ui == null ? null : ImmutableMap.of(ATTR_UI, ui);
-        final LanguagesInfo languagesInfo = callMethod(
-            LanguagesInfo.class, RestMethodType.POST, METHOD_GET_LANGS, data
-        );
+        final LanguagesInfo languagesInfo = callMethod(LanguagesInfo.class, METHOD_GET_LANGS, data);
+
         return LanguagesInfoUtils.convert(languagesInfo);
     }
 
