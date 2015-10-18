@@ -1,9 +1,9 @@
 package com.github.vbauer.yta.service.basic;
 
+import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import lombok.SneakyThrows;
 import org.apache.http.annotation.ThreadSafe;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -35,20 +35,23 @@ public class RestClientImpl implements RestClient {
 
 
     @Override
-    @SneakyThrows
     public String callMethod(final String method, final Map<String, Object> parameters) {
-        initHttpClientIfNecessary();
+        try {
+            initHttpClientIfNecessary();
 
-        final String url = formatMethodUrl(method);
-        final Map<String, Object> params = composeRequestParameters(parameters);
-        final HttpResponse<String> response =
-            Unirest.post(url)
-                .fields(params)
-                .asString();
+            final String url = formatMethodUrl(method);
+            final Map<String, Object> params = composeRequestParameters(parameters);
+            final HttpResponse<String> response =
+                Unirest.post(url)
+                    .fields(params)
+                    .asString();
 
-        ApiStatus.check(response.getStatus());
+            ApiStatus.check(response.getStatus());
 
-        return response.getBody();
+            return response.getBody();
+        } catch (final Throwable ex) {
+            throw Throwables.propagate(ex);
+        }
     }
 
 

@@ -40,7 +40,7 @@ class YTranslateApiTest extends Specification {
         then:
             !allLanguages.toString().empty
             !allLanguages.directions().empty
-            allLanguages.languages().empty
+            !allLanguages.languages().empty
 
         when: "UI parameter is an object"
             def allLanguagesEn = langApi.all(Language.EN)

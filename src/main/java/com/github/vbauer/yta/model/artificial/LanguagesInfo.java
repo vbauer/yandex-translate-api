@@ -6,7 +6,6 @@ import com.github.vbauer.yta.model.Language;
 import com.github.vbauer.yta.model.Languages;
 import com.github.vbauer.yta.model.basic.HasCode.HasCodeUtils;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import org.immutables.gson.Gson.TypeAdapters;
 import org.immutables.value.Value.Immutable;
 
@@ -14,7 +13,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -42,19 +40,19 @@ public interface LanguagesInfo {
         }
 
         public static Languages convert(final LanguagesInfo languagesInfo) {
-            final Set<Language> languages = Sets.newLinkedHashSet();
             final Map<String, String> langs = languagesInfo.langs();
             final List<String> dirs = languagesInfo.dirs();
 
-            return Languages.of(
-                langs.entrySet().stream()
-                    .map(entry -> Language.of(entry.getKey(), entry.getValue()))
-                    .collect(Collectors.toList()),
-                dirs.stream()
-                    .map(dir -> convertDirection(languages, dir))
-                    .filter(Objects::nonNull)
-                    .collect(Collectors.toList())
-            );
+            final List<Language> languages = langs.entrySet().stream()
+                .map(entry -> Language.of(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
+
+            final List<Direction> directions = dirs.stream()
+                .map(dir -> convertDirection(languages, dir))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
+            return Languages.of(languages, directions);
         }
 
         private static Direction convertDirection(final Collection<Language> languages, final String dir) {
