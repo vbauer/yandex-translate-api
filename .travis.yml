@@ -2,4 +2,6 @@ language: java
 script: gradle build
 jdk:
   - oraclejdk8
+after_success:
+  - gradle jacocoTestReport coveralls
 sudo: false

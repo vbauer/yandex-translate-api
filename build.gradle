@@ -4,6 +4,18 @@ version '1.0.1'
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'pmd'
+apply plugin: 'jacoco'
+apply plugin: 'com.github.kt3k.coveralls'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
+    }
+}
 
 repositories {
     mavenCentral()
@@ -41,4 +53,11 @@ compileJava {
 
 jar {
     exclude('**/*.java')
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
 }
