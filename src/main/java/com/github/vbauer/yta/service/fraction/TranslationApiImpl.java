@@ -12,6 +12,8 @@ import com.github.vbauer.yta.service.basic.ApiStatus;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 
+import java.util.Map;
+
 /**
  * @author Vladislav Bauer
  */
@@ -41,7 +43,7 @@ public class TranslationApiImpl extends AbstractApi implements TranslationApi {
 
     @Override
     public Translation translate(final String text, Direction direction, final TextFormat format) {
-        final ImmutableMap<String, Object> params = ImmutableMap.<String, Object>builder()
+        final Map<String, Object> params = ImmutableMap.<String, Object>builder()
             .put(ATTR_TEXT, Strings.nullToEmpty(text))
             .put(ATTR_LANG, direction.toString())
             .put(ATTR_FORMAT, TextFormat.getOrDefault(format).code())
