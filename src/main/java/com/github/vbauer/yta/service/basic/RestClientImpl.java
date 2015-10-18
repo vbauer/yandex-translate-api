@@ -4,6 +4,7 @@ import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import javaslang.control.Try;
 import org.apache.http.annotation.ThreadSafe;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -36,7 +37,7 @@ public class RestClientImpl implements RestClient {
 
     @Override
     public String callMethod(final String method, final Map<String, Object> parameters) {
-        try {
+        return Try.of(() -> {
             initHttpClientIfNecessary();
 
             final String url = formatMethodUrl(method);
@@ -49,9 +50,7 @@ public class RestClientImpl implements RestClient {
             ApiStatus.check(response.getStatus());
 
             return response.getBody();
-        } catch (final Throwable ex) {
-            throw Throwables.propagate(ex);
-        }
+        }).orElseThrow(Throwables::propagate);
     }
 
 
