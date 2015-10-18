@@ -104,7 +104,7 @@ install {
             }
             ciManagement {
                 system = 'Travis'
-                url = 'https://travis-ci.org/yandex-translate-api/caesar'
+                url = 'https://travis-ci.org/vbauer/yandex-translate-api'
             }
         }
     }
