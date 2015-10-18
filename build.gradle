@@ -35,6 +35,7 @@ dependencies {
 
     compile files('build/classes/main')
 
+    provided "org.projectlombok:lombok:1.16.6"
     provided 'org.immutables:value:2.0.21'
     provided 'org.immutables:builder:2.0.21'
     provided 'org.immutables:gson:2.0.21'
