@@ -1,6 +1,8 @@
 
 # Yandex Translate API
 
+[![Build Status](https://travis-ci.org/vbauer/yandex-translate-api.svg?branch=master)](https://travis-ci.org/vbauer/yandex-translate-api)
+
 **yandex-translate-api** is a simple REST client library for [Yandex.Translate](https://translate.yandex.com).
 The API provides access to the Yandex online machine translation service. 
 It supports more than 60 languages and can translate separate words or complete texts.
