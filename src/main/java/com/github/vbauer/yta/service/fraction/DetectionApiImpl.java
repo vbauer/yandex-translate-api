@@ -2,6 +2,7 @@ package com.github.vbauer.yta.service.fraction;
 
 import com.github.vbauer.yta.model.Language;
 import com.github.vbauer.yta.model.artificial.LanguageInfo;
+import com.github.vbauer.yta.model.artificial.LanguageInfo.LanguageInfoUtils;
 import com.github.vbauer.yta.model.basic.TextFormat;
 import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
@@ -42,7 +43,7 @@ public class DetectionApiImpl extends AbstractApi implements DetectionApi {
         final LanguageInfo data = callMethod(LanguageInfo.class, METHOD_DETECT, params);
         ApiStatus.check(data.code());
 
-        return data.lang().map(Language::of);
+        return LanguageInfoUtils.convert(data);
     }
 
 }

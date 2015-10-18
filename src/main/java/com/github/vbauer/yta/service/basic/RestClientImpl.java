@@ -4,34 +4,28 @@ import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import org.apache.http.annotation.ThreadSafe;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.SSLContextBuilder;
+import org.apache.http.conn.ssl.SSLContexts;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.impl.client.HttpClients;
 
 import javax.net.ssl.SSLContext;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 /**
  * @author Vladislav Bauer
  */
 
+@ThreadSafe
 public class RestClientImpl implements RestClient {
 
     private static final String SERVICE_URL = "https://translate.yandex.net/api/v1.5/tr.json";
     private static final String ATTR_KEY = "key";
     private static final int DEFAULT_TIMEOUT = 30000;
-
-    static {
-        final HttpClient httpClient = createClient();
-        Unirest.setHttpClient(httpClient);
-    }
-
+    private static volatile boolean initialized = false;
 
     private final String key;
 
@@ -43,14 +37,11 @@ public class RestClientImpl implements RestClient {
 
     @Override
     public String callMethod(final String method, final Map<String, Object> parameters) {
-        final Map<String, Object> params = Maps.newHashMap();
-        if (parameters != null) {
-            params.putAll(parameters);
-        }
-        params.put(ATTR_KEY, key);
-
         try {
-            final String url = SERVICE_URL + method;
+            initHttpClientIfNecessary();
+
+            final String url = formatMethodUrl(method);
+            final Map<String, Object> params = composeRequestParameters(parameters);
             final HttpResponse<String> response = Unirest.post(url).fields(params).asString();
 
             ApiStatus.check(response.getStatus());
@@ -62,28 +53,48 @@ public class RestClientImpl implements RestClient {
     }
 
 
-    private static HttpClient createClient() {
-        final SSLContext sslContext = createSslContext();
-        final SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext);
-        final RequestConfig requestConfig = RequestConfig.custom()
-                .setSocketTimeout(DEFAULT_TIMEOUT)
-                .setConnectTimeout(DEFAULT_TIMEOUT)
-                .build();
-
-        return HttpClients.custom()
-                .setSSLSocketFactory(socketFactory)
-                .setDefaultRequestConfig(requestConfig)
-                .build();
+    private String formatMethodUrl(final String method) {
+        return SERVICE_URL + method;
     }
 
-    private static SSLContext createSslContext() {
-        try {
-            return new SSLContextBuilder()
-                .loadTrustMaterial(null, new TrustSelfSignedStrategy())
-                .build();
-        } catch (final NoSuchAlgorithmException | KeyManagementException | KeyStoreException ex) {
-            throw Throwables.propagate(ex);
+    private Map<String, Object> composeRequestParameters(final Map<String, Object> parameters) {
+        final Map<String, Object> params = Maps.newHashMap();
+        if (parameters != null) {
+            params.putAll(parameters);
         }
+        params.put(ATTR_KEY, key);
+        return params;
+    }
+
+
+    private static void initHttpClientIfNecessary() throws Exception {
+        if (!initialized) {
+            synchronized (Unirest.class) {
+                if (!initialized) {
+                    final HttpClient httpClient = createClient();
+                    Unirest.setHttpClient(httpClient);
+                    initialized = true;
+                }
+            }
+        }
+    }
+
+    private static HttpClient createClient() throws Exception {
+        final SSLContext sslContext = SSLContexts.custom()
+            .loadTrustMaterial(null, new TrustSelfSignedStrategy())
+            .build();
+        final SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext);
+
+        final RequestConfig requestConfig = RequestConfig.custom()
+            .setSocketTimeout(DEFAULT_TIMEOUT)
+            .setConnectTimeout(DEFAULT_TIMEOUT)
+            .setRedirectsEnabled(true)
+            .build();
+
+        return HttpClients.custom()
+            .setSSLSocketFactory(socketFactory)
+            .setDefaultRequestConfig(requestConfig)
+            .build();
     }
 
 }

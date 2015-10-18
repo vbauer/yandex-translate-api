@@ -14,7 +14,7 @@ import java.util.Map;
  * @author Vladislav Bauer
  */
 
-public class LanguageApiImpl extends AbstractApi implements com.github.vbauer.yta.service.fraction.LanguageApi {
+public class LanguageApiImpl extends AbstractApi implements LanguageApi {
 
     private static final String METHOD_GET_LANGS = "/getLangs";
     private static final String ATTR_UI = "ui";

@@ -38,6 +38,7 @@ class YTranslateApiTest extends Specification {
         when: "UI parameter is not passed"
             def allLanguages = langApi.all()
         then:
+            !allLanguages.toString().empty
             !allLanguages.directions().empty
             allLanguages.languages().empty
 

@@ -2,7 +2,6 @@ package com.github.vbauer.yta.model.artificial;
 
 import com.github.vbauer.yta.model.Direction;
 import com.github.vbauer.yta.model.ImmutableDirection;
-import com.github.vbauer.yta.model.ImmutableLanguages;
 import com.github.vbauer.yta.model.Language;
 import com.github.vbauer.yta.model.Languages;
 import com.github.vbauer.yta.model.basic.HasCode.HasCodeUtils;
@@ -47,19 +46,15 @@ public interface LanguagesInfo {
             final Map<String, String> langs = languagesInfo.langs();
             final List<String> dirs = languagesInfo.dirs();
 
-            return ImmutableLanguages.builder()
-                .addDirections(
-                    dirs.stream()
-                        .map(dir -> convertDirection(languages, dir))
-                        .filter(Objects::nonNull)
-                        .toArray(Direction[]::new)
-                )
-                .addAllLanguages(
-                    langs.entrySet().stream()
-                        .map(entry -> Language.of(entry.getKey(), entry.getValue()))
-                        .collect(Collectors.toList())
-                )
-                .build();
+            return Languages.of(
+                langs.entrySet().stream()
+                    .map(entry -> Language.of(entry.getKey(), entry.getValue()))
+                    .collect(Collectors.toList()),
+                dirs.stream()
+                    .map(dir -> convertDirection(languages, dir))
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList())
+            );
         }
 
         private static Direction convertDirection(final Collection<Language> languages, final String dir) {
