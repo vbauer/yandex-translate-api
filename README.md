@@ -2,6 +2,7 @@
 # Yandex Translate API
 
 [![Build Status](https://travis-ci.org/vbauer/yandex-translate-api.svg?branch=master)](https://travis-ci.org/vbauer/yandex-translate-api)
+[![Coverage Status](https://coveralls.io/repos/vbauer/yandex-translate-api/badge.svg?branch=master&service=github)](https://coveralls.io/github/vbauer/yandex-translate-api?branch=master)
 
 **yandex-translate-api** is a simple REST client library for [Yandex.Translate](https://translate.yandex.com).
 The API provides access to the Yandex online machine translation service. 
