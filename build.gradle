@@ -1,3 +1,9 @@
+
+plugins {
+    id 'com.github.kt3k.coveralls' version '2.0.1'
+    id 'com.github.hierynomus.license' version '0.12.0'
+}
+
 group 'com.github.vbauer'
 version '1.0.4'
 
@@ -5,19 +11,8 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'pmd'
 apply plugin: 'jacoco'
-apply plugin: 'com.github.kt3k.coveralls'
 apply plugin: 'maven'
 apply plugin: 'osgi'
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
-    }
-}
 
 repositories {
     mavenCentral()
@@ -56,7 +51,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
-    from javadoc.destinationDir
+    from javadoc.getDestinationDir()
 }
 
 compileJava {
@@ -98,6 +93,7 @@ artifacts {
 install {
     repositories.mavenInstaller {
         pom.project {
+            inceptionYear = '2015'
             licenses {
                 license {
                     name = 'MIT License'
@@ -111,6 +107,9 @@ install {
                     name = 'Vladislav Bauer'
                     email = 'bauer.vlad@gmail.com'
                     url = 'http://linkedin.com/in/vladislavbauer'
+                    roles {
+                        role 'Developer'
+                    }
                 }
             }
             issueManagement {
