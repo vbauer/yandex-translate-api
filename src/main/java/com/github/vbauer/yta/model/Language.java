@@ -31,6 +31,8 @@ import org.immutables.value.Value.Parameter;
 import java.util.Optional;
 
 /**
+ * Model which represents language.
+ *
  * @author Vladislav Bauer
  */
 

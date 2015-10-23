@@ -30,6 +30,8 @@ import java.io.Serializable;
 import java.util.Optional;
 
 /**
+ * Model which represents direction of translation.
+ *
  * @author Vladislav Bauer
  */
 

@@ -33,6 +33,8 @@ import com.github.vbauer.yta.service.fraction.TranslationApi;
 import com.github.vbauer.yta.service.fraction.TranslationApiImpl;
 
 /**
+ * {@inheritDoc}
+ *
  * @author Vladislav Bauer
  */
 
@@ -56,16 +58,25 @@ public class YTranslateApiImpl extends AbstractApi implements YTranslateApi {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LanguageApi languageApi() {
         return languageApi;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DetectionApi detectionApi() {
         return detectionApi;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TranslationApi translationApi() {
         return translationApi;

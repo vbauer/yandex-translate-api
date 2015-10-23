@@ -26,6 +26,13 @@ package com.github.vbauer.yta.model.basic;
 import java.util.Optional;
 
 /**
+ * Text format could be used in the following services:
+ * <ul>
+ *     <li>{@link com.github.vbauer.yta.service.fraction.DetectionApi}</li>
+ *     <li>{@link com.github.vbauer.yta.service.fraction.TranslationApi}</li>
+ * </ul>
+ * It allows to specify kind of source text.
+ *
  * @author Vladislav Bauer
  */
 
@@ -50,6 +57,12 @@ public enum TextFormat implements HasCode<String> {
     }
 
 
+    /**
+     * Check if it possible to use {@code format} parameter or use default value.
+     *
+     * @param format text format
+     * @return {@code format} if it is not null or {@link TextFormat#PLAIN_TEXT} otherwise
+     */
     public static TextFormat getOrDefault(final TextFormat format) {
         return Optional.of(format).orElse(TextFormat.PLAIN_TEXT);
     }

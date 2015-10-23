@@ -31,6 +31,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
+ * Interface which indicates that class should have code.
+ *
  * @author Vladislav Bauer
  */
 
@@ -39,6 +41,9 @@ public interface HasCode<T> extends Serializable {
     T code();
 
 
+    /**
+     * @author Vladislav Bauer
+     */
     final class HasCodeUtils {
 
         private HasCodeUtils() {

@@ -26,6 +26,8 @@ package com.github.vbauer.yta.model;
 import org.immutables.value.Value.Immutable;
 
 /**
+ * Model represents result of translation.
+ *
  * @author Vladislav Bauer
  */
 

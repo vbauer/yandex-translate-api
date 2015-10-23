@@ -30,6 +30,8 @@ import java.util.Collection;
 import java.util.Set;
 
 /**
+ * Model represents information about available languages and translation directions.
+ *
  * @author Vladislav Bauer
  */
 
