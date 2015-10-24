@@ -51,7 +51,7 @@ dependencies {
 
 **FYI:**
 
-* Groovy language is used in examples just to simplify them.
+* Groovy language is used in the examples just to simplify them.
 * Additional documentation about the official Yandex.Translate API could be found here: https://tech.yandex.com/translate/doc/dg/concepts/api-overview-docpage/
 
 The entry point of this library is `YTranslateApi` interface (and the corresponding implementation `YTranslateApiImpl`).
