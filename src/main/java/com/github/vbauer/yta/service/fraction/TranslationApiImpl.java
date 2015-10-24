@@ -38,6 +38,8 @@ import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 
 /**
+ * {@inheritDoc}
+ *
  * @author Vladislav Bauer
  */
 
@@ -54,16 +56,25 @@ public class TranslationApiImpl extends AbstractApi implements TranslationApi {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Translation translate(final String text, final Language language) {
         return translate(text, Direction.of(language));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Translation translate(final String text, final Direction direction) {
         return translate(text, direction, TextFormat.PLAIN_TEXT);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Translation translate(final String text, Direction direction, final TextFormat format) {
         final Map<String, Object> params = ImmutableMap.<String, Object>builder()

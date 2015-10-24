@@ -27,15 +27,40 @@ import com.github.vbauer.yta.model.Language;
 import com.github.vbauer.yta.model.Languages;
 
 /**
+ * Service allows to get a list of translation directions.
+ *
+ * The service translates between any of the languages in the list of supported languages.
+ * To get this information, set the ui parameter when calling methods.
+ *
+ * Official REST API documentation: https://tech.yandex.com/translate/doc/dg/reference/getLangs-docpage/
+ *
  * @author Vladislav Bauer
  */
 
 public interface LanguageApi {
 
+    /**
+     * Gets a list of translation directions and available languages supported by the service.
+     * In this case, language names ({@link Language#name()}) are not fetched from the Yandex.Translate service.
+     *
+     * @return information about available languages and directions of translation
+     */
     Languages all();
 
+    /**
+     * Gets a list of translation directions and available languages supported by the service.
+     *
+     * @param ui if set, the response contains explanations of language codes
+     * @return information about available languages and directions of translation
+     */
     Languages all(Language ui);
 
+    /**
+     * Gets a list of translation directions and available languages supported by the service.
+     *
+     * @param ui if set, the response contains explanations of language codes
+     * @return information about available languages and directions of translation
+     */
     Languages all(String ui);
 
 }

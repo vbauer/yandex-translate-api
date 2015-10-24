@@ -34,6 +34,8 @@ import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 
 /**
+ * {@inheritDoc}
+ *
  * @author Vladislav Bauer
  */
 
@@ -48,16 +50,25 @@ public class LanguageApiImpl extends AbstractApi implements LanguageApi {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Languages all() {
         return all((String) null);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Languages all(final Language ui) {
         return all(ui == null ? null : ui.code());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Languages all(final String ui) {
         final Map<String, Object> data = ui == null ? null : ImmutableMap.of(ATTR_UI, ui);

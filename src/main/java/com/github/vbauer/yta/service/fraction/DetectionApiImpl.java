@@ -37,6 +37,8 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
+ * {@inheritDoc}
+ *
  * @author Vladislav Bauer
  */
 
@@ -52,11 +54,17 @@ public class DetectionApiImpl extends AbstractApi implements DetectionApi {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Optional<Language> detect(final String text) {
         return detect(text, TextFormat.PLAIN_TEXT);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Optional<Language> detect(final String text, final TextFormat format) {
         final Map<String, Object> params = ImmutableMap.<String, Object>builder()

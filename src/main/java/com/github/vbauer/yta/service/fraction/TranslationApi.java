@@ -29,15 +29,42 @@ import com.github.vbauer.yta.model.basic.TextFormat;
 import com.github.vbauer.yta.model.Translation;
 
 /**
+ * Service allows to translate text to the specified language.
+ *
+ * Official REST API documentation: https://tech.yandex.com/translate/doc/dg/reference/translate-docpage/
+ *
  * @author Vladislav Bauer
  */
 
 public interface TranslationApi {
 
+    /**
+     * Translates text to the specified language. Source language is detected by text.
+     * Text format is {@link TextFormat#PLAIN_TEXT}.
+     *
+     * @param text the text to translate
+     * @param language the target language for translation
+     * @return translated text
+     */
     Translation translate(String text, Language language);
 
+    /**
+     * Translates text to the specified language. Text format is {@link TextFormat#PLAIN_TEXT}.
+     *
+     * @param text the text to translate
+     * @param direction the direction of translation
+     * @return translated text
+     */
     Translation translate(String text, Direction direction);
 
+    /**
+     * Translates text to the specified language.
+     *
+     * @param text the text to translate
+     * @param direction the direction of translation
+     * @param format the text format
+     * @return translated text
+     */
     Translation translate(String text, Direction direction, TextFormat format);
 
 }
