@@ -1,6 +1,7 @@
 
 # Yandex Translate API
 
+[![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://www.opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/vbauer/yandex-translate-api.svg?branch=master)](https://travis-ci.org/vbauer/yandex-translate-api)
 [![Coverage Status](https://coveralls.io/repos/vbauer/yandex-translate-api/badge.svg?branch=master&service=github)](https://coveralls.io/github/vbauer/yandex-translate-api?branch=master)
 
