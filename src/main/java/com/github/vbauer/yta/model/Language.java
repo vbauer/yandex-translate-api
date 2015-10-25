@@ -41,8 +41,8 @@ public abstract class Language implements HasCode<String> {
 
     public static final Language EN = of("en", "English");
     public static final Language RU = of("ru", "Russian");
-    public static final Language TR = of("en", "Turkish");
-    public static final Language UK = of("en", "Ukrainian");
+    public static final Language TR = of("tr", "Turkish");
+    public static final Language UK = of("uk", "Ukrainian");
 
     public static final Language SW = of("sw", "Swahili");
     public static final Language AZ = of("az", "Azerbaijani");
