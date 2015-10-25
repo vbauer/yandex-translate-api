@@ -42,6 +42,8 @@ public interface HasCode<T> extends Serializable {
 
 
     /**
+     * Utility class to work with {@link HasCode} interface/instances.
+     *
      * @author Vladislav Bauer
      */
     final class HasCodeUtils {
@@ -51,7 +53,16 @@ public interface HasCode<T> extends Serializable {
         }
 
 
-        public static <T, E extends HasCode<T>> Optional<E> findByCode(final T code, final Collection<E> collection) {
+        /**
+         * Find find corresponding {@link HasCode} element from collection by code.
+         *
+         * @param collection collection with {@link HasCode} instances.
+         * @param code code value
+         * @param <T> type of code value
+         * @param <E> kind of {@link HasCode} elements
+         * @return element from collection with the corresponding code or null otherwise
+         */
+        public static <T, E extends HasCode<T>> Optional<E> findByCode(final Collection<E> collection, final T code) {
             return Optional.ofNullable(collection)
                 .orElseGet(ImmutableList::of)
                 .stream()

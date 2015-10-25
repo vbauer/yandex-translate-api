@@ -98,7 +98,7 @@ public interface LanguagesInfo {
         }
 
         private static Language findOrCreateLanguage(final Collection<Language> languages, final String code) {
-            return HasCodeUtils.findByCode(code, languages).orElseGet(() -> {
+            return HasCodeUtils.findByCode(languages, code).orElseGet(() -> {
                 final Language language = Language.of(code);
                 languages.add(language);
                 return language;

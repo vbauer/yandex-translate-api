@@ -39,6 +39,8 @@ import org.apache.http.impl.client.HttpClients;
 import java.util.Map;
 
 /**
+ * {@inheritDoc}
+ *
  * @author Vladislav Bauer
  */
 
@@ -58,6 +60,9 @@ public class RestClientImpl implements RestClient {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String callMethod(final String method, final Map<String, Object> parameters) {
         return Try.of(() -> {

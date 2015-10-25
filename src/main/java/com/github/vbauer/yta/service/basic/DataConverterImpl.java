@@ -30,6 +30,8 @@ import com.google.gson.TypeAdapterFactory;
 import java.util.ServiceLoader;
 
 /**
+ * {@inheritDoc}
+ *
  * @author Vladislav Bauer
  */
 
@@ -38,6 +40,9 @@ public class DataConverterImpl implements DataConverter {
     private static final Gson CONVERTER = createConverter();
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> T convert(final String data, final Class<T> targetClass) {
         return CONVERTER.fromJson(data, targetClass);
