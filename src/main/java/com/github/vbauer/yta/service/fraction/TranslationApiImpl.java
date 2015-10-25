@@ -76,7 +76,7 @@ public class TranslationApiImpl extends AbstractApi implements TranslationApi {
      * {@inheritDoc}
      */
     @Override
-    public Translation translate(final String text, Direction direction, final TextFormat format) {
+    public Translation translate(final String text, final Direction direction, final TextFormat format) {
         final Map<String, Object> params = ImmutableMap.<String, Object>builder()
             .put(ATTR_TEXT, Strings.nullToEmpty(text))
             .put(ATTR_LANG, direction.toString())

@@ -50,7 +50,7 @@ public class RestClientImpl implements RestClient {
     private static final String SERVICE_URL = "https://translate.yandex.net/api/v1.5/tr.json";
     private static final String ATTR_KEY = "key";
     private static final int DEFAULT_TIMEOUT = 30000;
-    private static volatile boolean initialized = false;
+    private static volatile boolean initialized;
 
     private final String key;
 

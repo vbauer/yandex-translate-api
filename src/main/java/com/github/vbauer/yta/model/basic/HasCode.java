@@ -33,6 +33,7 @@ import java.util.Optional;
 /**
  * Interface which indicates that class should have code.
  *
+ * @param <T> type of code
  * @author Vladislav Bauer
  */
 
