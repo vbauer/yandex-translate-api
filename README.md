@@ -4,6 +4,7 @@
 [![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://www.opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/vbauer/yandex-translate-api.svg?branch=master)](https://travis-ci.org/vbauer/yandex-translate-api)
 [![Coverage Status](https://coveralls.io/repos/vbauer/yandex-translate-api/badge.svg?branch=master&service=github)](https://coveralls.io/github/vbauer/yandex-translate-api?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/562e9ae336d0ab0016001618/badge.svg?style=flat)](https://www.versioneye.com/user/projects/562e9ae336d0ab0016001618)
 
 **yandex-translate-api** is a simple REST client library for [Yandex.Translate](https://translate.yandex.com).
 The API provides access to the Yandex online machine translation service. 
