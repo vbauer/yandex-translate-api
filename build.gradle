@@ -31,7 +31,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.google.guava:guava:18.0'
     compile 'com.mashape.unirest:unirest-java:1.4.7'
-    compile 'com.javaslang:javaslang:2.0.0-beta'
+    compile 'com.javaslang:javaslang:2.0.0-RC1'
 
     compile files('build/classes/main')
 
