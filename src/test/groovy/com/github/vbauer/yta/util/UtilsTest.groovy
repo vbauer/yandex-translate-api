@@ -23,13 +23,15 @@
  */
 package com.github.vbauer.yta.util
 
+import com.github.vbauer.yta.model.Language
 import com.github.vbauer.yta.model.artificial.LanguageInfo
 import com.github.vbauer.yta.model.artificial.LanguagesInfo
 import com.github.vbauer.yta.model.artificial.TranslationInfo
-import com.github.vbauer.yta.model.basic.HasCode
 import com.github.vbauer.yta.service.basic.ApiStatus
 import com.pushtorefresh.private_constructor_checker.PrivateConstructorChecker
 import spock.lang.Specification
+
+import static com.github.vbauer.yta.model.basic.HasCode.HasCodeUtils
 
 /**
  * @author Vladislav Bauer
@@ -44,13 +46,28 @@ class UtilsTest extends Specification {
                     LanguageInfo.LanguageInfoUtils,
                     LanguagesInfo.LanguagesInfoUtils,
                     TranslationInfo.TranslationInfoUtils,
-                    HasCode.HasCodeUtils,
+                    HasCodeUtils,
                     ApiStatus
                 )
                 .expectedTypeOfException(UnsupportedOperationException.class)
                 .check();
         then:
             true
+    }
+
+    def "Check HasCodeUtils#findByCode"() {
+        setup:
+            def languages = [Language.RU, Language.EN]
+
+        when:
+            def existedLang = HasCodeUtils.findByCode(languages, "ru")
+        then:
+            existedLang.get() == Language.RU
+
+        when:
+            def missedLang = HasCodeUtils.findByCode(languages, "fr")
+        then:
+            missedLang.orElse(null) == null
     }
 
 }
