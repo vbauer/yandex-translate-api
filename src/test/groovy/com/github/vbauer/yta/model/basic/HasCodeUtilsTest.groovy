@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2015 Vladislav Bauer
@@ -21,61 +21,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.model.basic;
+package com.github.vbauer.yta.model.basic
 
-import java.util.Optional;
+import com.github.vbauer.yta.model.Language
+import spock.lang.Specification
+
+import static com.github.vbauer.yta.model.basic.HasCode.HasCodeUtils
 
 /**
- * Text format could be used in the following services:
- * <ul>
- *     <li>{@link com.github.vbauer.yta.service.fraction.DetectionApi}</li>
- *     <li>{@link com.github.vbauer.yta.service.fraction.TranslationApi}</li>
- * </ul>
- * It allows to specify kind of source text.
- *
  * @author Vladislav Bauer
  */
+class HasCodeUtilsTest extends Specification {
 
-public enum TextFormat implements HasCode<String> {
+    def "Check method findByCode"() {
+        setup:
+            def languages = [Language.RU, Language.EN]
 
-    /**
-     * Text without markup.
-     */
-    PLAIN_TEXT("plain"),
+        when:
+            def existedLang = HasCodeUtils.findByCode(languages, "ru")
+        then:
+            existedLang.get() == Language.RU
 
-    /**
-     * Text in HTML format.
-     */
-    HTML("html");
+        when:
+            def missedLang = HasCodeUtils.findByCode(languages, "fr")
+        then:
+            !missedLang.isPresent()
 
+        when:
+            def nullLang = HasCodeUtils.findByCode(languages, null)
+        then:
+            !nullLang.isPresent()
 
-    private final String code;
-
-
-    TextFormat(final String code) {
-        this.code = code;
-    }
-
-
-    /**
-     * Check if it possible to use {@code format} parameter or use default value.
-     *
-     * @param format text format
-     * @return {@code format} if it is not null or {@link TextFormat#PLAIN_TEXT} otherwise
-     */
-    public static TextFormat getOrDefault(final TextFormat format) {
-        return Optional.ofNullable(format).orElse(TextFormat.PLAIN_TEXT);
-    }
-
-
-    /**
-     * Text format code.
-     *
-     * @return code
-     */
-    @Override
-    public String code() {
-        return code;
+        when:
+            def nullCollection = HasCodeUtils.findByCode(null, "ru")
+        then:
+            !nullCollection.isPresent()
     }
 
 }

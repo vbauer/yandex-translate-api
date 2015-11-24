@@ -23,7 +23,6 @@
  */
 package com.github.vbauer.yta.util
 
-import com.github.vbauer.yta.model.Language
 import com.github.vbauer.yta.model.artificial.LanguageInfo
 import com.github.vbauer.yta.model.artificial.LanguagesInfo
 import com.github.vbauer.yta.model.artificial.TranslationInfo
@@ -53,21 +52,6 @@ class UtilsTest extends Specification {
                 .check();
         then:
             true
-    }
-
-    def "Check HasCodeUtils#findByCode"() {
-        setup:
-            def languages = [Language.RU, Language.EN]
-
-        when:
-            def existedLang = HasCodeUtils.findByCode(languages, "ru")
-        then:
-            existedLang.get() == Language.RU
-
-        when:
-            def missedLang = HasCodeUtils.findByCode(languages, "fr")
-        then:
-            missedLang.orElse(null) == null
     }
 
 }
