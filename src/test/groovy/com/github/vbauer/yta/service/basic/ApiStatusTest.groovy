@@ -47,4 +47,16 @@ class ApiStatusTest extends Specification {
             501   | ApiStatus.ERR_LANG_NOT_SUPPORTED
     }
 
+    def "Check-method could throw an ApiException"() {
+        when:
+            ApiStatus.check(ApiStatus.ERR_OK)
+        then:
+            notThrown ApiException
+
+        when:
+            ApiStatus.check(ApiStatus.ERR_TEXT_TOO_LONG)
+        then:
+            thrown ApiException
+    }
+
 }
