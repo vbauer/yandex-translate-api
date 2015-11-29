@@ -37,6 +37,7 @@ import java.util.Optional;
  * @author Vladislav Bauer
  */
 
+@SuppressWarnings("serial")
 @Immutable
 public abstract class Language implements HasCode<String> {
 

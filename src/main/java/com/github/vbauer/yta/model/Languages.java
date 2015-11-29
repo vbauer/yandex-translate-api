@@ -36,6 +36,7 @@ import java.util.Set;
  * @author Vladislav Bauer
  */
 
+@SuppressWarnings("serial")
 @Immutable
 public abstract class Languages implements Serializable {
 

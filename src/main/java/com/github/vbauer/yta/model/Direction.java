@@ -36,6 +36,7 @@ import java.util.Optional;
  * @author Vladislav Bauer
  */
 
+@SuppressWarnings("serial")
 @Immutable
 public abstract class Direction implements Serializable {
 
