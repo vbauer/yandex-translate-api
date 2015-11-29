@@ -27,6 +27,8 @@ import com.github.vbauer.yta.service.fraction.DetectionApi;
 import com.github.vbauer.yta.service.fraction.LanguageApi;
 import com.github.vbauer.yta.service.fraction.TranslationApi;
 
+import javax.annotation.Nonnull;
+
 /**
  * Facade service which allows to use Yandex.Translate features.
  *
@@ -40,6 +42,7 @@ public interface YTranslateApi {
      *
      * @return language API service
      */
+    @Nonnull
     LanguageApi languageApi();
 
     /**
@@ -47,6 +50,7 @@ public interface YTranslateApi {
      *
      * @return detection API service
      */
+    @Nonnull
     DetectionApi detectionApi();
 
     /**
@@ -54,6 +58,7 @@ public interface YTranslateApi {
      *
      * @return translation API service
      */
+    @Nonnull
     TranslationApi translationApi();
 
 }

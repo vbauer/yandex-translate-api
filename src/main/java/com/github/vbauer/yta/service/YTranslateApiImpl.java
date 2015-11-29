@@ -32,12 +32,16 @@ import com.github.vbauer.yta.service.fraction.LanguageApiImpl;
 import com.github.vbauer.yta.service.fraction.TranslationApi;
 import com.github.vbauer.yta.service.fraction.TranslationApiImpl;
 
+import javax.annotation.Nonnull;
+import javax.annotation.concurrent.ThreadSafe;
+
 /**
  * {@inheritDoc}
  *
  * @author Vladislav Bauer
  */
 
+@ThreadSafe
 public class YTranslateApiImpl extends AbstractApi implements YTranslateApi {
 
     private final LanguageApi languageApi;
@@ -61,6 +65,7 @@ public class YTranslateApiImpl extends AbstractApi implements YTranslateApi {
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
     public LanguageApi languageApi() {
         return languageApi;
@@ -69,6 +74,7 @@ public class YTranslateApiImpl extends AbstractApi implements YTranslateApi {
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
     public DetectionApi detectionApi() {
         return detectionApi;
@@ -77,6 +83,7 @@ public class YTranslateApiImpl extends AbstractApi implements YTranslateApi {
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
     public TranslationApi translationApi() {
         return translationApi;

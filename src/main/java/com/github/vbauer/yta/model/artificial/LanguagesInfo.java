@@ -32,6 +32,8 @@ import com.google.common.collect.Lists;
 import org.immutables.gson.Gson.TypeAdapters;
 import org.immutables.value.Value.Immutable;
 
+import javax.annotation.Nonnull;
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +53,7 @@ public interface LanguagesInfo {
     Map<String, String> langs();
 
 
+    @ThreadSafe
     final class LanguagesInfoUtils {
 
         private LanguagesInfoUtils() {
@@ -58,10 +61,12 @@ public interface LanguagesInfo {
         }
 
 
+        @Nonnull
         public static Direction convert(final String direction) {
             return convertDirection(Lists.newArrayList(), direction);
         }
 
+        @Nonnull
         public static Languages convert(final LanguagesInfo languagesInfo) {
             final Map<String, String> langs = languagesInfo.langs();
             final List<String> dirs = languagesInfo.dirs();

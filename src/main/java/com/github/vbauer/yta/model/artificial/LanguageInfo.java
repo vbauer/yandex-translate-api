@@ -28,6 +28,8 @@ import com.github.vbauer.yta.model.basic.HasCode;
 import org.immutables.gson.Gson.TypeAdapters;
 import org.immutables.value.Value.Immutable;
 
+import javax.annotation.Nonnull;
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.Optional;
 
 /**
@@ -41,6 +43,7 @@ public interface LanguageInfo extends HasCode<Integer> {
     Optional<String> lang();
 
 
+    @ThreadSafe
     final class LanguageInfoUtils {
 
         private LanguageInfoUtils() {
@@ -48,6 +51,7 @@ public interface LanguageInfo extends HasCode<Integer> {
         }
 
 
+        @Nonnull
         public static Optional<Language> convert(final LanguageInfo languageInfo) {
             return languageInfo.lang().map(Language::of);
         }

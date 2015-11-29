@@ -28,7 +28,6 @@ import com.google.common.collect.Maps;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import javaslang.control.Try;
-import org.apache.http.annotation.ThreadSafe;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -36,6 +35,7 @@ import org.apache.http.conn.ssl.SSLContexts;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.impl.client.HttpClients;
 
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
 
 /**

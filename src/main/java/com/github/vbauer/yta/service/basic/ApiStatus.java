@@ -23,10 +23,13 @@
  */
 package com.github.vbauer.yta.service.basic;
 
+import javax.annotation.concurrent.ThreadSafe;
+
 /**
  * @author Vladislav Bauer
  */
 
+@ThreadSafe
 public final class ApiStatus {
 
     /**

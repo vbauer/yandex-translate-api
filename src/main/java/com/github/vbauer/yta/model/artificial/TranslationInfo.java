@@ -31,6 +31,8 @@ import com.google.common.collect.Iterables;
 import org.immutables.gson.Gson.TypeAdapters;
 import org.immutables.value.Value.Immutable;
 
+import javax.annotation.Nonnull;
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +49,7 @@ public interface TranslationInfo extends HasCode<Integer> {
     List<String> text();
 
 
+    @ThreadSafe
     final class TranslationInfoUtils {
 
         private TranslationInfoUtils() {
@@ -54,6 +57,7 @@ public interface TranslationInfo extends HasCode<Integer> {
         }
 
 
+        @Nonnull
         public static Translation convert(final TranslationInfo translationInfo) {
             final String text = Iterables.getFirst(translationInfo.text(), null);
 

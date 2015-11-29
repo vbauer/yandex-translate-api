@@ -25,6 +25,8 @@ package com.github.vbauer.yta.model.basic;
 
 import com.google.common.collect.ImmutableList;
 
+import javax.annotation.Nonnull;
+import javax.annotation.concurrent.ThreadSafe;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
@@ -47,6 +49,7 @@ public interface HasCode<T> extends Serializable {
      *
      * @author Vladislav Bauer
      */
+    @ThreadSafe
     final class HasCodeUtils {
 
         private HasCodeUtils() {
@@ -63,6 +66,7 @@ public interface HasCode<T> extends Serializable {
          * @param <E> kind of {@link HasCode} elements
          * @return element from collection with the corresponding code or null otherwise
          */
+        @Nonnull
         public static <T, E extends HasCode<T>> Optional<E> findByCode(final Collection<E> collection, final T code) {
             return Optional.ofNullable(collection)
                 .orElseGet(ImmutableList::of)

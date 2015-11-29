@@ -26,6 +26,7 @@ package com.github.vbauer.yta.model;
 import org.immutables.value.Value.Immutable;
 import org.immutables.value.Value.Parameter;
 
+import javax.annotation.Nonnull;
 import java.io.Serializable;
 import java.util.Optional;
 
@@ -48,10 +49,12 @@ public abstract class Direction implements Serializable {
     public abstract Language target();
 
 
+    @Nonnull
     public static Direction of(final Language source, final Language target) {
         return ImmutableDirection.of(Optional.ofNullable(source), target);
     }
 
+    @Nonnull
     public static Direction of(final Language target) {
         return of(null, target);
     }

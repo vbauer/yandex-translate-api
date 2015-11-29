@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapterFactory;
 
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.ServiceLoader;
 
 /**
@@ -35,6 +36,7 @@ import java.util.ServiceLoader;
  * @author Vladislav Bauer
  */
 
+@ThreadSafe
 public class DataConverterImpl implements DataConverter {
 
     private static final Gson CONVERTER = createConverter();

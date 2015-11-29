@@ -25,6 +25,8 @@ package com.github.vbauer.yta.service.basic;
 
 import org.immutables.value.Value.Immutable;
 
+import javax.annotation.Nonnull;
+
 /**
  * @author Vladislav Bauer
  */
@@ -32,13 +34,17 @@ import org.immutables.value.Value.Immutable;
 @Immutable
 public abstract class ApiContext {
 
+    @Nonnull
     public abstract String key();
 
+    @Nonnull
     public abstract RestClient client();
 
+    @Nonnull
     public abstract DataConverter converter();
 
 
+    @Nonnull
     public static ApiContext of(final String key) {
         return ImmutableApiContext.builder()
             .key(key)

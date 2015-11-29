@@ -23,6 +23,7 @@
  */
 package com.github.vbauer.yta.model.basic;
 
+import javax.annotation.Nonnull;
 import java.util.Optional;
 
 /**
@@ -63,6 +64,7 @@ public enum TextFormat implements HasCode<String> {
      * @param format text format
      * @return {@code format} if it is not null or {@link TextFormat#PLAIN_TEXT} otherwise
      */
+    @Nonnull
     public static TextFormat getOrDefault(final TextFormat format) {
         return Optional.ofNullable(format).orElse(TextFormat.PLAIN_TEXT);
     }
