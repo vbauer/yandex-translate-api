@@ -33,6 +33,7 @@ import com.github.vbauer.yta.service.basic.ApiStatus;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
 import java.util.Optional;
 
@@ -42,6 +43,7 @@ import java.util.Optional;
  * @author Vladislav Bauer
  */
 
+@ThreadSafe
 public class DetectionApiImpl extends AbstractApi implements DetectionApi {
 
     private static final String METHOD_DETECT = "/detect";

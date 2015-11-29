@@ -23,12 +23,15 @@
  */
 package com.github.vbauer.yta.service.basic;
 
+import javax.annotation.Nonnull;
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
 
 /**
  * @author Vladislav Bauer
  */
 
+@ThreadSafe
 public abstract class AbstractApi {
 
     private final ApiContext context;
@@ -38,11 +41,12 @@ public abstract class AbstractApi {
         this.context = context;
     }
 
-
+    @Nonnull
     protected final RestClient client() {
         return context.client();
     }
 
+    @Nonnull
     protected final DataConverter converter() {
         return context.converter();
     }

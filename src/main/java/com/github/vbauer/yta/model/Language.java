@@ -28,6 +28,7 @@ import com.google.common.base.Objects;
 import org.immutables.value.Value.Immutable;
 import org.immutables.value.Value.Parameter;
 
+import javax.annotation.Nonnull;
 import java.util.Optional;
 
 /**
@@ -113,10 +114,12 @@ public abstract class Language implements HasCode<String> {
     public abstract Optional<String> name();
 
 
+    @Nonnull
     public static Language of(final String code) {
         return ImmutableLanguage.of(code, Optional.empty());
     }
 
+    @Nonnull
     public static Language of(final String code, final String name) {
         return ImmutableLanguage.of(code, Optional.of(name));
     }

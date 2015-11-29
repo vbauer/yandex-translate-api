@@ -31,6 +31,7 @@ import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
 import com.google.common.collect.ImmutableMap;
 
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
 
 /**
@@ -39,6 +40,7 @@ import java.util.Map;
  * @author Vladislav Bauer
  */
 
+@ThreadSafe
 public class LanguageApiImpl extends AbstractApi implements LanguageApi {
 
     private static final String METHOD_GET_LANGS = "/getLangs";

@@ -35,6 +35,7 @@ import com.github.vbauer.yta.service.basic.ApiStatus;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
 
 /**
@@ -43,6 +44,7 @@ import java.util.Map;
  * @author Vladislav Bauer
  */
 
+@ThreadSafe
 public class TranslationApiImpl extends AbstractApi implements TranslationApi {
 
     private static final String METHOD_DETECT = "/translate";
