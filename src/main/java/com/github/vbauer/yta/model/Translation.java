@@ -23,6 +23,8 @@
  */
 package com.github.vbauer.yta.model;
 
+import java.io.Serializable;
+
 import org.immutables.value.Value.Immutable;
 
 /**
@@ -31,8 +33,9 @@ import org.immutables.value.Value.Immutable;
  * @author Vladislav Bauer
  */
 
+@SuppressWarnings("serial")
 @Immutable
-public abstract class Translation {
+public abstract class Translation implements Serializable {
 
     public abstract Direction direction();
 

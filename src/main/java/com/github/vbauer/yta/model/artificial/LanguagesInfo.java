@@ -34,6 +34,8 @@ import org.immutables.value.Value.Immutable;
 
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.ThreadSafe;
+
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +48,7 @@ import java.util.stream.Collectors;
 
 @Immutable
 @TypeAdapters
-public interface LanguagesInfo {
+public interface LanguagesInfo extends Serializable {
 
     List<String> dirs();
 
