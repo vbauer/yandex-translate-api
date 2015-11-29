@@ -27,6 +27,7 @@ package com.github.vbauer.yta.service.basic;
  * @author Vladislav Bauer
  */
 
+@SuppressWarnings("serial")
 public class ApiException extends RuntimeException {
 
     /**
