@@ -28,16 +28,16 @@ configurations {
 }
 
 dependencies {
-    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.google.code.gson:gson:2.5'
     compile 'com.google.guava:guava:18.0'
     compile 'com.mashape.unirest:unirest-java:1.4.7'
-    compile 'com.javaslang:javaslang:2.0.0-RC1'
+    compile 'com.javaslang:javaslang:2.0.0-RC2'
 
     compile files('build/classes/main')
 
-    provided 'org.immutables:value:2.1.0'
-    provided 'org.immutables:builder:2.1.0'
-    provided 'org.immutables:gson:2.1.0'
+    provided 'org.immutables:value:2.1.3'
+    provided 'org.immutables:builder:2.1.3'
+    provided 'org.immutables:gson:2.1.3'
     provided 'org.spockframework:spock-core:1.0-groovy-2.4'
     provided 'com.pushtorefresh.java-private-constructor-checker:checker:1.1.0'
     provided 'com.google.code.findbugs:annotations:3.0.1'
