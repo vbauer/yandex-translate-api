@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.github.vbauer'
-version '1.0.6'
+version '1.0.7'
 
 apply plugin: 'java'
 apply plugin: 'groovy'
