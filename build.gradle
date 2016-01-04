@@ -3,28 +3,21 @@ plugins {
     id 'com.github.kt3k.coveralls' version '2.4.0'
     id 'com.github.hierynomus.license' version '0.12.1'
     id 'com.github.ben-manes.versions' version '0.11.3'
+    id 'ru.vyarus.quality' version '1.2.0'
+    id 'ru.vyarus.java-lib' version '1.0.1'
 }
 
 group 'com.github.vbauer'
 version '1.0.7'
+description 'A simple REST client library for Yandex.Translate'
 
 apply plugin: 'java'
 apply plugin: 'groovy'
-apply plugin: 'pmd'
 apply plugin: 'jacoco'
-apply plugin: 'maven'
-apply plugin: 'osgi'
 
 repositories {
     mavenLocal()
     mavenCentral()
-}
-
-configurations {
-    provided.dependencies.all { dep ->
-        configurations.default.exclude group: dep.group, module: dep.name
-    }
-    compile.extendsFrom provided
 }
 
 dependencies {
@@ -32,53 +25,25 @@ dependencies {
     compile 'com.google.guava:guava:19.0'
     compile 'com.mashape.unirest:unirest-java:1.4.7'
     compile 'com.javaslang:javaslang:2.0.0-RC2'
+    compile 'com.google.code.findbugs:annotations:3.0.1'
 
     compile files('build/classes/main')
 
     provided 'org.immutables:value:2.1.5'
     provided 'org.immutables:builder:2.1.5'
     provided 'org.immutables:gson:2.1.5'
-    provided 'org.spockframework:spock-core:1.0-groovy-2.4'
-    provided 'com.pushtorefresh.java-private-constructor-checker:checker:1.2.0'
-    provided 'com.google.code.findbugs:annotations:3.0.1'
+
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    testCompile 'com.pushtorefresh.java-private-constructor-checker:checker:1.2.0'
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.10'
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.getDestinationDir()
-}
-
 compileJava {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-jar {
-    exclude('**/*.java')
-    manifest {
-        symbolicName = 'com.github.vbauer.yta'
-        instruction 'Export-Package',
-            "com.github.vbauer.yta;version=\"${version}\"",
-            "com.github.vbauer.yta.model;version=\"${version}\"",
-            "com.github.vbauer.yta.model.basic;version=\"${version}\"",
-            "com.github.vbauer.yta.service;version=\"${version}\"",
-            "com.github.vbauer.yta.service.basic;version=\"${version}\"",
-            "com.github.vbauer.yta.service.fraction;version=\"${version}\""
-        instruction 'Import-Package',
-            '*'
-        instruction 'Bundle-Vendor', 'Vladislav Bauer'
-        instruction 'Bundle-Description', 'Yandex Translate API: A REST client for Yandex.Translate'
-        instruction 'Bundle-DocURL', 'https://github.com/vbauer/yandex-translate-api'
-    }
 }
 
 jacocoTestReport {
@@ -88,41 +53,36 @@ jacocoTestReport {
     }
 }
 
-artifacts {
-    archives sourcesJar
-    archives javadocJar
-}
-
-install {
-    repositories.mavenInstaller {
-        pom.project {
-            inceptionYear = '2015'
-            licenses {
-                license {
-                    name = 'MIT License'
-                    url = 'http://www.opensource.org/licenses/mit-license.php'
-                    distribution = 'repo'
-                }
-            }
-            developers {
-                developer {
-                    id = 'vbauer'
-                    name = 'Vladislav Bauer'
-                    email = 'bauer.vlad@gmail.com'
-                    url = 'http://linkedin.com/in/vladislavbauer'
-                    roles {
-                        role 'Developer'
-                    }
-                }
-            }
-            issueManagement {
-                system = 'GitHub Issues'
-                url = 'https://github.com/vbauer/yandex-translate-api/issues'
-            }
-            ciManagement {
-                system = 'Travis'
-                url = 'https://travis-ci.org/vbauer/yandex-translate-api'
+pom {
+    inceptionYear '2015'
+    licenses {
+        license {
+            name 'MIT License'
+            url 'http://www.opensource.org/licenses/mit-license.php'
+            distribution 'repo'
+        }
+    }
+    developers {
+        developer {
+            id 'vbauer'
+            name 'Vladislav Bauer'
+            email 'bauer.vlad@gmail.com'
+            url 'http://linkedin.com/in/vladislavbauer'
+            roles {
+                role 'Developer'
             }
         }
     }
+    issueManagement {
+        system 'GitHub Issues'
+        url 'https://github.com/vbauer/yandex-translate-api/issues'
+    }
+    ciManagement {
+        system 'Travis'
+        url 'https://travis-ci.org/vbauer/yandex-translate-api'
+    }
+}
+
+quality {
+    findbugs = false
 }
