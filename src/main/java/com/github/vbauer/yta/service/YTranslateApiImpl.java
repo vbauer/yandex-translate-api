@@ -36,7 +36,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.concurrent.ThreadSafe;
 
 /**
- * {@inheritDoc}
+ * See {@link YTranslateApi}.
  *
  * @author Vladislav Bauer
  */
@@ -44,8 +44,13 @@ import javax.annotation.concurrent.ThreadSafe;
 @ThreadSafe
 public class YTranslateApiImpl extends AbstractApi implements YTranslateApi {
 
+    @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
     private final LanguageApi languageApi;
+
+    @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
     private final DetectionApi detectionApi;
+
+    @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
     private final TranslationApi translationApi;
 
 

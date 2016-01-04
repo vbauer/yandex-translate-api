@@ -35,7 +35,7 @@ import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
 
 /**
- * {@inheritDoc}
+ * See {@link LanguageApi}.
  *
  * @author Vladislav Bauer
  */

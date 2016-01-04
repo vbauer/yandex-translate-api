@@ -43,18 +43,34 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
+ * Model-interface with information about languages.
+ *
  * @author Vladislav Bauer
  */
-
 @Immutable
 @TypeAdapters
 public interface LanguagesInfo extends Serializable {
 
+    /**
+     * Collection of translation directions.
+     *
+     * @return translation directions
+     */
     List<String> dirs();
 
+    /**
+     * Dictionary with languages (code / name).
+     *
+     * @return languages
+     */
     Map<String, String> langs();
 
 
+    /**
+     * Utility class to work with {@link LanguagesInfo}.
+     *
+     * @author Vladislav Bauer
+     */
     @ThreadSafe
     final class LanguagesInfoUtils {
 

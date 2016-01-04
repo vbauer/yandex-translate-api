@@ -31,7 +31,7 @@ import javax.annotation.concurrent.ThreadSafe;
 import java.util.ServiceLoader;
 
 /**
- * {@inheritDoc}
+` * See {@link DataConverter}.
  *
  * @author Vladislav Bauer
  */

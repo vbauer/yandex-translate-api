@@ -37,6 +37,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * Model-interface with information about translated text.
+ *
  * @author Vladislav Bauer
  */
 
@@ -44,11 +46,26 @@ import java.util.Optional;
 @TypeAdapters
 public interface TranslationInfo extends HasCode<Integer> {
 
+    /**
+     * Target language.
+     *
+     * @return target language
+     */
     String lang();
 
+    /**
+     * Translated text.
+     *
+     * @return text
+     */
     List<String> text();
 
 
+    /**
+     * Utility class to work with {@link TranslationInfo}.
+     *
+     * @author Vladislav Bauer
+     */
     @ThreadSafe
     final class TranslationInfoUtils {
 
@@ -62,7 +79,7 @@ public interface TranslationInfo extends HasCode<Integer> {
             final String text = Iterables.getFirst(translationInfo.text(), null);
 
             return ImmutableTranslation.builder()
-                .text(Optional.ofNullable(text).orElse(""))
+                .text(Optional.ofNullable(text).orElseGet(String::new))
                 .direction(LanguagesInfoUtils.convert(translationInfo.lang()))
                 .build();
         }

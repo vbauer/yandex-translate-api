@@ -33,6 +33,8 @@ import javax.annotation.concurrent.ThreadSafe;
 import java.util.Optional;
 
 /**
+ * Model-interface with information about language.
+ *
  * @author Vladislav Bauer
  */
 
@@ -40,9 +42,19 @@ import java.util.Optional;
 @TypeAdapters
 public interface LanguageInfo extends HasCode<Integer> {
 
+    /**
+     * Language code/identifier.
+     *
+     * @return language
+     */
     Optional<String> lang();
 
 
+    /**
+     * Utility class to work with {@link LanguageInfo}.
+     *
+     * @author Vladislav Bauer
+     */
     @ThreadSafe
     final class LanguageInfoUtils {
 

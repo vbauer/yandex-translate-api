@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * {@inheritDoc}
+ * See {@link DetectionApi}.
  *
  * @author Vladislav Bauer
  */
