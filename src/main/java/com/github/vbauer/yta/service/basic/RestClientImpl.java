@@ -27,6 +27,8 @@ import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.options.Option;
+import com.mashape.unirest.http.options.Options;
 import javaslang.control.Try;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -39,7 +41,7 @@ import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
 
 /**
- * {@inheritDoc}
+ * See {@link RestClient}.
  *
  * @author Vladislav Bauer
  */
@@ -50,7 +52,6 @@ public class RestClientImpl implements RestClient {
     private static final String SERVICE_URL = "https://translate.yandex.net/api/v1.5/tr.json";
     private static final String ATTR_KEY = "key";
     private static final int DEFAULT_TIMEOUT = 30000;
-    private static volatile boolean initialized;
 
     private final String key;
 
@@ -97,15 +98,19 @@ public class RestClientImpl implements RestClient {
 
 
     private static void initHttpClientIfNecessary() throws Exception {
-        if (!initialized) {
-            synchronized (Unirest.class) {
-                if (!initialized) {
+        if (!hasCustomClient()) {
+            synchronized (RestClientImpl.class) {
+                if (!hasCustomClient()) {
                     final HttpClient httpClient = createClient();
                     Unirest.setHttpClient(httpClient);
-                    initialized = true;
                 }
             }
         }
+    }
+
+    private static boolean hasCustomClient() {
+        final Object option = Options.getOption(Option.HTTPCLIENT);
+        return option != null;
     }
 
     private static HttpClient createClient() throws Exception {
