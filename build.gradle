@@ -1,5 +1,8 @@
 
 plugins {
+    id 'java'
+    id 'groovy'
+    id 'jacoco'
     id 'com.github.kt3k.coveralls' version '2.4.0'
     id 'com.github.hierynomus.license' version '0.12.1'
     id 'com.github.ben-manes.versions' version '0.11.3'
@@ -10,10 +13,6 @@ plugins {
 group 'com.github.vbauer'
 version '1.0.7'
 description 'A simple REST client library for Yandex.Translate'
-
-apply plugin: 'java'
-apply plugin: 'groovy'
-apply plugin: 'jacoco'
 
 repositories {
     mavenLocal()
