@@ -27,8 +27,6 @@ import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.options.Option;
-import com.mashape.unirest.http.options.Options;
 import javaslang.control.Try;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -39,6 +37,7 @@ import org.apache.http.impl.client.HttpClients;
 
 import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * See {@link RestClient}.
@@ -53,6 +52,7 @@ public class RestClientImpl implements RestClient {
     private static final String ATTR_KEY = "key";
     private static final int DEFAULT_TIMEOUT = 30000;
 
+    private final AtomicBoolean initialized = new AtomicBoolean(false);
     private final String key;
 
 
@@ -97,23 +97,14 @@ public class RestClientImpl implements RestClient {
     }
 
 
-    private static void initHttpClientIfNecessary() throws Exception {
-        if (!hasCustomClient()) {
-            synchronized (RestClientImpl.class) {
-                if (!hasCustomClient()) {
-                    final HttpClient httpClient = createClient();
-                    Unirest.setHttpClient(httpClient);
-                }
-            }
-        }
+    private void initHttpClientIfNecessary() throws Exception {
+        if (initialized.compareAndSet(false, true)) {
+            final HttpClient httpClient = createClient();
+            Unirest.setHttpClient(httpClient);
+        }Inc
     }
 
-    private static boolean hasCustomClient() {
-        final Object option = Options.getOption(Option.HTTPCLIENT);
-        return option != null;
-    }
-
-    private static HttpClient createClient() throws Exception {
+    private HttpClient createClient() throws Exception {
         final SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(
             SSLContexts.custom()
                 .loadTrustMaterial(null, new TrustSelfSignedStrategy())
