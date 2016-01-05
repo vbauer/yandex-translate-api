@@ -5,3 +5,6 @@ jdk:
 after_success:
   - gradle jacocoTestReport coveralls
 sudo: false
+cache:
+   directories:
+   - $HOME/.gradle/caches/
