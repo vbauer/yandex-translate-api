@@ -101,7 +101,7 @@ public class RestClientImpl implements RestClient {
         if (initialized.compareAndSet(false, true)) {
             final HttpClient httpClient = createClient();
             Unirest.setHttpClient(httpClient);
-        }Inc
+        }
     }
 
     private HttpClient createClient() throws Exception {
