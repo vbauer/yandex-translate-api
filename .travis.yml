@@ -1,9 +1,9 @@
 language: java
-script: gradle build --stacktrace
+script: ./gradlew build --stacktrace
 jdk:
   - oraclejdk8
 after_success:
-  - gradle jacocoTestReport coveralls --stacktrace
+  - ./gradlew jacocoTestReport coveralls --stacktrace
 sudo: false
 cache:
    directories:
