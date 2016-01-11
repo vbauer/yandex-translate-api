@@ -1,10 +1,17 @@
 language: java
-script: ./gradlew build --stacktrace
 jdk:
   - oraclejdk8
+
+sudo: false
+env:
+  - TERM=dumb
+
+script:
+  - ./gradlew build --stacktrace
+
 after_success:
   - ./gradlew jacocoTestReport coveralls --stacktrace
-sudo: false
+
 cache:
    directories:
    - $HOME/.gradle/caches/
