@@ -6,6 +6,9 @@ sudo: false
 env:
   - TERM=dumb
 
+before_install:
+  - chmod +x gradlew
+
 script:
   - ./gradlew build --stacktrace
 
