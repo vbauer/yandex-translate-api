@@ -79,7 +79,7 @@ public class RestClientImpl implements RestClient {
             ApiStatus.check(response.getStatus());
 
             return response.getBody();
-        }).orElseThrow(Throwables::propagate);
+        }).getOrElseThrow(Throwables::propagate);
     }
 
 
