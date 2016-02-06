@@ -118,4 +118,4 @@ Yandex LLC and all their developers for the great service.
 
 # License
 
-[MIT](LICENSE.md)
+[MIT](LICENSE)
