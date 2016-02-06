@@ -113,7 +113,8 @@ def translation = api.translationApi().translate("Как дела?", Language.EN
 
 # Thanks to
 
-Yandex LLC and all their developers for the great service.
+* Yandex LLC and all their developers for the great service.
+* [Vyacheslav Rusakov](https://github.com/xvik) for the following Gradle plugins: [gradle-java-lib-plugin](https://github.com/xvik/gradle-java-lib-plugin) and [gradle-quality-plugin](https://github.com/xvik/gradle-quality-plugin).
 
 
 # License
