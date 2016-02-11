@@ -21,15 +21,15 @@ repositories {
 dependencies {
     compile 'com.google.code.gson:gson:2.5'
     compile 'com.google.guava:guava:19.0'
-    compile 'com.mashape.unirest:unirest-java:1.4.7'
+    compile 'com.mashape.unirest:unirest-java:1.4.8'
     compile 'com.javaslang:javaslang:2.0.0-RC3'
     compile 'com.google.code.findbugs:annotations:3.0.1'
 
     compile files('build/classes/main')
 
-    provided 'org.immutables:value:2.1.9'
-    provided 'org.immutables:builder:2.1.9'
-    provided 'org.immutables:gson:2.1.9'
+    provided 'org.immutables:value:2.1.10'
+    provided 'org.immutables:builder:2.1.10'
+    provided 'org.immutables:gson:2.1.10'
 
     testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
     testCompile 'com.pushtorefresh.java-private-constructor-checker:checker:1.2.0'
