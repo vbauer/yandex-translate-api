@@ -44,14 +44,9 @@ import javax.annotation.concurrent.ThreadSafe;
 @ThreadSafe
 public class YTranslateApiImpl extends AbstractApi implements YTranslateApi {
 
-    @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
-    private final LanguageApi languageApi;
-
-    @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
-    private final DetectionApi detectionApi;
-
-    @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
-    private final TranslationApi translationApi;
+    private final LanguageApi languageService;
+    private final DetectionApi detectionService;
+    private final TranslationApi translationService;
 
 
     public YTranslateApiImpl(final String key) {
@@ -61,9 +56,9 @@ public class YTranslateApiImpl extends AbstractApi implements YTranslateApi {
     public YTranslateApiImpl(final ApiContext context) {
         super(context);
 
-        this.languageApi = new LanguageApiImpl(context);
-        this.detectionApi = new DetectionApiImpl(context);
-        this.translationApi = new TranslationApiImpl(context);
+        this.languageService = new LanguageApiImpl(context);
+        this.detectionService = new DetectionApiImpl(context);
+        this.translationService = new TranslationApiImpl(context);
     }
 
 
@@ -73,7 +68,7 @@ public class YTranslateApiImpl extends AbstractApi implements YTranslateApi {
     @Nonnull
     @Override
     public LanguageApi languageApi() {
-        return languageApi;
+        return languageService;
     }
 
     /**
@@ -82,7 +77,7 @@ public class YTranslateApiImpl extends AbstractApi implements YTranslateApi {
     @Nonnull
     @Override
     public DetectionApi detectionApi() {
-        return detectionApi;
+        return detectionService;
     }
 
     /**
@@ -91,7 +86,7 @@ public class YTranslateApiImpl extends AbstractApi implements YTranslateApi {
     @Nonnull
     @Override
     public TranslationApi translationApi() {
-        return translationApi;
+        return translationService;
     }
 
 }
