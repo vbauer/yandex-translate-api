@@ -35,6 +35,7 @@ import java.util.Map;
  *
  * @author Vladislav Bauer
  */
+
 @Immutable
 @TypeAdapters
 public interface LanguagesInfo extends Serializable {

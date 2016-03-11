@@ -52,6 +52,9 @@ public abstract class Translation implements Serializable {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return text();

@@ -21,6 +21,9 @@ public class DirectionConverter extends BasicConverter<String, Direction> {
     public static final DirectionConverter INSTANCE = new DirectionConverter();
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Nonnull
     @Override
     protected Direction doForward(@Nonnull final String direction) {
@@ -28,6 +31,14 @@ public class DirectionConverter extends BasicConverter<String, Direction> {
     }
 
 
+    /**
+     * Detect translation direction using collection with languages and
+     * text representation of the given direction.
+     *
+     * @param languages collection with languages
+     * @param dir text representation of the direction
+     * @return direction model object
+     */
     public Direction convertDirection(final Collection<Language> languages, final String dir) {
         final String[] parts = dir.split(Direction.SEPARATOR);
         final String from = parts[0];

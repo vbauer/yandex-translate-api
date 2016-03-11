@@ -61,6 +61,9 @@ public abstract class Direction implements Serializable {
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         final String prefix = source()

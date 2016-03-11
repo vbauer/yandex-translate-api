@@ -125,17 +125,26 @@ public abstract class Language implements HasCode<String> {
         return ImmutableLanguage.of(code, Optional.of(name));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return Objects.hashCode(code());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(final Object another) {
         return this == another
             || another instanceof Language && Objects.equal(((Language) another).code(), code());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return code();

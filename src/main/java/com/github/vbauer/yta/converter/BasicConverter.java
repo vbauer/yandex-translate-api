@@ -17,6 +17,9 @@ import javax.annotation.concurrent.ThreadSafe;
 @ThreadSafe
 public abstract class BasicConverter<A, B> extends Converter<A, B> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Nonnull
     @Override
     protected A doBackward(@Nonnull final B input) {

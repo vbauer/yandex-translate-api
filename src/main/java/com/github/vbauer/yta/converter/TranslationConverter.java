@@ -20,7 +20,9 @@ public class TranslationConverter extends BasicConverter<TranslationInfo, Transl
 
     public static final TranslationConverter INSTANCE = new TranslationConverter();
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Nonnull
     @Override
     protected Translation doForward(@Nonnull final TranslationInfo translationInfo) {

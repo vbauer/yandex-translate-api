@@ -24,6 +24,9 @@ public class LanguagesConverter extends BasicConverter<LanguagesInfo, Languages>
     public static final LanguagesConverter INSTANCE = new LanguagesConverter();
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Nonnull
     @Override
     protected Languages doForward(@Nonnull final LanguagesInfo languagesInfo) {
