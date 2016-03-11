@@ -35,7 +35,9 @@ class LanguageSpec extends Specification {
 
     def "Check available languages API key"() {
         expect:
-            lang != null && lang.code() != null && lang.name() != null
+            lang != null
+            lang.code() != null
+            lang.name() != null
 
         where:
             lang << [
