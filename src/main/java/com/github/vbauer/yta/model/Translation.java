@@ -23,12 +23,14 @@
  */
 package com.github.vbauer.yta.model;
 
+import org.immutables.value.Value.Immutable;
+import org.immutables.value.Value.Parameter;
+
+import javax.annotation.Nonnull;
 import java.io.Serializable;
 
-import org.immutables.value.Value.Immutable;
-
 /**
- * Model represents result of translation.
+ * Model represents the result of translation.
  *
  * @author Vladislav Bauer
  */
@@ -37,9 +39,17 @@ import org.immutables.value.Value.Immutable;
 @Immutable
 public abstract class Translation implements Serializable {
 
+    @Parameter(order = 0)
     public abstract Direction direction();
 
+    @Parameter(order = 2)
     public abstract String text();
+
+
+    @Nonnull
+    public static Translation of(final Direction direction, final String text) {
+        return ImmutableTranslation.of(direction, text);
+    }
 
 
     @Override

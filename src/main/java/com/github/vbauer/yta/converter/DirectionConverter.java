@@ -1,7 +1,6 @@
 package com.github.vbauer.yta.converter;
 
 import com.github.vbauer.yta.model.Direction;
-import com.github.vbauer.yta.model.ImmutableDirection;
 import com.github.vbauer.yta.model.Language;
 import com.github.vbauer.yta.model.basic.HasCode;
 import com.google.common.collect.Lists;
@@ -41,11 +40,7 @@ public class DirectionConverter extends BasicConverter<String, Direction> {
     ) {
         final Language source = findOrCreateLanguage(languages, from);
         final Language target = findOrCreateLanguage(languages, to);
-
-        return ImmutableDirection.builder()
-            .source(source)
-            .target(target)
-            .build();
+        return Direction.of(source, target);
     }
 
     private Language findOrCreateLanguage(final Collection<Language> languages, final String code) {
