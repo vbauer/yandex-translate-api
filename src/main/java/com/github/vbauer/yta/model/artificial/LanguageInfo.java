@@ -23,13 +23,10 @@
  */
 package com.github.vbauer.yta.model.artificial;
 
-import com.github.vbauer.yta.model.Language;
 import com.github.vbauer.yta.model.basic.HasCode;
 import org.immutables.gson.Gson.TypeAdapters;
 import org.immutables.value.Value.Immutable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.concurrent.ThreadSafe;
 import java.util.Optional;
 
 /**
@@ -48,26 +45,5 @@ public interface LanguageInfo extends HasCode<Integer> {
      * @return language
      */
     Optional<String> lang();
-
-
-    /**
-     * Utility class to work with {@link LanguageInfo}.
-     *
-     * @author Vladislav Bauer
-     */
-    @ThreadSafe
-    final class LanguageInfoUtils {
-
-        private LanguageInfoUtils() {
-            throw new UnsupportedOperationException();
-        }
-
-
-        @Nonnull
-        public static Optional<Language> convert(final LanguageInfo languageInfo) {
-            return languageInfo.lang().map(Language::of);
-        }
-
-    }
 
 }

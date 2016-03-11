@@ -23,9 +23,6 @@
  */
 package com.github.vbauer.yta.util
 
-import com.github.vbauer.yta.model.artificial.LanguageInfo
-import com.github.vbauer.yta.model.artificial.LanguagesInfo
-import com.github.vbauer.yta.model.artificial.TranslationInfo
 import com.github.vbauer.yta.service.basic.ApiStatus
 import com.pushtorefresh.private_constructor_checker.PrivateConstructorChecker
 import spock.lang.Specification
@@ -42,9 +39,6 @@ class UtilsTest extends Specification {
         when:
             PrivateConstructorChecker
                 .forClasses(
-                    LanguageInfo.LanguageInfoUtils,
-                    LanguagesInfo.LanguagesInfoUtils,
-                    TranslationInfo.TranslationInfoUtils,
                     HasCodeUtils,
                     ApiStatus
                 )

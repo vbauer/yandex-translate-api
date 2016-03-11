@@ -23,11 +23,11 @@
  */
 package com.github.vbauer.yta.service.fraction;
 
+import com.github.vbauer.yta.converter.TranslationConverter;
 import com.github.vbauer.yta.model.Direction;
 import com.github.vbauer.yta.model.Language;
 import com.github.vbauer.yta.model.Translation;
 import com.github.vbauer.yta.model.artificial.TranslationInfo;
-import com.github.vbauer.yta.model.artificial.TranslationInfo.TranslationInfoUtils;
 import com.github.vbauer.yta.model.basic.TextFormat;
 import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
@@ -88,7 +88,7 @@ public class TranslationApiImpl extends AbstractApi implements TranslationApi {
         final TranslationInfo data = callMethod(TranslationInfo.class, METHOD_DETECT, params);
         ApiStatus.check(data.code());
 
-        return TranslationInfoUtils.convert(data);
+        return TranslationConverter.INSTANCE.convert(data);
     }
 
 }
