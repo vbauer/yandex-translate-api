@@ -23,28 +23,42 @@
  */
 package com.github.vbauer.yta.service.fraction
 
-import com.github.vbauer.yta.common.AbstractApiTest
+import com.github.vbauer.yta.common.AbstractApiSpec
+import com.github.vbauer.yta.model.Direction
 import com.github.vbauer.yta.model.Language
+import com.github.vbauer.yta.model.basic.TextFormat
 
 /**
  * @author Vladislav Bauer
  */
 
-class DetectionApiTest extends AbstractApiTest {
+class TranslationApiSpec extends AbstractApiSpec {
 
-    def "Check Detection API"() {
+    def "Check Translate API"() {
         setup:
-            def detectApi = api.detectionApi()
+            def translateApi = api.translationApi()
 
-        when: "Language should be detected as English"
-            detectApi.detect("Hello, World!")
+        when: "Translate Russian to English"
+            def translationRuEn = translateApi.translate("Как дела?", Language.EN)
         then:
-            Language.EN
+            translationRuEn.text().equals("How are you doing?")
+            translationRuEn.direction().equals(Direction.of(Language.RU, Language.EN))
 
-        when: "HTML with Russian text should be detected"
-            detectApi.detect("<b><h1>Привет, Мир!</h1></b>")
+        when: "Translate English to Russian"
+            def enRu = Direction.of(Language.EN, Language.RU)
+            def translationEnRu = translateApi.translate("How are you doing?", enRu)
         then:
-            Language.RU
+            translationEnRu.text().equals("Как у тебя дела?")
+            translationEnRu.direction().equals(enRu)
+
+        when: "Translate Russian to English with HTML"
+            def ruEn = Direction.of(Language.RU, Language.EN)
+            def translationRuEnHtml = translateApi.translate(
+                "<span>Привет</span>", ruEn, TextFormat.HTML
+            )
+        then:
+            translationRuEnHtml.toString().equals("<span>Hi</span>")
+            translationRuEnHtml.direction().equals(ruEn)
     }
 
 }

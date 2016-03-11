@@ -21,33 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.model
+package com.github.vbauer.yta.service.fraction
 
-import spock.lang.Specification
-
-import static com.github.vbauer.yta.model.Language.*
+import com.github.vbauer.yta.common.AbstractApiSpec
+import com.github.vbauer.yta.model.Language
 
 /**
  * @author Vladislav Bauer
  */
 
-class LanguageTest extends Specification {
+class DetectionApiSpec extends AbstractApiSpec {
 
-    def "Check available languages API key"() {
-        expect:
-            lang != null && lang.code() != null && lang.name() != null
+    def "Check Detection API"() {
+        setup:
+            def detectApi = api.detectionApi()
 
-        where:
-            lang << [
-                EN, RU, TR, UK,
+        when: "Language should be detected as English"
+            detectApi.detect("Hello, World!")
+        then:
+            Language.EN
 
-                SW, AZ, HY, ID, KO, BE, JA, KA, CY, KK,
-                IT, RO, HU, MS, MK, FA, DA, ES, FR, LV,
-                GA, SR, TT, SQ, MT, PL, HR, TH, NO, KY,
-                GL, FI, TG, EU, AR, CA, NL, BG, AF, MN,
-                HT, PT, DE, TL, BS, VI, CS, EL, MG, SK,
-                BA, LT, ET, ZH, HE, UZ, LA, SL, SV, IS
-            ]
+        when: "HTML with Russian text should be detected"
+            detectApi.detect("<b><h1>Привет, Мир!</h1></b>")
+        then:
+            Language.RU
     }
 
 }

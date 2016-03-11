@@ -21,39 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.service.fraction
+package com.github.vbauer.yta.model.basic
 
-import com.github.vbauer.yta.common.AbstractApiTest
-import com.github.vbauer.yta.model.Language
+import spock.lang.Specification
 
 /**
  * @author Vladislav Bauer
  */
 
-class LanguageApiTest extends AbstractApiTest {
+class TextFormatSpec extends Specification {
 
-    def "Check Language API"() {
-        setup:
-            def langApi = api.languageApi()
-
-        when: "UI parameter is not passed"
-            def allLanguages = langApi.all()
+    def "Check method getOrDefault"() {
+        when:
+            def nullFormat = TextFormat.getOrDefault(null)
         then:
-            !allLanguages.toString().empty
-            !allLanguages.directions().empty
-            !allLanguages.languages().empty
+            nullFormat == TextFormat.PLAIN_TEXT
 
-        when: "UI parameter is an object"
-            def allLanguagesEn = langApi.all(Language.EN)
+        when:
+            def htmlFormat = TextFormat.getOrDefault(TextFormat.HTML)
         then:
-            !allLanguagesEn.directions().empty
-            !allLanguagesEn.languages().empty
-
-        when: "UI parameter is a string"
-            def allLanguagesRu = langApi.all("ru")
-        then:
-            !allLanguagesRu.directions().empty
-            !allLanguagesRu.languages().empty
+            htmlFormat == TextFormat.HTML
     }
 
 }

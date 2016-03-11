@@ -21,20 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.common
+package com.github.vbauer.yta.util
 
-import com.github.vbauer.yta.service.YTranslateApiImpl
-import spock.lang.Shared
+import com.github.vbauer.yta.service.basic.ApiStatus
+import com.pushtorefresh.private_constructor_checker.PrivateConstructorChecker
 import spock.lang.Specification
+
+import static com.github.vbauer.yta.model.basic.HasCode.HasCodeUtils
 
 /**
  * @author Vladislav Bauer
  */
 
-abstract class AbstractApiTest extends Specification {
+class UtilsSpec extends Specification {
 
-    static final KEY = "trnsl.1.1.20151012T201854Z.52731c6f05cd2ac8.f9ccae1aec912fb16879d4d89a2a40bbf1c802a3"
-
-    @Shared api = new YTranslateApiImpl(KEY)
+    def "Check constructors in util-classes"() {
+        when:
+            PrivateConstructorChecker
+                .forClasses(
+                    HasCodeUtils,
+                    ApiStatus
+                )
+                .expectedTypeOfException(UnsupportedOperationException.class)
+                .check();
+        then:
+            true
+    }
 
 }

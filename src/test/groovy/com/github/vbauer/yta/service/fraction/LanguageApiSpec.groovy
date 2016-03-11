@@ -21,41 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.model.basic
+package com.github.vbauer.yta.service.fraction
 
+import com.github.vbauer.yta.common.AbstractApiSpec
 import com.github.vbauer.yta.model.Language
-import spock.lang.Specification
-
-import static com.github.vbauer.yta.model.basic.HasCode.HasCodeUtils
 
 /**
  * @author Vladislav Bauer
  */
-class HasCodeUtilsTest extends Specification {
 
-    def "Check method findByCode"() {
+class LanguageApiSpec extends AbstractApiSpec {
+
+    def "Check Language API"() {
         setup:
-            def languages = [Language.RU, Language.EN]
+            def langApi = api.languageApi()
 
-        when:
-            def existedLang = HasCodeUtils.findByCode(languages, "ru")
+        when: "UI parameter is not passed"
+            def allLanguages = langApi.all()
         then:
-            existedLang.get() == Language.RU
+            !allLanguages.toString().empty
+            !allLanguages.directions().empty
+            !allLanguages.languages().empty
 
-        when:
-            def missedLang = HasCodeUtils.findByCode(languages, "fr")
+        when: "UI parameter is an object"
+            def allLanguagesEn = langApi.all(Language.EN)
         then:
-            !missedLang.isPresent()
+            !allLanguagesEn.directions().empty
+            !allLanguagesEn.languages().empty
 
-        when:
-            def nullLang = HasCodeUtils.findByCode(languages, null)
+        when: "UI parameter is a string"
+            def allLanguagesRu = langApi.all("ru")
         then:
-            !nullLang.isPresent()
-
-        when:
-            def nullCollection = HasCodeUtils.findByCode(null, "ru")
-        then:
-            !nullCollection.isPresent()
+            !allLanguagesRu.directions().empty
+            !allLanguagesRu.languages().empty
     }
 
 }

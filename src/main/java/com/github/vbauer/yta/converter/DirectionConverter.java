@@ -46,6 +46,7 @@ public class DirectionConverter extends BasicConverter<String, Direction> {
         return composeDirection(languages, from, to);
     }
 
+
     private Direction composeDirection(
         final Collection<Language> languages, final String from, final String to
     ) {

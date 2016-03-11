@@ -21,42 +21,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.service.basic
+package com.github.vbauer.yta.model
 
 import spock.lang.Specification
+
+import static com.github.vbauer.yta.model.Language.*
 
 /**
  * @author Vladislav Bauer
  */
 
-class ApiStatusTest extends Specification {
+class LanguageSpec extends Specification {
 
-    def "API response statuses"() {
+    def "Check available languages API key"() {
         expect:
-            value == code
+            lang != null && lang.code() != null && lang.name() != null
 
         where:
-            value | code
-            200   | ApiStatus.ERR_OK
-            401   | ApiStatus.ERR_KEY_INVALID
-            402   | ApiStatus.ERR_KEY_BLOCKED
-            403   | ApiStatus.ERR_DAILY_REQ_LIMIT_EXCEEDED
-            404   | ApiStatus.ERR_DAILY_CHAR_LIMIT_EXCEEDED
-            413   | ApiStatus.ERR_TEXT_TOO_LONG
-            422   | ApiStatus.ERR_UNPROCESSABLE_TEXT
-            501   | ApiStatus.ERR_LANG_NOT_SUPPORTED
-    }
+            lang << [
+                EN, RU, TR, UK,
 
-    def "Check-method could throw an ApiException"() {
-        when:
-            ApiStatus.check(ApiStatus.ERR_OK)
-        then:
-            notThrown ApiException
-
-        when:
-            ApiStatus.check(ApiStatus.ERR_TEXT_TOO_LONG)
-        then:
-            thrown ApiException
+                SW, AZ, HY, ID, KO, BE, JA, KA, CY, KK,
+                IT, RO, HU, MS, MK, FA, DA, ES, FR, LV,
+                GA, SR, TT, SQ, MT, PL, HR, TH, NO, KY,
+                GL, FI, TG, EU, AR, CA, NL, BG, AF, MN,
+                HT, PT, DE, TL, BS, VI, CS, EL, MG, SK,
+                BA, LT, ET, ZH, HE, UZ, LA, SL, SV, IS
+            ]
     }
 
 }

@@ -21,27 +21,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.service
+package com.github.vbauer.yta.model.basic
 
-import com.github.vbauer.yta.service.basic.ApiException
-import com.github.vbauer.yta.service.basic.ApiStatus
+import com.github.vbauer.yta.model.Language
 import spock.lang.Specification
+
+import static com.github.vbauer.yta.model.basic.HasCode.HasCodeUtils
 
 /**
  * @author Vladislav Bauer
  */
 
-class YTranslateApiTest extends Specification {
+class HasCodeUtilsSpec extends Specification {
 
-    def "Check wrong API key"() {
+    def "Check method findByCode"() {
         setup:
-            def badApi = new YTranslateApiImpl("wrong key")
+            def languages = [Language.RU, Language.EN]
+
         when:
-            badApi.languageApi().all()
+            def existedLang = HasCodeUtils.findByCode(languages, "ru")
         then:
-            def e = thrown(ApiException)
-            e.status != ApiStatus.ERR_OK
-            !e.message.empty
+            existedLang.get() == Language.RU
+
+        when:
+            def missedLang = HasCodeUtils.findByCode(languages, "fr")
+        then:
+            !missedLang.isPresent()
+
+        when:
+            def nullLang = HasCodeUtils.findByCode(languages, null)
+        then:
+            !nullLang.isPresent()
+
+        when:
+            def nullCollection = HasCodeUtils.findByCode(null, "ru")
+        then:
+            !nullCollection.isPresent()
     }
 
 }
