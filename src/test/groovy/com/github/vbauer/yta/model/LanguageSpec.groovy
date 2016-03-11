@@ -38,7 +38,6 @@ class LanguageSpec extends Specification {
             lang != null
             lang.code() != null
             lang.name() != null
-
         where:
             lang << [
                 EN, RU, TR, UK,
