@@ -33,6 +33,11 @@ import spock.lang.Specification
 
 class LanguageConverterSpec extends Specification {
 
+    def "Check null-value conversion"() {
+        expect:
+            LanguageConverter.INSTANCE.convert(null) == null
+    }
+
     def "Check correct conversion"() {
         when:
             def input = ImmutableLanguageInfo.builder()

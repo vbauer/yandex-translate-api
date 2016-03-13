@@ -37,6 +37,11 @@ import static com.github.vbauer.yta.model.Language.RU
 
 class LanguagesConverterSpec extends Specification {
 
+    def "Check null-value conversion"() {
+        expect:
+            LanguagesConverter.INSTANCE.convert(null) == null
+    }
+
     def "Check correct conversion"() {
         when:
             def input = ImmutableLanguagesInfo.builder()

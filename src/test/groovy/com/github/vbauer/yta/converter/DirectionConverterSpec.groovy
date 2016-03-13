@@ -35,6 +35,11 @@ import static com.github.vbauer.yta.model.Language.RU
 
 class DirectionConverterSpec extends Specification {
 
+    def "Check null-value conversion"() {
+        expect:
+            DirectionConverter.INSTANCE.convert(null) == null
+    }
+
     def "Check correct conversion"() {
         expect:
             DirectionConverter.INSTANCE.convert(input) == output
