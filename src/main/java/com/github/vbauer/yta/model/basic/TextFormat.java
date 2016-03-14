@@ -71,9 +71,7 @@ public enum TextFormat implements HasCode<String> {
 
 
     /**
-     * Text format code.
-     *
-     * @return code
+     * {@inheritDoc}
      */
     @Override
     public String code() {

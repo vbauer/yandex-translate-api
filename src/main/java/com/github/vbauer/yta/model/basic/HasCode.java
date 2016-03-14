@@ -41,6 +41,11 @@ import java.util.Optional;
 
 public interface HasCode<T> extends Serializable {
 
+    /**
+     * Get code value.
+     *
+     * @return code
+     */
     T code();
 
 

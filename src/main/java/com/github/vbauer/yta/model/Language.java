@@ -108,22 +108,45 @@ public abstract class Language implements HasCode<String> {
     public static final Language IS = of("is", "Icelandic");
 
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     @Parameter(order = 0)
     public abstract String code();
 
+    /**
+     * Get language name.
+     *
+     * @return language name
+     */
     @Parameter(order = 1)
     public abstract Optional<String> name();
 
 
+    /**
+     * A factory method to create language object using code and name.
+     *
+     * @param code code value
+     * @param name language name
+     * @return language
+     */
+    @Nonnull
+    public static Language of(final String code, final String name) {
+        return ImmutableLanguage.of(code, Optional.of(name));
+    }
+
+    /**
+     * Create language object using only code value.
+     *
+     * @param code code value
+     * @return language
+     */
     @Nonnull
     public static Language of(final String code) {
         return ImmutableLanguage.of(code, Optional.empty());
     }
 
-    @Nonnull
-    public static Language of(final String code, final String name) {
-        return ImmutableLanguage.of(code, Optional.of(name));
-    }
 
     /**
      * {@inheritDoc}
