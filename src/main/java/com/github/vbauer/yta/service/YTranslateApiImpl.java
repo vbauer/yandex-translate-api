@@ -26,11 +26,11 @@ package com.github.vbauer.yta.service;
 import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
 import com.github.vbauer.yta.service.fraction.DetectionApi;
-import com.github.vbauer.yta.service.fraction.DetectionApiImpl;
 import com.github.vbauer.yta.service.fraction.LanguageApi;
-import com.github.vbauer.yta.service.fraction.LanguageApiImpl;
 import com.github.vbauer.yta.service.fraction.TranslationApi;
-import com.github.vbauer.yta.service.fraction.TranslationApiImpl;
+import com.github.vbauer.yta.service.fraction.impl.DetectionApiImpl;
+import com.github.vbauer.yta.service.fraction.impl.LanguageApiImpl;
+import com.github.vbauer.yta.service.fraction.impl.TranslationApiImpl;
 
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.ThreadSafe;

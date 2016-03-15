@@ -25,6 +25,8 @@ package com.github.vbauer.yta.service.basic;
 
 import com.github.vbauer.yta.service.transport.DataConverter;
 import com.github.vbauer.yta.service.transport.RestClient;
+import com.github.vbauer.yta.service.transport.impl.DataConverterImpl;
+import com.github.vbauer.yta.service.transport.impl.RestClientImpl;
 import org.immutables.value.Value.Immutable;
 
 import javax.annotation.Nonnull;
