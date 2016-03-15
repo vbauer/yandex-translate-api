@@ -31,6 +31,8 @@ import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
 
 /**
+ * Basic class for API services.
+ *
  * @author Vladislav Bauer
  */
 
@@ -44,11 +46,21 @@ public abstract class AbstractApi {
         this.context = context;
     }
 
+    /**
+     * Get REST client from API context.
+     *
+     * @return REST client
+     */
     @Nonnull
     protected final RestClient client() {
         return context.client();
     }
 
+    /**
+     * Get data converter from API context.
+     *
+     * @return data converter
+     */
     @Nonnull
     protected final DataConverter converter() {
         return context.converter();
