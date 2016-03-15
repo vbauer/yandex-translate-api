@@ -80,6 +80,11 @@ public final class ApiStatus {
     }
 
 
+    /**
+     * Check that status is {@link #ERR_OK} and throw {@link ApiException} otherwise.
+     *
+     * @param status status code
+     */
     public static void check(final int status) {
         if (status != ApiStatus.ERR_OK) {
             throw new ApiException(status);

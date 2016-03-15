@@ -41,10 +41,18 @@ public class ApiException extends RuntimeException {
     }
 
 
+    /**
+     * Get status of error.
+     *
+     * @return error status
+     */
     public int getStatus() {
         return status;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getMessage() {
         final int status = getStatus();

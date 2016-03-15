@@ -48,13 +48,16 @@ class ApiStatusSpec extends Specification {
             501   | ApiStatus.ERR_LANG_NOT_SUPPORTED
     }
 
-    def "Check-method could throw an ApiException"() {
+    def "Check-method with correct status code"() {
         when:
             ApiStatus.check(ApiStatus.ERR_OK)
         then:
             notThrown ApiException
+    }
 
+    def "Check-method throws an ApiException"() {
         def assertCheck = { ex -> assert ex instanceof ApiException }
+
         expect:
             Try.of({ ApiStatus.check(status) })
                 .onFailure(assertCheck)

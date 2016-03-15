@@ -56,4 +56,9 @@ class DirectionConverterSpec extends Specification {
             thrown UnsupportedOperationException
     }
 
+    def "Check direction separator"() {
+        expect:
+            Direction.SEPARATOR.equals("-")
+    }
+
 }
