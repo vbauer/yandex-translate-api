@@ -23,6 +23,7 @@
  */
 package com.github.vbauer.yta.service.basic
 
+import javaslang.control.Try
 import spock.lang.Specification
 
 /**
@@ -53,10 +54,21 @@ class ApiStatusSpec extends Specification {
         then:
             notThrown ApiException
 
-        when:
-            ApiStatus.check(ApiStatus.ERR_TEXT_TOO_LONG)
-        then:
-            thrown ApiException
+        def assertCheck = { ex -> assert ex instanceof ApiException }
+        expect:
+            Try.of({ ApiStatus.check(status) })
+                .onFailure(assertCheck)
+                .onSuccess(assertCheck)
+        where:
+            status << [
+                ApiStatus.ERR_KEY_INVALID,
+                ApiStatus.ERR_KEY_BLOCKED,
+                ApiStatus.ERR_DAILY_REQ_LIMIT_EXCEEDED,
+                ApiStatus.ERR_DAILY_CHAR_LIMIT_EXCEEDED,
+                ApiStatus.ERR_TEXT_TOO_LONG,
+                ApiStatus.ERR_UNPROCESSABLE_TEXT,
+                ApiStatus.ERR_LANG_NOT_SUPPORTED
+            ]
     }
 
 }
