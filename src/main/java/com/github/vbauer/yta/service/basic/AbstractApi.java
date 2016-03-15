@@ -23,6 +23,9 @@
  */
 package com.github.vbauer.yta.service.basic;
 
+import com.github.vbauer.yta.service.transport.DataConverter;
+import com.github.vbauer.yta.service.transport.RestClient;
+
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;

@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.service.basic;
+package com.github.vbauer.yta.service.transport;
 
 /**
  * Converter of raw responses from Yandex.Translate service.

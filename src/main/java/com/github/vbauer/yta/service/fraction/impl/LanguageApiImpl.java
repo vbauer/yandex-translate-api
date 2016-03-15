@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.service.fraction;
+package com.github.vbauer.yta.service.fraction.impl;
 
 import com.github.vbauer.yta.converter.LanguagesConverter;
 import com.github.vbauer.yta.model.Language;
@@ -29,6 +29,7 @@ import com.github.vbauer.yta.model.Languages;
 import com.github.vbauer.yta.model.artificial.LanguagesInfo;
 import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
+import com.github.vbauer.yta.service.fraction.LanguageApi;
 import com.google.common.collect.ImmutableMap;
 
 import javax.annotation.concurrent.ThreadSafe;

@@ -31,7 +31,7 @@ package com.github.vbauer.yta.service.basic;
 public class ApiException extends RuntimeException {
 
     /**
-     * Possible values are described in {@link ApiStatus} class.
+     * Possible values are described in {@link com.github.vbauer.yta.service.basic.ApiStatus} class.
      */
     private final int status;
 

@@ -21,37 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.service.fraction;
+package com.github.vbauer.yta.service.fraction.impl;
 
-import com.github.vbauer.yta.converter.LanguageConverter;
+import com.github.vbauer.yta.converter.TranslationConverter;
+import com.github.vbauer.yta.model.Direction;
 import com.github.vbauer.yta.model.Language;
-import com.github.vbauer.yta.model.artificial.LanguageInfo;
+import com.github.vbauer.yta.model.Translation;
+import com.github.vbauer.yta.model.artificial.TranslationInfo;
 import com.github.vbauer.yta.model.basic.TextFormat;
 import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
 import com.github.vbauer.yta.service.basic.ApiStatus;
+import com.github.vbauer.yta.service.fraction.TranslationApi;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 
 import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
-import java.util.Optional;
 
 /**
- * See {@link DetectionApi}.
+ * See {@link TranslationApi}.
  *
  * @author Vladislav Bauer
  */
 
 @ThreadSafe
-public class DetectionApiImpl extends AbstractApi implements DetectionApi {
+public class TranslationApiImpl extends AbstractApi implements TranslationApi {
 
-    private static final String METHOD_DETECT = "/detect";
+    private static final String METHOD_DETECT = "/translate";
+    private static final String ATTR_LANG = "lang";
     private static final String ATTR_TEXT = "text";
     private static final String ATTR_FORMAT = "format";
 
 
-    public DetectionApiImpl(final ApiContext context) {
+    public TranslationApiImpl(final ApiContext context) {
         super(context);
     }
 
@@ -60,24 +63,33 @@ public class DetectionApiImpl extends AbstractApi implements DetectionApi {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Language> detect(final String text) {
-        return detect(text, TextFormat.PLAIN_TEXT);
+    public Translation translate(final String text, final Language language) {
+        return translate(text, Direction.of(language));
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Optional<Language> detect(final String text, final TextFormat format) {
+    public Translation translate(final String text, final Direction direction) {
+        return translate(text, direction, TextFormat.PLAIN_TEXT);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Translation translate(final String text, final Direction direction, final TextFormat format) {
         final Map<String, Object> params = ImmutableMap.<String, Object>builder()
             .put(ATTR_TEXT, Strings.nullToEmpty(text))
+            .put(ATTR_LANG, direction.toString())
             .put(ATTR_FORMAT, TextFormat.getOrDefault(format).code())
             .build();
 
-        final LanguageInfo data = callMethod(LanguageInfo.class, METHOD_DETECT, params);
+        final TranslationInfo data = callMethod(TranslationInfo.class, METHOD_DETECT, params);
         ApiStatus.check(data.code());
 
-        return LanguageConverter.INSTANCE.convert(data);
+        return TranslationConverter.INSTANCE.convert(data);
     }
 
 }

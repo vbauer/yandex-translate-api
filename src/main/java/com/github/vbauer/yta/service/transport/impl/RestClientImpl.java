@@ -21,8 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.service.basic;
+package com.github.vbauer.yta.service.transport.impl;
 
+import com.github.vbauer.yta.service.basic.ApiStatus;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
 import com.mashape.unirest.http.HttpResponse;
@@ -40,13 +41,13 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * See {@link RestClient}.
+ * See {@link com.github.vbauer.yta.service.transport.RestClient}.
  *
  * @author Vladislav Bauer
  */
 
 @ThreadSafe
-public class RestClientImpl implements RestClient {
+public class RestClientImpl implements com.github.vbauer.yta.service.transport.RestClient {
 
     private static final String SERVICE_URL = "https://translate.yandex.net/api/v1.5/tr.json";
     private static final String ATTR_KEY = "key";
