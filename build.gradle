@@ -22,7 +22,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.google.guava:guava:19.0'
     compile 'com.mashape.unirest:unirest-java:1.4.8'
-    compile 'com.javaslang:javaslang:2.0.0-RC4'
+    compile 'io.javaslang:javaslang:2.0.1'
     compile 'com.google.code.findbugs:annotations:3.0.1'
 
     compile files('build/classes/main')
