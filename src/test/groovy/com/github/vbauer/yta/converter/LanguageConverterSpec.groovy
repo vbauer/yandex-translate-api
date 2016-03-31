@@ -28,6 +28,8 @@ import com.github.vbauer.yta.model.artificial.ImmutableLanguageInfo
 import spock.lang.Specification
 
 /**
+ * Tests for {@link LanguageConverter}.
+ *
  * @author Vladislav Bauer
  */
 

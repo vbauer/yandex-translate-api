@@ -27,6 +27,8 @@ import javaslang.control.Try
 import spock.lang.Specification
 
 /**
+ * Tests for {@link ApiStatusSpec}.
+ *
  * @author Vladislav Bauer
  */
 

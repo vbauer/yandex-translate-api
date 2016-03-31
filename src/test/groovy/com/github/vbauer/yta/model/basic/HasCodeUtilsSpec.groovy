@@ -29,6 +29,8 @@ import spock.lang.Specification
 import static com.github.vbauer.yta.model.basic.HasCode.HasCodeUtils
 
 /**
+ * Tests for {@link HasCodeUtils}.
+ *
  * @author Vladislav Bauer
  */
 

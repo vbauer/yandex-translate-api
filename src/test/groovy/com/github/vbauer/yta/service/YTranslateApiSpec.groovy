@@ -28,6 +28,8 @@ import com.github.vbauer.yta.service.basic.ApiStatus
 import spock.lang.Specification
 
 /**
+ * Tests for {@link YTranslateApi}.
+ *
  * @author Vladislav Bauer
  */
 

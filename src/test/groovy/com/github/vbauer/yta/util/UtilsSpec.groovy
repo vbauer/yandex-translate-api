@@ -30,6 +30,8 @@ import spock.lang.Specification
 import static com.github.vbauer.yta.model.basic.HasCode.HasCodeUtils
 
 /**
+ * Tests for checking util classes.
+ *
  * @author Vladislav Bauer
  */
 

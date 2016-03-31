@@ -27,6 +27,8 @@ import com.github.vbauer.yta.common.AbstractApiSpec
 import com.github.vbauer.yta.model.Language
 
 /**
+ * Tests for {@link LanguageApi}.
+ *
  * @author Vladislav Bauer
  */
 

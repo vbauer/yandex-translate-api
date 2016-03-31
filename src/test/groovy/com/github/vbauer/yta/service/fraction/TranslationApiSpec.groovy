@@ -29,6 +29,8 @@ import com.github.vbauer.yta.model.Language
 import com.github.vbauer.yta.model.basic.TextFormat
 
 /**
+ * Tests for {@link TranslationApi}.
+ *
  * @author Vladislav Bauer
  */
 

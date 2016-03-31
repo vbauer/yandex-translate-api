@@ -26,6 +26,8 @@ package com.github.vbauer.yta.model.basic
 import spock.lang.Specification
 
 /**
+ * Tests for {@link TextFormat}.
+ *
  * @author Vladislav Bauer
  */
 

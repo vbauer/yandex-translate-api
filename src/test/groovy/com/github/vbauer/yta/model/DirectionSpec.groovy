@@ -26,6 +26,8 @@ package com.github.vbauer.yta.model
 import spock.lang.Specification
 
 /**
+ * Tests for {@link Direction}.
+ *
  * @author Vladislav Bauer
  */
 

@@ -28,6 +28,8 @@ import spock.lang.Shared
 import spock.lang.Specification
 
 /**
+ * Basic class to test API services.
+ *
  * @author Vladislav Bauer
  */
 

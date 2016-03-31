@@ -32,6 +32,8 @@ import static com.github.vbauer.yta.model.Language.EN
 import static com.github.vbauer.yta.model.Language.RU
 
 /**
+ * Tests for {@link TranslationConverter}.
+ *
  * @author Vladislav Bauer
  */
 

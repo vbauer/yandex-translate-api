@@ -28,6 +28,8 @@ import spock.lang.Specification
 import static com.github.vbauer.yta.model.Language.*
 
 /**
+ * Tests for {@link Language}.
+ *
  * @author Vladislav Bauer
  */
 
