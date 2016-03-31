@@ -23,6 +23,7 @@
  */
 package com.github.vbauer.yta.model.basic
 
+import com.github.vbauer.yta.common.TestUtils
 import spock.lang.Specification
 
 /**
@@ -43,6 +44,11 @@ class TextFormatSpec extends Specification {
             def htmlFormat = TextFormat.getOrDefault(TextFormat.HTML)
         then:
             htmlFormat == TextFormat.HTML
+    }
+
+    def "Check count of available formats"() {
+        expect:
+            TestUtils.countStaticFields(TextFormat) == 2
     }
 
 }

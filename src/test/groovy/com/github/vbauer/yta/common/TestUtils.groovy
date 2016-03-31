@@ -21,45 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.model
+package com.github.vbauer.yta.common
 
-import com.github.vbauer.yta.common.TestUtils
-import spock.lang.Specification
-
-import static com.github.vbauer.yta.model.Language.*
+import java.lang.reflect.Modifier
 
 /**
- * Tests for {@link Language}.
+ * Helper-class for unit tests.
  *
  * @author Vladislav Bauer
  */
 
-class LanguageSpec extends Specification {
+final class TestUtils {
 
-    static final LANGUAGES = [
-        EN, RU, TR, UK,
-
-        SW, AZ, HY, ID, KO, BE, JA, KA, CY, KK,
-        IT, RO, HU, MS, MK, FA, DA, ES, FR, LV,
-        GA, SR, TT, SQ, MT, PL, HR, TH, NO, KY,
-        GL, FI, TG, EU, AR, CA, NL, BG, AF, MN,
-        HT, PT, DE, TL, BS, VI, CS, EL, MG, SK,
-        BA, LT, ET, ZH, HE, UZ, LA, SL, SV, IS
-    ]
-
-
-    def "Check available languages API key"() {
-        expect:
-            lang != null
-            lang.code() != null
-            lang.name() != null
-        where:
-            lang << LANGUAGES
+    private TestUtils() {
+        throw new UnsupportedOperationException()
     }
 
-    def "Check count of available languages"() {
-        expect:
-            TestUtils.countStaticFields(Language) == LANGUAGES.size()
+
+    static def countStaticFields(Class<?> clazz) {
+        return clazz.getDeclaredFields().count { field ->
+            def modifiers = field.getModifiers()
+            Modifier.isStatic(modifiers) && Modifier.isPublic(modifiers) ? 1 : 0
+        }
     }
 
 }

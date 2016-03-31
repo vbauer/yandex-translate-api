@@ -23,6 +23,7 @@
  */
 package com.github.vbauer.yta.service.basic
 
+import com.github.vbauer.yta.common.TestUtils
 import javaslang.control.Try
 import spock.lang.Specification
 
@@ -74,6 +75,11 @@ class ApiStatusSpec extends Specification {
                 ApiStatus.ERR_UNPROCESSABLE_TEXT,
                 ApiStatus.ERR_LANG_NOT_SUPPORTED
             ]
+    }
+
+    def "Check count of available statuses"() {
+        expect:
+            TestUtils.countStaticFields(ApiStatus) == 8
     }
 
 }
