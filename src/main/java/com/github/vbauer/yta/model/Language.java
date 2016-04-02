@@ -133,7 +133,7 @@ public abstract class Language implements HasCode<String> {
      */
     @Nonnull
     public static Language of(final String code, final String name) {
-        return ImmutableLanguage.of(code, Optional.of(name));
+        return ImmutableLanguage.of(code, Optional.ofNullable(name));
     }
 
     /**
@@ -144,7 +144,7 @@ public abstract class Language implements HasCode<String> {
      */
     @Nonnull
     public static Language of(final String code) {
-        return ImmutableLanguage.of(code, Optional.empty());
+        return of(code, null);
     }
 
 

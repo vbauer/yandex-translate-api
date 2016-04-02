@@ -47,6 +47,24 @@ class LanguageSpec extends Specification {
         BA, LT, ET, ZH, HE, UZ, LA, SL, SV, IS
     ]
 
+    def "Check factory method with code only"() {
+        setup:
+            def code = "EN"
+            def lang = of(code)
+        expect:
+            code.equals(lang.code())
+            !lang.name().isPresent()
+    }
+
+    def "Check factory method with code and name"() {
+        setup:
+            def code = "EN"
+            def name = "English"
+            def lang = of(code, name)
+        expect:
+            code.equals(lang.code())
+            name.equals(lang.name().get())
+    }
 
     def "Check available languages API key"() {
         expect:
@@ -60,6 +78,16 @@ class LanguageSpec extends Specification {
     def "Check count of available languages"() {
         expect:
             TestUtils.countStaticFields(Language) == LANGUAGES.size()
+    }
+
+    def "Check toString method"() {
+        setup:
+            def code = "code"
+            def lang = of(code)
+            def str = lang.toString()
+        expect:
+            !str.isEmpty()
+            str.equals(code)
     }
 
 }
