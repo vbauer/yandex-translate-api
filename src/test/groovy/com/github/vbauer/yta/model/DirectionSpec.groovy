@@ -40,24 +40,24 @@ class DirectionSpec extends Specification {
 
     def "Check factory method with source and target arguments"() {
         when:
-            def lang = Direction.of(Language.RU, Language.EN)
+            def direction = Direction.of(Language.RU, Language.EN)
         then:
-            lang.source().get() == Language.RU
-            lang.target() == Language.EN
+            direction.source().get() == Language.RU
+            direction.target() == Language.EN
     }
 
     def "Check factory method with target argument"() {
         when:
-            def lang = Direction.of(Language.RU)
+            def direction = Direction.of(Language.RU)
         then:
-            !lang.source().isPresent()
-            lang.target() == Language.RU
+            !direction.source().isPresent()
+            direction.target() == Language.RU
     }
 
     def "Check toString method"() {
         setup:
-            def lang = Direction.of(Language.RU, Language.EN)
-            def str = lang.toString();
+            def direction = Direction.of(Language.RU, Language.EN)
+            def str = direction.toString();
         expect:
             !str.isEmpty()
             str.contains(Direction.SEPARATOR)
