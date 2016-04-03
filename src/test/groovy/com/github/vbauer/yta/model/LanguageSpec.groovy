@@ -58,7 +58,7 @@ class LanguageSpec extends Specification {
         when:
             of(null)
         then:
-            thrown(NullPointerException)
+            thrown NullPointerException
     }
 
     def "Check factory method with code and name"() {
@@ -74,7 +74,7 @@ class LanguageSpec extends Specification {
         when:
             of(null, name)
         then:
-            thrown(NullPointerException)
+            thrown NullPointerException
     }
 
     def "Check available languages API key"() {

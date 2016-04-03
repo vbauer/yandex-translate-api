@@ -41,7 +41,7 @@ class YTranslateApiSpec extends Specification {
         when:
             badApi.languageApi().all()
         then:
-            def e = thrown(ApiException)
+            def e = thrown ApiException
             e.status != ApiStatus.ERR_OK
             !e.message.empty
     }

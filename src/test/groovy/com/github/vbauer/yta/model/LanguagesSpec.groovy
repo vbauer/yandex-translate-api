@@ -49,12 +49,12 @@ class LanguagesSpec extends Specification {
         when:
             Languages.of(null, dirs)
         then:
-            thrown(NullPointerException)
+            thrown NullPointerException
 
         when:
             Languages.of(langs, null)
         then:
-            thrown(NullPointerException)
+            thrown NullPointerException
     }
 
 }

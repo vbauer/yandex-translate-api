@@ -22,12 +22,12 @@ class TranslationSpec extends Specification {
         when:
             Translation.of(direction, null)
         then:
-            thrown(NullPointerException)
+            thrown NullPointerException
 
         when:
             Translation.of(null, text)
         then:
-            thrown(NullPointerException)
+            thrown NullPointerException
     }
 
     def "Check toString method"() {
