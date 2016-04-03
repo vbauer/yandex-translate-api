@@ -24,6 +24,7 @@
 package com.github.vbauer.yta.service.transport.impl;
 
 import com.github.vbauer.yta.service.basic.ApiStatus;
+import com.github.vbauer.yta.service.transport.RestClient;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
 import com.mashape.unirest.http.HttpResponse;
@@ -41,17 +42,17 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * See {@link com.github.vbauer.yta.service.transport.RestClient}.
+ * See {@link RestClient}.
  *
  * @author Vladislav Bauer
  */
 
 @ThreadSafe
-public class RestClientImpl implements com.github.vbauer.yta.service.transport.RestClient {
+public class RestClientImpl implements RestClient {
 
-    private static final String SERVICE_URL = "https://translate.yandex.net/api/v1.5/tr.json";
-    private static final String ATTR_KEY = "key";
-    private static final int DEFAULT_TIMEOUT = 30000;
+    public static final String SERVICE_URL = "https://translate.yandex.net/api/v1.5/tr.json";
+    public static final String ATTR_KEY = "key";
+    public static final int DEFAULT_TIMEOUT = 30000;
 
     private final AtomicBoolean initialized = new AtomicBoolean(false);
     private final String key;
