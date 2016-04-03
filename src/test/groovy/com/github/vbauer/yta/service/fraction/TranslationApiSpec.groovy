@@ -39,6 +39,8 @@ class TranslationApiSpec extends AbstractApiSpec {
     def "Check Translate API"() {
         setup:
             def translateApi = api.translationApi()
+        expect:
+            translateApi != null
 
         when: "Translate Russian to English"
             def translationRuEn = translateApi.translate("Как дела?", Language.EN)

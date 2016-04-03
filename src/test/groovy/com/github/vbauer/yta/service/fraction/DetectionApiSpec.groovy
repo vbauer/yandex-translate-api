@@ -37,6 +37,8 @@ class DetectionApiSpec extends AbstractApiSpec {
     def "Check Detection API"() {
         setup:
             def detectApi = api.detectionApi()
+        expect:
+            detectApi != null
 
         when: "Language should be detected as English"
             detectApi.detect("Hello, World!")

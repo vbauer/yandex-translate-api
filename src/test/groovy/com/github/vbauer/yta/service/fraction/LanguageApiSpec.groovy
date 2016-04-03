@@ -37,6 +37,8 @@ class LanguageApiSpec extends AbstractApiSpec {
     def "Check Language API"() {
         setup:
             def langApi = api.languageApi()
+        expect:
+            langApi != null
 
         when: "UI parameter is not passed"
             def allLanguages = langApi.all()
