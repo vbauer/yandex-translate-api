@@ -23,9 +23,9 @@
  */
 package com.github.vbauer.yta.converter
 
+import com.github.vbauer.yta.common.AbstractConverterSpec
 import com.github.vbauer.yta.model.Language
 import com.github.vbauer.yta.model.artificial.ImmutableLanguageInfo
-import spock.lang.Specification
 
 /**
  * Tests for {@link LanguageConverter}.
@@ -33,12 +33,7 @@ import spock.lang.Specification
  * @author Vladislav Bauer
  */
 
-class LanguageConverterSpec extends Specification {
-
-    def "Check null-value conversion"() {
-        expect:
-            LanguageConverter.INSTANCE.convert(null) == null
-    }
+class LanguageConverterSpec extends AbstractConverterSpec {
 
     def "Check correct conversion"() {
         when:
@@ -48,14 +43,10 @@ class LanguageConverterSpec extends Specification {
                 .build()
             def output = Optional.of(Language.RU)
         then:
-            LanguageConverter.INSTANCE.convert(input) == output
+            converter().convert(input) == output
     }
 
-    def "Check that doBackward is not available"() {
-        when:
-            LanguageConverter.INSTANCE.doBackward(null)
-        then:
-            thrown UnsupportedOperationException
-    }
+    @Override
+    protected converter() { LanguageConverter.INSTANCE }
 
 }

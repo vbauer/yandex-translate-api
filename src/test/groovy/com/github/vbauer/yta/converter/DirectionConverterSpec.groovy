@@ -23,8 +23,8 @@
  */
 package com.github.vbauer.yta.converter
 
+import com.github.vbauer.yta.common.AbstractConverterSpec
 import com.github.vbauer.yta.model.Direction
-import spock.lang.Specification
 
 import static com.github.vbauer.yta.model.Language.EN
 import static com.github.vbauer.yta.model.Language.RU
@@ -35,32 +35,18 @@ import static com.github.vbauer.yta.model.Language.RU
  * @author Vladislav Bauer
  */
 
-class DirectionConverterSpec extends Specification {
-
-    def "Check null-value conversion"() {
-        expect:
-            DirectionConverter.INSTANCE.convert(null) == null
-    }
+class DirectionConverterSpec extends AbstractConverterSpec {
 
     def "Check correct conversion"() {
         expect:
-            DirectionConverter.INSTANCE.convert(input) == output
+            converter().convert(input) == output
         where:
             input   || output
             "ru-en" || Direction.of(RU, EN)
             "en-ru" || Direction.of(EN, RU)
     }
 
-    def "Check that doBackward is not available"() {
-        when:
-            DirectionConverter.INSTANCE.doBackward(null)
-        then:
-            thrown UnsupportedOperationException
-    }
-
-    def "Check direction separator"() {
-        expect:
-            Direction.SEPARATOR.equals("-")
-    }
+    @Override
+    protected converter() { DirectionConverter.INSTANCE }
 
 }

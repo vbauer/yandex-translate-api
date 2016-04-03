@@ -21,37 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.converter
+package com.github.vbauer.yta.common
 
-import com.github.vbauer.yta.common.AbstractConverterSpec
-import com.github.vbauer.yta.model.Direction
-import com.github.vbauer.yta.model.Translation
-import com.github.vbauer.yta.model.artificial.ImmutableTranslationInfo
-
-import static com.github.vbauer.yta.model.Language.EN
-import static com.github.vbauer.yta.model.Language.RU
+import spock.lang.Specification
 
 /**
- * Tests for {@link TranslationConverter}.
+ * Basic class to test converters.
  *
  * @author Vladislav Bauer
  */
 
-class TranslationConverterSpec extends AbstractConverterSpec {
+abstract class AbstractConverterSpec extends Specification {
 
-    def "Check correct conversion"() {
-        when:
-            def input = ImmutableTranslationInfo.builder()
-                .code(0)
-                .lang("ru-en")
-                .text(["Hello"])
-                .build()
-            def output = Translation.of(Direction.of(RU, EN), "Hello")
-        then:
-            converter().convert(input) == output
+    def "Check null-value conversion"() {
+        expect:
+            converter().convert(null) == null
     }
 
-    @Override
-    protected converter() { TranslationConverter.INSTANCE }
+    def "Check that doBackward is not available"() {
+        when:
+            converter().doBackward(null)
+        then:
+            thrown UnsupportedOperationException
+    }
+
+    protected abstract converter();
 
 }
