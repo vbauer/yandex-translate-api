@@ -54,16 +54,27 @@ class LanguageSpec extends Specification {
         expect:
             code.equals(lang.code())
             !lang.name().isPresent()
+
+        when:
+            of(null)
+        then:
+            thrown(NullPointerException)
     }
 
     def "Check factory method with code and name"() {
+        def name = "English"
+
         setup:
             def code = "EN"
-            def name = "English"
             def lang = of(code, name)
         expect:
             code.equals(lang.code())
             name.equals(lang.name().get())
+
+        when:
+            of(null, name)
+        then:
+            thrown(NullPointerException)
     }
 
     def "Check available languages API key"() {

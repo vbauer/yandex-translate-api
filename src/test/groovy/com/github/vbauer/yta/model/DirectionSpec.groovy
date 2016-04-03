@@ -44,6 +44,11 @@ class DirectionSpec extends Specification {
         then:
             direction.source().get() == Language.RU
             direction.target() == Language.EN
+
+        when:
+            Direction.of(Language.RU, null)
+        then:
+            thrown(NullPointerException)
     }
 
     def "Check factory method with target argument"() {
@@ -52,6 +57,11 @@ class DirectionSpec extends Specification {
         then:
             !direction.source().isPresent()
             direction.target() == Language.RU
+
+        when:
+            Direction.of(null)
+        then:
+            thrown(NullPointerException)
     }
 
     def "Check toString method"() {

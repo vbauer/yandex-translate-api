@@ -26,6 +26,9 @@ package com.github.vbauer.yta.model.basic
 import com.github.vbauer.yta.common.TestUtils
 import spock.lang.Specification
 
+import static com.github.vbauer.yta.model.basic.TextFormat.HTML
+import static com.github.vbauer.yta.model.basic.TextFormat.PLAIN_TEXT
+
 /**
  * Tests for {@link TextFormat}.
  *
@@ -34,16 +37,23 @@ import spock.lang.Specification
 
 class TextFormatSpec extends Specification {
 
-    def "Check method getOrDefault"() {
-        when:
-            def nullFormat = TextFormat.getOrDefault(null)
-        then:
-            nullFormat == TextFormat.PLAIN_TEXT
+    def "Check codes"() {
+        expect:
+            value.code().equals(code)
+        where:
+            value      | code
+            PLAIN_TEXT | "plain"
+            HTML       | "html"
+    }
 
-        when:
-            def htmlFormat = TextFormat.getOrDefault(TextFormat.HTML)
-        then:
-            htmlFormat == TextFormat.HTML
+    def "Check method getOrDefault"() {
+        expect:
+            TextFormat.getOrDefault(input) == output
+        where:
+            input      | output
+            null       | PLAIN_TEXT
+            PLAIN_TEXT | PLAIN_TEXT
+            HTML       | HTML
     }
 
     def "Check count of available formats"() {
