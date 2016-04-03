@@ -43,6 +43,7 @@ public class TranslationConverter extends BasicConverter<TranslationInfo, Transl
 
     public static final TranslationConverter INSTANCE = new TranslationConverter();
 
+
     /**
      * {@inheritDoc}
      */

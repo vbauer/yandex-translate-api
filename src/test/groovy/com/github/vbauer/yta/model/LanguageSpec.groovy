@@ -47,9 +47,16 @@ class LanguageSpec extends Specification {
         BA, LT, ET, ZH, HE, UZ, LA, SL, SV, IS
     ]
 
+
+    def "Check case-insensitive of code param"() {
+        expect:
+            of("en").equals(of("EN"))
+            of("en", null).equals(of("EN", null))
+    }
+
     def "Check factory method with code only"() {
         setup:
-            def code = "EN"
+            def code = "en"
             def lang = of(code)
         expect:
             code.equals(lang.code())
@@ -65,7 +72,7 @@ class LanguageSpec extends Specification {
         def name = "English"
 
         setup:
-            def code = "EN"
+            def code = "en"
             def lang = of(code, name)
         expect:
             code.equals(lang.code())
