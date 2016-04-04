@@ -44,8 +44,8 @@ import java.util.Map;
 @ThreadSafe
 public class LanguageApiImpl extends AbstractApi implements LanguageApi {
 
-    private static final String METHOD_GET_LANGS = "/getLangs";
-    private static final String ATTR_UI = "ui";
+    public static final String METHOD_GET_LANGS = "/getLangs";
+    public static final String ATTR_UI = "ui";
 
 
     public LanguageApiImpl(final ApiContext context) {

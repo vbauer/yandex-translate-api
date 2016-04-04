@@ -28,6 +28,8 @@ import com.github.vbauer.yta.model.Direction
 import com.github.vbauer.yta.model.Language
 import com.github.vbauer.yta.model.basic.TextFormat
 
+import static com.github.vbauer.yta.service.fraction.impl.TranslationApiImpl.*
+
 /**
  * Tests for {@link TranslationApi}.
  *
@@ -65,6 +67,17 @@ class TranslationApiSpec extends AbstractApiSpec {
         then:
             translationRuEnHtml.toString().equals("<span>Hi</span>")
             translationRuEnHtml.direction().equals(ruEn)
+    }
+
+    def "Check constants"() {
+        expect:
+            constant == value
+        where:
+            constant      | value
+            METHOD_DETECT | "/translate"
+            ATTR_LANG     | "lang"
+            ATTR_TEXT     | "text"
+            ATTR_FORMAT   | "format"
     }
 
 }

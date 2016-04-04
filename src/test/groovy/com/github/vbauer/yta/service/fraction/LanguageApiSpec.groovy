@@ -26,6 +26,9 @@ package com.github.vbauer.yta.service.fraction
 import com.github.vbauer.yta.common.AbstractApiSpec
 import com.github.vbauer.yta.model.Language
 
+import static com.github.vbauer.yta.service.fraction.impl.LanguageApiImpl.ATTR_UI
+import static com.github.vbauer.yta.service.fraction.impl.LanguageApiImpl.METHOD_GET_LANGS
+
 /**
  * Tests for {@link LanguageApi}.
  *
@@ -58,6 +61,15 @@ class LanguageApiSpec extends AbstractApiSpec {
         then:
             !allLanguagesRu.directions().empty
             !allLanguagesRu.languages().empty
+    }
+
+    def "Check constants"() {
+        expect:
+            constant == value
+        where:
+            constant         | value
+            METHOD_GET_LANGS | "/getLangs"
+            ATTR_UI          | "ui"
     }
 
 }

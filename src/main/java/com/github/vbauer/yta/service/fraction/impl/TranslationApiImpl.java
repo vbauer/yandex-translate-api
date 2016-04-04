@@ -48,10 +48,10 @@ import java.util.Map;
 @ThreadSafe
 public class TranslationApiImpl extends AbstractApi implements TranslationApi {
 
-    private static final String METHOD_DETECT = "/translate";
-    private static final String ATTR_LANG = "lang";
-    private static final String ATTR_TEXT = "text";
-    private static final String ATTR_FORMAT = "format";
+    public static final String METHOD_DETECT = "/translate";
+    public static final String ATTR_LANG = "lang";
+    public static final String ATTR_TEXT = "text";
+    public static final String ATTR_FORMAT = "format";
 
 
     public TranslationApiImpl(final ApiContext context) {

@@ -26,6 +26,8 @@ package com.github.vbauer.yta.service.fraction
 import com.github.vbauer.yta.common.AbstractApiSpec
 import com.github.vbauer.yta.model.Language
 
+import static com.github.vbauer.yta.service.fraction.impl.DetectionApiImpl.*
+
 /**
  * Tests for {@link DetectionApi}.
  *
@@ -51,4 +53,13 @@ class DetectionApiSpec extends AbstractApiSpec {
             Language.RU
     }
 
+    def "Check constants"() {
+        expect:
+            constant == value
+        where:
+            constant      | value
+            METHOD_DETECT | "/detect"
+            ATTR_TEXT     | "text"
+            ATTR_FORMAT   | "format"
+    }
 }

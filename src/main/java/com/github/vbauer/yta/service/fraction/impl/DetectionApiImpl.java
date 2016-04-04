@@ -47,9 +47,9 @@ import java.util.Optional;
 @ThreadSafe
 public class DetectionApiImpl extends AbstractApi implements DetectionApi {
 
-    private static final String METHOD_DETECT = "/detect";
-    private static final String ATTR_TEXT = "text";
-    private static final String ATTR_FORMAT = "format";
+    public static final String METHOD_DETECT = "/detect";
+    public static final String ATTR_TEXT = "text";
+    public static final String ATTR_FORMAT = "format";
 
 
     public DetectionApiImpl(final ApiContext context) {
