@@ -99,7 +99,6 @@ public class RestClientImpl implements RestClient {
         return params;
     }
 
-
     private void initHttpClientIfNecessary() throws Exception {
         if (initialized.compareAndSet(false, true)) {
             final HttpClient httpClient = createClient();
