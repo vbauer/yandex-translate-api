@@ -32,10 +32,11 @@ import com.mashape.unirest.http.Unirest;
 import javaslang.control.Try;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.SSLContexts;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
 
 import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
@@ -121,7 +122,7 @@ public class RestClientImpl implements RestClient {
             .build();
 
         return HttpClients.custom()
-            .setHostnameVerifier(SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER)
+            .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
             .setSSLSocketFactory(socketFactory)
             .setDefaultRequestConfig(requestConfig)
             .build();
