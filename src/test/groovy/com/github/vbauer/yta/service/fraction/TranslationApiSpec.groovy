@@ -56,7 +56,7 @@ class TranslationApiSpec extends AbstractApiSpec {
             def text = translationEnRu.text()
             def direction = translationEnRu.direction()
         then:
-            ["Как у тебя дела?", "Как поживаешь?"].any { it.equals(text) }
+            ["Как у тебя дела?", "Как поживаешь?", "Как ты делаешь?"].any { it.equals(text) }
             direction.equals(enRu)
 
         when: "Translate Russian to English with HTML"
