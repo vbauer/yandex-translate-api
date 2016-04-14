@@ -28,6 +28,9 @@ import com.github.vbauer.yta.model.Language;
 import com.github.vbauer.yta.model.basic.TextFormat;
 import com.github.vbauer.yta.model.Translation;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * Service allows to translate text to the specified language.
  *
@@ -46,7 +49,8 @@ public interface TranslationApi {
      * @param language the target language for translation
      * @return translated text
      */
-    Translation translate(String text, Language language);
+    @Nonnull
+    Translation translate(@Nullable String text, @Nonnull Language language);
 
     /**
      * Translates text to the specified language. Text format is {@link TextFormat#PLAIN_TEXT}.
@@ -55,7 +59,8 @@ public interface TranslationApi {
      * @param direction the direction of translation
      * @return translated text
      */
-    Translation translate(String text, Direction direction);
+    @Nonnull
+    Translation translate(@Nullable String text, @Nonnull Direction direction);
 
     /**
      * Translates text to the specified language.
@@ -65,6 +70,9 @@ public interface TranslationApi {
      * @param format the text format
      * @return translated text
      */
-    Translation translate(String text, Direction direction, TextFormat format);
+    @Nonnull
+    Translation translate(
+        @Nullable String text, @Nonnull Direction direction, @Nullable TextFormat format
+    );
 
 }

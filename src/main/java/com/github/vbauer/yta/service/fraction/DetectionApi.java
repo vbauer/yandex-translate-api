@@ -26,6 +26,8 @@ package com.github.vbauer.yta.service.fraction;
 import com.github.vbauer.yta.model.Language;
 import com.github.vbauer.yta.model.basic.TextFormat;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Optional;
 
 /**
@@ -44,7 +46,8 @@ public interface DetectionApi {
      * @param text the text to detect the language for
      * @return detected language
      */
-    Optional<Language> detect(String text);
+    @Nonnull
+    Optional<Language> detect(@Nullable String text);
 
     /**
      * Detects the language of the specified text.
@@ -53,6 +56,7 @@ public interface DetectionApi {
      * @param format text format: html or plain text
      * @return detected language
      */
-    Optional<Language> detect(String text, TextFormat format);
+    @Nonnull
+    Optional<Language> detect(@Nullable String text, @Nullable TextFormat format);
 
 }

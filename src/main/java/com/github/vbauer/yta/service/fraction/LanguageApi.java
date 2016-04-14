@@ -26,6 +26,9 @@ package com.github.vbauer.yta.service.fraction;
 import com.github.vbauer.yta.model.Language;
 import com.github.vbauer.yta.model.Languages;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * Service allows to get a list of translation directions.
  *
@@ -45,6 +48,7 @@ public interface LanguageApi {
      *
      * @return information about available languages and directions of translation
      */
+    @Nonnull
     Languages all();
 
     /**
@@ -53,7 +57,8 @@ public interface LanguageApi {
      * @param ui if set, the response contains explanations of language codes
      * @return information about available languages and directions of translation
      */
-    Languages all(Language ui);
+    @Nonnull
+    Languages all(@Nullable Language ui);
 
     /**
      * Gets a list of translation directions and available languages supported by the service.
@@ -61,6 +66,7 @@ public interface LanguageApi {
      * @param ui if set, the response contains explanations of language codes
      * @return information about available languages and directions of translation
      */
-    Languages all(String ui);
+    @Nonnull
+    Languages all(@Nullable String ui);
 
 }

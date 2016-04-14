@@ -30,8 +30,11 @@ import com.github.vbauer.yta.model.artificial.LanguagesInfo;
 import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
 import com.github.vbauer.yta.service.fraction.LanguageApi;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
 
@@ -56,6 +59,7 @@ public class LanguageApiImpl extends AbstractApi implements LanguageApi {
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
     public Languages all() {
         return all((String) null);
@@ -64,20 +68,22 @@ public class LanguageApiImpl extends AbstractApi implements LanguageApi {
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
-    public Languages all(final Language ui) {
+    public Languages all(@Nullable final Language ui) {
         return all(ui == null ? null : ui.code());
     }
 
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
-    public Languages all(final String ui) {
+    public Languages all(@Nullable final String ui) {
         final Map<String, Object> data = ui == null ? null : ImmutableMap.of(ATTR_UI, ui);
         final LanguagesInfo languagesInfo = callMethod(LanguagesInfo.class, METHOD_GET_LANGS, data);
 
-        return LanguagesConverter.INSTANCE.convert(languagesInfo);
+        return Preconditions.checkNotNull(LanguagesConverter.INSTANCE.convert(languagesInfo));
     }
 
 }

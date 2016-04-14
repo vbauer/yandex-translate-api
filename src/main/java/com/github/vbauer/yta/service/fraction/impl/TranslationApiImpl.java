@@ -33,9 +33,12 @@ import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
 import com.github.vbauer.yta.service.basic.ApiStatus;
 import com.github.vbauer.yta.service.fraction.TranslationApi;
+import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
 
@@ -62,24 +65,37 @@ public class TranslationApiImpl extends AbstractApi implements TranslationApi {
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
-    public Translation translate(final String text, final Language language) {
+    public Translation translate(
+        @Nullable final String text,
+        @Nonnull final Language language
+    ) {
         return translate(text, Direction.of(language));
     }
 
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
-    public Translation translate(final String text, final Direction direction) {
+    public Translation translate(
+        @Nullable final String text,
+        @Nonnull final Direction direction
+    ) {
         return translate(text, direction, TextFormat.PLAIN_TEXT);
     }
 
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
-    public Translation translate(final String text, final Direction direction, final TextFormat format) {
+    public Translation translate(
+        @Nullable final String text,
+        @Nonnull final Direction direction,
+        @Nullable final TextFormat format
+    ) {
         final Map<String, Object> params = ImmutableMap.<String, Object>builder()
             .put(ATTR_TEXT, Strings.nullToEmpty(text))
             .put(ATTR_LANG, direction.toString())
@@ -89,7 +105,7 @@ public class TranslationApiImpl extends AbstractApi implements TranslationApi {
         final TranslationInfo data = callMethod(TranslationInfo.class, METHOD_DETECT, params);
         ApiStatus.check(data.code());
 
-        return TranslationConverter.INSTANCE.convert(data);
+        return Preconditions.checkNotNull(TranslationConverter.INSTANCE.convert(data));
     }
 
 }

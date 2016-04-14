@@ -39,10 +39,11 @@ import java.util.Map;
 @ThreadSafe
 public abstract class AbstractApi {
 
+    @Nonnull
     private final ApiContext context;
 
 
-    public AbstractApi(final ApiContext context) {
+    public AbstractApi(@Nonnull final ApiContext context) {
         this.context = context;
     }
 

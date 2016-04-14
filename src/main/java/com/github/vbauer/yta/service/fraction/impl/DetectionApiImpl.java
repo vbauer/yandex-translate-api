@@ -31,9 +31,12 @@ import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
 import com.github.vbauer.yta.service.basic.ApiStatus;
 import com.github.vbauer.yta.service.fraction.DetectionApi;
+import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.concurrent.ThreadSafe;
 import java.util.Map;
 import java.util.Optional;
@@ -60,16 +63,20 @@ public class DetectionApiImpl extends AbstractApi implements DetectionApi {
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
-    public Optional<Language> detect(final String text) {
+    public Optional<Language> detect(@Nullable final String text) {
         return detect(text, TextFormat.PLAIN_TEXT);
     }
 
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
-    public Optional<Language> detect(final String text, final TextFormat format) {
+    public Optional<Language> detect(
+        @Nullable final String text, @Nullable final TextFormat format
+    ) {
         final Map<String, Object> params = ImmutableMap.<String, Object>builder()
             .put(ATTR_TEXT, Strings.nullToEmpty(text))
             .put(ATTR_FORMAT, TextFormat.getOrDefault(format).code())
@@ -78,7 +85,7 @@ public class DetectionApiImpl extends AbstractApi implements DetectionApi {
         final LanguageInfo data = callMethod(LanguageInfo.class, METHOD_DETECT, params);
         ApiStatus.check(data.code());
 
-        return LanguageConverter.INSTANCE.convert(data);
+        return Preconditions.checkNotNull(LanguageConverter.INSTANCE.convert(data));
     }
 
 }
