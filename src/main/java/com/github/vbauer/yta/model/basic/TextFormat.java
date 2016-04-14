@@ -24,6 +24,7 @@
 package com.github.vbauer.yta.model.basic;
 
 import javax.annotation.Nonnull;
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.Optional;
 
 /**
@@ -37,6 +38,7 @@ import java.util.Optional;
  * @author Vladislav Bauer
  */
 
+@ThreadSafe
 public enum TextFormat implements HasCode<String> {
 
     /**
