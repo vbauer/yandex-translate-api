@@ -32,7 +32,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.concurrent.ThreadSafe;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -62,7 +61,6 @@ public class LanguagesConverter extends BasicConverter<LanguagesInfo, Languages>
 
         final List<Direction> directions = dirs.stream()
             .map(dir -> DirectionConverter.INSTANCE.convertDirection(languages, dir))
-            .filter(Objects::nonNull)
             .collect(Collectors.toList());
 
         return Languages.of(languages, directions);
