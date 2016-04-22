@@ -10,8 +10,8 @@ then
    exit 0
 fi
 
-# Generate Maven site
-mvn site
+# Generate Javadoc
+./gradlew javadoc
 
 # Go to the generated directory and create a *new* Git repo
 cd target/site
