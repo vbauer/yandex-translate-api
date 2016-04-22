@@ -28,6 +28,8 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
+# APT
+.apt_generated
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
