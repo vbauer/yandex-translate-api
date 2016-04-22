@@ -7,13 +7,14 @@ env:
   - TERM=dumb
 
 before_install:
-  - chmod +x gradlew
+  - chmod +x gradlew deploy.sh
 
 script:
   - ./gradlew build --stacktrace
 
 after_success:
   - ./gradlew jacocoTestReport coveralls --stacktrace
+  - bash ./deploy.sh
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -21,3 +22,8 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+
+env:
+  global:
+  - GH_REF: github.com/vbauer/yandex-translate-api.git
+  - secure: "eStOv4Qx5mX2IpbkvXUTfolh5dLTV6g4Lge2t5KQHF9gw00Hct0kI0xHJKOr7TXT6e61+dWJdhv2X7AHbQwIE+IGySEOA4jUhiS5bEArylgnjU9Jfcrs7wJZR0oaOWumRjvFuZ1I/o5CAD8EYR06YwNR87wDuzUOnEvok2eT+Uw="

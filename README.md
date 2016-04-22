@@ -11,6 +11,8 @@
 The API provides access to the Yandex online machine translation service. 
 It supports more than 60 languages and can translate separate words or complete texts.
 
+**Online documentation:** [Javadoc](https://vbauer.github.io/yandex-translate-api)
+
 
 # Prerequisites
 
