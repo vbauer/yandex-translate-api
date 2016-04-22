@@ -14,7 +14,7 @@ fi
 ./gradlew javadoc
 
 # Go to the generated directory and create a *new* Git repo
-cd target/site
+cd build/javadoc
 git init
 
 # Inside this git repo we'll pretend to be a new user
