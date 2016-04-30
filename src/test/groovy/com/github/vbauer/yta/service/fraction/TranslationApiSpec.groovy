@@ -47,7 +47,7 @@ class TranslationApiSpec extends AbstractApiSpec {
         when: "Translate Russian to English"
             def translationRuEn = translateApi.translate("Как дела?", Language.EN)
         then:
-            translationRuEn.text().equals("How are you doing?")
+            ["How are you doing?", "How's it going?"].any { it.equals(translationRuEn.text()) }
             translationRuEn.direction().equals(Direction.of(Language.RU, Language.EN))
 
         when: "Translate English to Russian"
