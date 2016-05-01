@@ -34,7 +34,7 @@ Maven configuration:
 <dependency>
     <groupId>com.github.vbauer</groupId>
     <artifactId>yandex-translate-api</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
 </dependency>
 ```
 
@@ -47,7 +47,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.vbauer:yandex-translate-api:1.2.1'
+    compile 'com.github.vbauer:yandex-translate-api:1.2.2'
 }
 ```
 
