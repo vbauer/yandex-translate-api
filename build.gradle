@@ -28,9 +28,9 @@ dependencies {
     compile 'io.javaslang:javaslang:2.0.2'
     compile 'com.google.code.findbugs:annotations:3.0.1'
 
-    apt 'org.immutables:value:2.2.8'
-    apt 'org.immutables:builder:2.2.8'
-    apt 'org.immutables:gson:2.2.8'
+    apt 'org.immutables:value:2.2.9'
+    apt 'org.immutables:builder:2.2.9'
+    apt 'org.immutables:gson:2.2.9'
 
     testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
     testCompile 'com.pushtorefresh.java-private-constructor-checker:checker:1.2.0'
