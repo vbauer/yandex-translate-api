@@ -37,12 +37,14 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.14'
+    gradleVersion = '3.0'
 }
 
 compileJava {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    String javaVersion = JavaVersion.VERSION_1_8
+
+    sourceCompatibility javaVersion
+    targetCompatibility javaVersion
 }
 
 jacocoTestReport {
