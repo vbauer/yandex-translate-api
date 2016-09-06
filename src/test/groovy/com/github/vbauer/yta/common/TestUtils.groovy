@@ -25,7 +25,6 @@ package com.github.vbauer.yta.common
 
 import groovy.transform.CompileStatic
 
-import java.lang.reflect.Field
 import java.lang.reflect.Modifier
 
 /**
