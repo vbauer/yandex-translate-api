@@ -23,6 +23,9 @@
  */
 package com.github.vbauer.yta.common
 
+import groovy.transform.CompileStatic
+
+import java.lang.reflect.Field
 import java.lang.reflect.Modifier
 
 /**
@@ -31,6 +34,7 @@ import java.lang.reflect.Modifier
  * @author Vladislav Bauer
  */
 
+@CompileStatic
 final class TestUtils {
 
     private TestUtils() {

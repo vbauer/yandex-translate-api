@@ -94,7 +94,7 @@ public abstract class Direction implements Serializable {
             .map(language -> language.toString() + SEPARATOR)
             .orElseGet(String::new);
 
-        return  prefix + target().toString();
+        return prefix + target().toString();
     }
 
 }
