@@ -40,7 +40,7 @@ class LanguageSpec extends Specification {
         EN, RU, TR, UK,
 
         SW, AZ, HY, ID, KO, BE, JA, KA, CY, KK,
-        IT, RO, HU, MS, MK, FA, DA, ES, FR, LV,
+        IT, RO, HU, MS, MK, FA, DA, ES, FR, LY,
         GA, SR, TT, SQ, MT, PL, HR, TH, NO, KY,
         GL, FI, TG, EU, AR, CA, NL, BG, AF, MN,
         HT, PT, DE, TL, BS, VI, CS, EL, MG, SK,
