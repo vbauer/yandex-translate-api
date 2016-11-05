@@ -1,4 +1,4 @@
-/*
+/**
  * The MIT License (MIT)
  *
  * Copyright (c) 2015 Vladislav Bauer
@@ -21,44 +21,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.service.basic
-
-import com.github.vbauer.yta.service.basic.exception.ApiException
-import javaslang.control.Try
-import spock.lang.Specification
+package com.github.vbauer.yta.service.basic.exception;
 
 /**
- * Tests for {@link com.github.vbauer.yta.service.basic.exception.ApiException}.
+ * Basic class for all exceptions.
  *
  * @author Vladislav Bauer
  */
 
-class ApiExceptionSpec extends Specification {
+@SuppressWarnings("serial")
+public class YTranslateException extends RuntimeException {
 
-    def "Check inheritance"() {
-        expect:
-            RuntimeException.isAssignableFrom(ApiException)
+    public YTranslateException(final String message) {
+        super(message);
     }
 
-    def "Check construction"() {
-        def assertCheck = { ex ->
-            assert ex.toString().contains(String.valueOf(status))
-            assert ex.getStatus() == status
-        }
+    public YTranslateException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
 
-        expect:
-            Try.of({ throw new ApiException(status) })
-                .onFailure(assertCheck)
-        where:
-            status << [
-                ApiStatus.ERR_KEY_INVALID,
-                ApiStatus.ERR_KEY_BLOCKED,
-                ApiStatus.ERR_DAILY_REQ_LIMIT_EXCEEDED,
-                ApiStatus.ERR_DAILY_CHAR_LIMIT_EXCEEDED,
-                ApiStatus.ERR_TEXT_TOO_LONG,
-                ApiStatus.ERR_UNPROCESSABLE_TEXT,
-                ApiStatus.ERR_LANG_NOT_SUPPORTED
-            ]
+    public YTranslateException(final Throwable cause) {
+        super(cause);
     }
 
 }

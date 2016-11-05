@@ -23,8 +23,8 @@
  */
 package com.github.vbauer.yta.service
 
-import com.github.vbauer.yta.service.basic.ApiException
 import com.github.vbauer.yta.service.basic.ApiStatus
+import com.github.vbauer.yta.service.basic.exception.ApiException
 import spock.lang.Specification
 
 /**

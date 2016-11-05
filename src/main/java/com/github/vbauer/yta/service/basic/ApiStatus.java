@@ -23,6 +23,8 @@
  */
 package com.github.vbauer.yta.service.basic;
 
+import com.github.vbauer.yta.service.basic.exception.ApiException;
+
 import javax.annotation.concurrent.ThreadSafe;
 
 /**

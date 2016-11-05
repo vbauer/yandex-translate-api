@@ -21,14 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.github.vbauer.yta.service.basic;
+package com.github.vbauer.yta.service.basic.exception;
 
 /**
  * @author Vladislav Bauer
  */
 
 @SuppressWarnings("serial")
-public class ApiException extends RuntimeException {
+public class ApiException extends YTranslateException {
 
     /**
      * Possible values are described in {@link com.github.vbauer.yta.service.basic.ApiStatus} class.
@@ -37,6 +37,8 @@ public class ApiException extends RuntimeException {
 
 
     public ApiException(final int status) {
+        super("Can not retrieve information from server: " + status);
+
         this.status = status;
     }
 
@@ -48,15 +50,6 @@ public class ApiException extends RuntimeException {
      */
     public int getStatus() {
         return status;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getMessage() {
-        final int status = getStatus();
-        return String.format("Can not retrieve information from server: %d", status);
     }
 
 }

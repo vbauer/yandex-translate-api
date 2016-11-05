@@ -24,6 +24,7 @@
 package com.github.vbauer.yta.service.basic
 
 import com.github.vbauer.yta.common.TestUtils
+import com.github.vbauer.yta.service.basic.exception.ApiException
 import javaslang.control.Try
 import spock.lang.Specification
 

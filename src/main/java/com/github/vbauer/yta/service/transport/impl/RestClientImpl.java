@@ -24,8 +24,8 @@
 package com.github.vbauer.yta.service.transport.impl;
 
 import com.github.vbauer.yta.service.basic.ApiStatus;
+import com.github.vbauer.yta.service.basic.exception.YTranslateException;
 import com.github.vbauer.yta.service.transport.RestClient;
-import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
@@ -82,7 +82,9 @@ public class RestClientImpl implements RestClient {
             ApiStatus.check(response.getStatus());
 
             return response.getBody();
-        }).getOrElseThrow(Throwables::propagate);
+        }).getOrElseThrow(ex -> {
+            throw ex instanceof YTranslateException ? (YTranslateException) ex : new YTranslateException(ex);
+        });
     }
 
 
