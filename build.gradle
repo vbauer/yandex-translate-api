@@ -3,10 +3,10 @@ plugins {
     id 'java'
     id 'groovy'
     id 'jacoco'
-    id 'com.github.kt3k.coveralls' version '2.6.3'
+    id 'com.github.kt3k.coveralls' version '2.7.1'
     id 'com.github.ben-manes.versions' version '0.13.0'
     id 'ru.vyarus.quality' version '2.0.0'
-    id 'ru.vyarus.java-lib' version '1.0.3'
+    id 'ru.vyarus.java-lib' version '1.0.4'
     id 'net.ltgt.apt' version '0.8'
 }
 
@@ -28,9 +28,9 @@ dependencies {
     compile 'io.javaslang:javaslang:2.0.5'
     compile 'com.google.code.findbugs:annotations:3.0.1'
 
-    apt 'org.immutables:value:2.3.9'
-    apt 'org.immutables:builder:2.3.9'
-    apt 'org.immutables:gson:2.3.9'
+    apt 'org.immutables:value:2.3.10'
+    apt 'org.immutables:builder:2.3.10'
+    apt 'org.immutables:gson:2.3.10'
 
     testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
     testCompile 'com.pushtorefresh.java-private-constructor-checker:checker:1.2.0'
