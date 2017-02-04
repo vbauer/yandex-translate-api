@@ -21,19 +21,31 @@ repositories {
 
 configurations.provided.extendsFrom configurations.apt
 
+ext.deps = [
+    gson: '2.8.0',
+    guava: '21.0',
+    unirest: '1.4.9',
+    javaslang: '2.0.5',
+    fbAnnotations: '3.0.1',
+
+    immutables: '2.3.10',
+    spock: '1.0-groovy-2.4',
+    jpcc: '1.2.0'
+]
+
 dependencies {
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.google.guava:guava:20.0'
-    compile 'com.mashape.unirest:unirest-java:1.4.9'
-    compile 'io.javaslang:javaslang:2.0.5'
-    compile 'com.google.code.findbugs:annotations:3.0.1'
+    compile "com.google.code.gson:gson:${deps.gson}"
+    compile "com.google.guava:guava:${deps.guava}"
+    compile "com.mashape.unirest:unirest-java:${deps.unirest}"
+    compile "io.javaslang:javaslang:${deps.javaslang}"
+    compile "com.google.code.findbugs:annotations:${deps.fbAnnotations}"
 
-    apt 'org.immutables:value:2.3.10'
-    apt 'org.immutables:builder:2.3.10'
-    apt 'org.immutables:gson:2.3.10'
+    apt "org.immutables:value:${deps.immutables}"
+    apt "org.immutables:builder:${deps.immutables}"
+    apt "org.immutables:gson:${deps.immutables}"
 
-    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
-    testCompile 'com.pushtorefresh.java-private-constructor-checker:checker:1.2.0'
+    testCompile "org.spockframework:spock-core:${deps.spock}"
+    testCompile "com.pushtorefresh.java-private-constructor-checker:checker:${deps.jpcc}"
 }
 
 task wrapper(type: Wrapper) {
