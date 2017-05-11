@@ -25,11 +25,11 @@ ext.deps = [
     gson: '2.8.0',
     guava: '21.0',
     unirest: '1.4.9',
-    javaslang: '2.0.5',
+    javaslang: '2.0.6',
     fbAnnotations: '3.0.1',
 
     immutables: '2.4.6',
-    spock: '1.0-groovy-2.4',
+    spock: '1.1-groovy-2.4',
     jpcc: '1.2.0'
 ]
 
