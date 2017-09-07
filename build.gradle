@@ -23,7 +23,7 @@ configurations.provided.extendsFrom configurations.apt
 
 ext.deps = [
     gson: '2.8.1',
-    guava: '22.0',
+    guava: '23.0',
     unirest: '1.4.9',
     javaslang: '2.0.6',
     fbAnnotations: '3.0.1',
