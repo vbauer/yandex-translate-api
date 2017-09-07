@@ -5,8 +5,8 @@ plugins {
     id 'jacoco'
     id 'com.github.kt3k.coveralls' version '2.8.1'
     id 'com.github.ben-manes.versions' version '0.15.0'
-    id 'ru.vyarus.quality' version '2.2.0'
-    id 'ru.vyarus.java-lib' version '1.0.4'
+    id 'ru.vyarus.quality' version '2.3.0'
+    id 'ru.vyarus.java-lib' version '1.0.5'
     id 'net.ltgt.apt' version '0.10'
 }
 
