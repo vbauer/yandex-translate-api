@@ -16,8 +16,8 @@ class TranslationSpec extends Specification {
         setup:
             def translation = Translation.of(direction, text)
         expect:
-            translation.text().equals(text)
-            translation.direction().equals(direction)
+            translation.text() == text
+            translation.direction() == direction
 
         when:
             Translation.of(direction, null)
@@ -38,7 +38,7 @@ class TranslationSpec extends Specification {
             def str = translation.toString()
         expect:
             !str.isEmpty()
-            str.equals(translation.text())
+            str == translation.text()
     }
 
 }

@@ -42,8 +42,8 @@ class DataConverterSpec extends Specification {
         setup:
             def model = convert(LanguagesInfo)
         expect:
-            model.dirs().equals(["ru-en", "en-ru"])
-            model.langs().equals(["ru": "Russian", "en": "English"])
+            model.dirs() == ["ru-en", "en-ru"]
+            model.langs() == ["ru": "Russian", "en": "English"]
     }
 
     def "Check TranslationInfo"() {
@@ -52,7 +52,7 @@ class DataConverterSpec extends Specification {
         expect:
             model.code() == ApiStatus.ERR_OK
             model.lang() == "en"
-            model.text().equals(["Hello, World!"])
+            model.text() == ["Hello, World!"]
     }
 
 

@@ -10,6 +10,6 @@ import spock.lang.Specification
 
 abstract class AbstractConverterSpec extends Specification {
 
-    protected abstract converter();
+    protected abstract converter()
 
 }

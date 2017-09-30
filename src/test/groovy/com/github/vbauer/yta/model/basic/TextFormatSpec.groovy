@@ -16,7 +16,7 @@ class TextFormatSpec extends Specification {
 
     def "Check codes"() {
         expect:
-            value.code().equals(code)
+            value.code() == code
         where:
             value      | code
             PLAIN_TEXT | "plain"

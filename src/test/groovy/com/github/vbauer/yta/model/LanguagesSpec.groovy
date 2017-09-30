@@ -20,8 +20,8 @@ class LanguagesSpec extends Specification {
         when:
             def languages = Languages.of(langs, dirs)
         then:
-            languages.languages().equals(langs)
-            languages.directions().equals(dirs)
+            languages.languages() == langs
+            languages.directions() == dirs
 
         when:
             Languages.of(null, dirs)
