@@ -1,5 +1,6 @@
 package com.github.vbauer.yta.common
 
+import groovy.transform.CompileStatic
 import spock.lang.Specification
 
 /**
@@ -8,6 +9,7 @@ import spock.lang.Specification
  * @author Vladislav Bauer
  */
 
+@CompileStatic
 abstract class AbstractConverterSpec extends Specification {
 
     protected abstract converter()
