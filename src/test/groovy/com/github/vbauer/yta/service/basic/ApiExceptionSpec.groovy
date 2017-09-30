@@ -1,7 +1,6 @@
 package com.github.vbauer.yta.service.basic
 
 import com.github.vbauer.yta.service.basic.exception.ApiException
-import javaslang.control.Try
 import spock.lang.Specification
 
 /**
@@ -18,14 +17,10 @@ class ApiExceptionSpec extends Specification {
     }
 
     def "Check construction"() {
-        def assertCheck = { ex ->
+        expect:
+            def ex = new ApiException(status)
             assert ex.toString().contains(String.valueOf(status))
             assert ex.getStatus() == status
-        }
-
-        expect:
-            Try.of({ throw new ApiException(status) })
-                .onFailure(assertCheck)
         where:
             status << [
                 ApiStatus.ERR_KEY_INVALID,

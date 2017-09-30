@@ -1,7 +1,7 @@
 package com.github.vbauer.yta.service
 
 import com.github.vbauer.yta.service.basic.ApiStatus
-import com.github.vbauer.yta.service.basic.exception.ApiException
+import com.github.vbauer.yta.service.basic.exception.YTranslateException
 import spock.lang.Specification
 
 /**
@@ -18,9 +18,10 @@ class YTranslateApiSpec extends Specification {
         when:
             badApi.languageApi().all()
         then:
-            def e = thrown ApiException
-            e.status != ApiStatus.ERR_OK
-            !e.message.empty
+            def e = thrown YTranslateException
+            def c = e.getCause()
+            c.status != ApiStatus.ERR_OK
+            !c.message.empty
     }
 
 }

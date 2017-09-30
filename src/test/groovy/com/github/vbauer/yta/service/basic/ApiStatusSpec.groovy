@@ -2,7 +2,6 @@ package com.github.vbauer.yta.service.basic
 
 import com.github.vbauer.yta.common.TestUtils
 import com.github.vbauer.yta.service.basic.exception.ApiException
-import javaslang.control.Try
 import spock.lang.Specification
 
 /**
@@ -37,12 +36,12 @@ class ApiStatusSpec extends Specification {
     }
 
     def "Check-method throws an ApiException"() {
-        def assertCheck = { ex -> assert ex instanceof ApiException }
-
         expect:
-            Try.of({ ApiStatus.check(status) })
-                .onFailure(assertCheck)
-                .onSuccess(assertCheck)
+            try {
+                ApiStatus.check(status)
+            } catch (final Exception ex) {
+                assert ex instanceof ApiException
+            }
         where:
             status << [
                 ApiStatus.ERR_KEY_INVALID,

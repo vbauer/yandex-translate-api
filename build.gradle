@@ -25,7 +25,6 @@ ext.deps = [
     gson: '2.8.2',
     guava: '23.0',
     unirest: '1.4.9',
-    javaslang: '2.0.6',
     fbAnnotations: '3.0.1',
 
     immutables: '2.5.6',
@@ -37,7 +36,6 @@ dependencies {
     compile "com.google.code.gson:gson:${deps.gson}"
     compile "com.google.guava:guava:${deps.guava}"
     compile "com.mashape.unirest:unirest-java:${deps.unirest}"
-    compile "io.javaslang:javaslang:${deps.javaslang}"
     compile "com.google.code.findbugs:annotations:${deps.fbAnnotations}"
 
     apt "org.immutables:value:${deps.immutables}"

@@ -6,7 +6,6 @@ import com.github.vbauer.yta.service.transport.RestClient;
 import com.google.common.collect.Maps;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import javaslang.control.Try;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
@@ -46,7 +45,7 @@ public class RestClientImpl implements RestClient {
      */
     @Override
     public String callMethod(final String method, final Map<String, Object> parameters) {
-        return Try.of(() -> {
+        try {
             initHttpClientIfNecessary();
 
             final String url = formatMethodUrl(method);
@@ -59,9 +58,11 @@ public class RestClientImpl implements RestClient {
             ApiStatus.check(response.getStatus());
 
             return response.getBody();
-        }).getOrElseThrow(ex -> {
-            throw ex instanceof YTranslateException ? (YTranslateException) ex : new YTranslateException(ex);
-        });
+        } catch (final Exception ex) {
+            throw new YTranslateException(
+                String.format("Could not call method \"%s\" using %s", method, parameters), ex
+            );
+        }
     }
 
 
