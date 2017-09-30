@@ -24,6 +24,19 @@ The following actions are required to work with this library:
 
 # Setup
 
+Gradle configuration:
+```groovy
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
+dependencies {
+    compile 'com.github.vbauer:yandex-translate-api:1.3.0'
+}
+```
+
 Maven configuration:
 ```xml
 <repository>
@@ -34,21 +47,8 @@ Maven configuration:
 <dependency>
     <groupId>com.github.vbauer</groupId>
     <artifactId>yandex-translate-api</artifactId>
-    <version>1.2.4</version>
+    <version>1.3.0</version>
 </dependency>
-```
-
-Gradle configuration:
-```groovy
-repositories {
-    maven {
-        url "https://jitpack.io"
-    }
-}
-
-dependencies {
-    compile 'com.github.vbauer:yandex-translate-api:1.2.4'
-}
 ```
 
 
