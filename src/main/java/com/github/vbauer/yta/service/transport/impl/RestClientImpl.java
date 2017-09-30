@@ -3,20 +3,23 @@ package com.github.vbauer.yta.service.transport.impl;
 import com.github.vbauer.yta.service.basic.ApiStatus;
 import com.github.vbauer.yta.service.basic.exception.YTranslateException;
 import com.github.vbauer.yta.service.transport.RestClient;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.Unirest;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.ssl.SSLContexts;
 
 import javax.annotation.concurrent.ThreadSafe;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.Objects;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 /**
  * See {@link RestClient}.
@@ -31,7 +34,11 @@ public class RestClientImpl implements RestClient {
     public static final String ATTR_KEY = "key";
     public static final int DEFAULT_TIMEOUT = 30000;
 
-    private final AtomicBoolean initialized = new AtomicBoolean(false);
+    private static final String METHOD_POST = "POST";
+    private static final String HEADER_CONTENT_TYPE = "Content-Type";
+    private static final String HEADER_CONTENT_TYPE_VALUE = "application/x-www-form-urlencoded; charset=UTF-8";
+
+
     private final String key;
 
 
@@ -46,18 +53,31 @@ public class RestClientImpl implements RestClient {
     @Override
     public String callMethod(final String method, final Map<String, Object> parameters) {
         try {
-            initHttpClientIfNecessary();
-
-            final String url = formatMethodUrl(method);
+            final String uri = formatMethodUrl(method);
             final Map<String, Object> params = composeRequestParameters(parameters);
-            final HttpResponse<String> response =
-                Unirest.post(url)
-                    .fields(params)
-                    .asString();
+            final byte[] body = generatePostBody(params);
 
-            ApiStatus.check(response.getStatus());
+            final HttpURLConnection connection = createHttpURLConnection(uri);
+            connection.setFixedLengthStreamingMode(body.length);
+            connection.connect();
 
-            return response.getBody();
+            try {
+                try (OutputStream os = connection.getOutputStream()) {
+                    os.write(body);
+                }
+
+                ApiStatus.check(connection.getResponseCode());
+
+                try (
+                    InputStream inputStream = connection.getInputStream();
+                    InputStreamReader streamReader = new InputStreamReader(inputStream);
+                    BufferedReader bufferedReader = new BufferedReader(streamReader)
+                ) {
+                    return bufferedReader.lines().collect(Collectors.joining(""));
+                }
+            } finally {
+                connection.disconnect();
+            }
         } catch (final Exception ex) {
             throw new YTranslateException(
                 String.format("Could not call method \"%s\" using %s", method, parameters), ex
@@ -65,6 +85,34 @@ public class RestClientImpl implements RestClient {
         }
     }
 
+
+    private HttpURLConnection createHttpURLConnection(final String uri) throws IOException {
+        final URL url = new URL(uri);
+        final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setConnectTimeout(DEFAULT_TIMEOUT);
+        connection.setReadTimeout(DEFAULT_TIMEOUT);
+        connection.setRequestMethod(METHOD_POST);
+        connection.setDoOutput(true);
+        connection.setRequestProperty(HEADER_CONTENT_TYPE, HEADER_CONTENT_TYPE_VALUE);
+        return connection;
+    }
+
+    private byte[] generatePostBody(final Map<String, Object> params) throws UnsupportedEncodingException {
+        final StringJoiner body = new StringJoiner("&");
+
+        for (final Map.Entry<String, Object> entry : params.entrySet()) {
+            final String key = encode(entry.getKey());
+            final String value = encode(Objects.toString(entry.getValue(), ""));
+
+            body.add(key + "=" + value);
+        }
+
+        return body.toString().getBytes(StandardCharsets.UTF_8);
+    }
+
+    private String encode(final String k) throws UnsupportedEncodingException {
+        return URLEncoder.encode(k, StandardCharsets.UTF_8.name());
+    }
 
     private String formatMethodUrl(final String method) {
         return SERVICE_URL + method;
@@ -77,34 +125,6 @@ public class RestClientImpl implements RestClient {
         }
         params.put(ATTR_KEY, key);
         return params;
-    }
-
-    private void initHttpClientIfNecessary() throws Exception {
-        if (initialized.compareAndSet(false, true)) {
-            final HttpClient httpClient = createClient();
-            Unirest.setHttpClient(httpClient);
-        }
-    }
-
-    private HttpClient createClient() throws Exception {
-        final SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(
-            SSLContexts.custom()
-                .loadTrustMaterial(null, new TrustSelfSignedStrategy())
-                .build()
-        );
-
-        final RequestConfig requestConfig = RequestConfig.custom()
-            .setSocketTimeout(DEFAULT_TIMEOUT)
-            .setConnectTimeout(DEFAULT_TIMEOUT)
-            .setConnectionRequestTimeout(DEFAULT_TIMEOUT)
-            .setRedirectsEnabled(true)
-            .build();
-
-        return HttpClients.custom()
-            .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
-            .setSSLSocketFactory(socketFactory)
-            .setDefaultRequestConfig(requestConfig)
-            .build();
     }
 
 }

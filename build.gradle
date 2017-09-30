@@ -33,7 +33,6 @@ ext.deps = [
 
 dependencies {
     compile "com.google.code.gson:gson:${deps.gson}"
-    compile "com.mashape.unirest:unirest-java:${deps.unirest}"
     compile "com.google.code.findbugs:annotations:${deps.fbAnnotations}"
 
     apt "org.immutables:value:${deps.immutables}"
