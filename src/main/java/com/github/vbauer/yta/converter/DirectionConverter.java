@@ -56,7 +56,7 @@ public class DirectionConverter implements BasicConverter<String, Direction> {
     }
 
     private Language findOrCreateLanguage(final Collection<Language> languages, final String code) {
-        return HasCode.HasCodeUtils.findByCode(languages, code).orElseGet(() -> {
+        return HasCode.findByCode(languages, code).orElseGet(() -> {
             final Language language = Language.of(code);
             languages.add(language);
             return language;

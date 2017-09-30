@@ -1,7 +1,7 @@
 package com.github.vbauer.yta.model.basic;
 
 import javax.annotation.Nonnull;
-import javax.annotation.concurrent.ThreadSafe;
+import javax.annotation.Nullable;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
@@ -26,36 +26,23 @@ public interface HasCode<T> extends Serializable {
 
 
     /**
-     * Utility class to work with {@link HasCode} interface/instances.
+     * Find find corresponding {@link HasCode} element from collection by code.
      *
-     * @author Vladislav Bauer
+     * @param collection collection with {@link HasCode} instances.
+     * @param code code value
+     * @param <T> type of code value
+     * @param <E> kind of {@link HasCode} elements
+     * @return element from collection with the corresponding code or null otherwise
      */
-    @ThreadSafe
-    final class HasCodeUtils {
-
-        private HasCodeUtils() {
-            throw new UnsupportedOperationException();
-        }
-
-
-        /**
-         * Find find corresponding {@link HasCode} element from collection by code.
-         *
-         * @param collection collection with {@link HasCode} instances.
-         * @param code code value
-         * @param <T> type of code value
-         * @param <E> kind of {@link HasCode} elements
-         * @return element from collection with the corresponding code or null otherwise
-         */
-        @Nonnull
-        public static <T, E extends HasCode<T>> Optional<E> findByCode(final Collection<E> collection, final T code) {
-            return Optional.ofNullable(collection)
-                .orElseGet(Collections::emptyList)
-                .stream()
-                    .filter(item -> Objects.equals(code, item.code()))
-                    .findFirst();
-        }
-
+    @Nonnull
+    static <T, E extends HasCode<T>> Optional<E> findByCode(
+        @Nullable final Collection<E> collection, @Nullable final T code
+    ) {
+        return Optional.ofNullable(collection)
+            .orElseGet(Collections::emptyList)
+            .stream()
+                .filter(item -> Objects.equals(code, item.code()))
+                .findFirst();
     }
 
 }

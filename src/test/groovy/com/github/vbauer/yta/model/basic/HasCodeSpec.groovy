@@ -3,37 +3,35 @@ package com.github.vbauer.yta.model.basic
 import com.github.vbauer.yta.model.Language
 import spock.lang.Specification
 
-import static com.github.vbauer.yta.model.basic.HasCode.HasCodeUtils
-
 /**
- * Tests for {@link HasCodeUtils}.
+ * Tests for {@link HasCode}.
  *
  * @author Vladislav Bauer
  */
 
-class HasCodeUtilsSpec extends Specification {
+class HasCodeSpec extends Specification {
 
     def "Check method findByCode"() {
         setup:
             def languages = [Language.RU, Language.EN]
 
         when:
-            def existedLang = HasCodeUtils.findByCode(languages, "ru")
+            def existedLang = HasCode.findByCode(languages, "ru")
         then:
             existedLang.get() == Language.RU
 
         when:
-            def missedLang = HasCodeUtils.findByCode(languages, "fr")
+            def missedLang = HasCode.findByCode(languages, "fr")
         then:
             !missedLang.isPresent()
 
         when:
-            def nullLang = HasCodeUtils.findByCode(languages, null)
+            def nullLang = HasCode.findByCode(languages, null)
         then:
             !nullLang.isPresent()
 
         when:
-            def nullCollection = HasCodeUtils.findByCode(null, "ru")
+            def nullCollection = HasCode.findByCode(null, "ru")
         then:
             !nullCollection.isPresent()
     }
