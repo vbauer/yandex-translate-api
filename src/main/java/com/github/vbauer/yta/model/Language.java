@@ -1,11 +1,11 @@
 package com.github.vbauer.yta.model;
 
 import com.github.vbauer.yta.model.basic.HasCode;
-import com.google.common.base.Objects;
 import org.immutables.value.Value.Immutable;
 import org.immutables.value.Value.Parameter;
 
 import javax.annotation.Nonnull;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -140,7 +140,7 @@ public abstract class Language implements HasCode<String> {
     @Override
     public boolean equals(final Object another) {
         return this == another
-            || another instanceof Language && Objects.equal(((Language) another).code(), code());
+            || another instanceof Language && Objects.equals(((Language) another).code(), code());
     }
 
     /**

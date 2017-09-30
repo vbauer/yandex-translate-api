@@ -10,14 +10,13 @@ import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
 import com.github.vbauer.yta.service.basic.ApiStatus;
 import com.github.vbauer.yta.service.fraction.TranslationApi;
-import com.google.common.base.Preconditions;
-import com.google.common.base.Strings;
-import com.google.common.collect.ImmutableMap;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.ThreadSafe;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * See {@link TranslationApi}.
@@ -73,16 +72,15 @@ public class TranslationApiImpl extends AbstractApi implements TranslationApi {
         @Nonnull final Direction direction,
         @Nullable final TextFormat format
     ) {
-        final Map<String, Object> params = ImmutableMap.<String, Object>builder()
-            .put(ATTR_TEXT, Strings.nullToEmpty(text))
-            .put(ATTR_LANG, direction.toString())
-            .put(ATTR_FORMAT, TextFormat.getOrDefault(format).code())
-            .build();
+        final Map<String, Object> params = new HashMap<>();
+        params.put(ATTR_TEXT, Objects.toString(text, ""));
+        params.put(ATTR_LANG, direction.toString());
+        params.put(ATTR_FORMAT, TextFormat.getOrDefault(format).code());
 
         final TranslationInfo data = callMethod(TranslationInfo.class, METHOD_DETECT, params);
         ApiStatus.check(data.code());
 
-        return Preconditions.checkNotNull(TranslationConverter.INSTANCE.convert(data));
+        return TranslationConverter.INSTANCE.convert(data);
     }
 
 }

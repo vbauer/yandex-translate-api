@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 
 @ThreadSafe
-public class LanguagesConverter extends BasicConverter<LanguagesInfo, Languages> {
+public class LanguagesConverter implements BasicConverter<LanguagesInfo, Languages> {
 
     public static final LanguagesConverter INSTANCE = new LanguagesConverter();
 
@@ -28,7 +28,7 @@ public class LanguagesConverter extends BasicConverter<LanguagesInfo, Languages>
      */
     @Nonnull
     @Override
-    protected Languages doForward(@Nonnull final LanguagesInfo languagesInfo) {
+    public Languages convert(@Nonnull final LanguagesInfo languagesInfo) {
         final Map<String, String> langs = languagesInfo.langs();
         final List<String> dirs = languagesInfo.dirs();
 

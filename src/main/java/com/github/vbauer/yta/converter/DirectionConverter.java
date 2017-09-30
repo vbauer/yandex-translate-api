@@ -3,10 +3,10 @@ package com.github.vbauer.yta.converter;
 import com.github.vbauer.yta.model.Direction;
 import com.github.vbauer.yta.model.Language;
 import com.github.vbauer.yta.model.basic.HasCode;
-import com.google.common.collect.Lists;
 
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.ThreadSafe;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -16,7 +16,7 @@ import java.util.Collection;
  */
 
 @ThreadSafe
-public class DirectionConverter extends BasicConverter<String, Direction> {
+public class DirectionConverter implements BasicConverter<String, Direction> {
 
     public static final DirectionConverter INSTANCE = new DirectionConverter();
 
@@ -26,8 +26,8 @@ public class DirectionConverter extends BasicConverter<String, Direction> {
      */
     @Nonnull
     @Override
-    protected Direction doForward(@Nonnull final String direction) {
-        return convertDirection(Lists.newArrayList(), direction);
+    public Direction convert(@Nonnull final String direction) {
+        return convertDirection(new ArrayList<>(), direction);
     }
 
 

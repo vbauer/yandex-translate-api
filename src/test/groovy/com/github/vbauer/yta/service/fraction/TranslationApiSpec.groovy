@@ -21,11 +21,16 @@ class TranslationApiSpec extends AbstractApiSpec {
         expect:
             translateApi != null
 
+        when: "Translate empty text from Russian to English"
+            def unknownTranslation = translateApi.translate(" ", Language.EN)
+        then:
+            " " == unknownTranslation.text()
+
         when: "Translate Russian to English"
             def translationRuEn = translateApi.translate("Как дела?", Language.EN)
         then:
-            ["How are you doing?", "How's it going?"].any { it.equals(translationRuEn.text()) }
-            translationRuEn.direction().equals(Direction.of(Language.RU, Language.EN))
+            ["How are you doing?", "How's it going?"].any { it == translationRuEn.text() }
+            translationRuEn.direction() == Direction.of(Language.RU, Language.EN)
 
         when: "Translate English to Russian"
             def enRu = Direction.of(Language.EN, Language.RU)
@@ -33,8 +38,8 @@ class TranslationApiSpec extends AbstractApiSpec {
             def text = translationEnRu.text()
             def direction = translationEnRu.direction()
         then:
-            ["Как у тебя дела?", "Как поживаешь?", "Как ты делаешь?"].any { it.equals(text) }
-            direction.equals(enRu)
+            ["Как у тебя дела?", "Как поживаешь?", "Как ты делаешь?"].any { it == text }
+            direction == enRu
 
         when: "Translate Russian to English with HTML"
             def ruEn = Direction.of(Language.RU, Language.EN)
@@ -42,8 +47,8 @@ class TranslationApiSpec extends AbstractApiSpec {
                 "<span>Привет</span>", ruEn, TextFormat.HTML
             )
         then:
-            translationRuEnHtml.toString().equals("<span>Hi</span>")
-            translationRuEnHtml.direction().equals(ruEn)
+            translationRuEnHtml.toString() == "<span>Hi</span>"
+            translationRuEnHtml.direction() == ruEn
     }
 
     def "Check constants"() {

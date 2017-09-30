@@ -1,11 +1,10 @@
 package com.github.vbauer.yta.model.basic;
 
-import com.google.common.collect.ImmutableList;
-
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.ThreadSafe;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -51,7 +50,7 @@ public interface HasCode<T> extends Serializable {
         @Nonnull
         public static <T, E extends HasCode<T>> Optional<E> findByCode(final Collection<E> collection, final T code) {
             return Optional.ofNullable(collection)
-                .orElseGet(ImmutableList::of)
+                .orElseGet(Collections::emptyList)
                 .stream()
                     .filter(item -> Objects.equals(code, item.code()))
                     .findFirst();

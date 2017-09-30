@@ -3,7 +3,6 @@ package com.github.vbauer.yta.service.transport.impl;
 import com.github.vbauer.yta.service.basic.ApiStatus;
 import com.github.vbauer.yta.service.basic.exception.YTranslateException;
 import com.github.vbauer.yta.service.transport.RestClient;
-import com.google.common.collect.Maps;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import org.apache.http.client.HttpClient;
@@ -15,6 +14,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContexts;
 
 import javax.annotation.concurrent.ThreadSafe;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -71,7 +71,7 @@ public class RestClientImpl implements RestClient {
     }
 
     private Map<String, Object> composeRequestParameters(final Map<String, Object> parameters) {
-        final Map<String, Object> params = Maps.newHashMap();
+        final Map<String, Object> params = new HashMap<>();
         if (parameters != null) {
             params.putAll(parameters);
         }

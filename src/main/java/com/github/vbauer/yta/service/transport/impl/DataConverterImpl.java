@@ -1,7 +1,6 @@
 package com.github.vbauer.yta.service.transport.impl;
 
 import com.github.vbauer.yta.service.transport.DataConverter;
-import com.google.common.base.Preconditions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapterFactory;
@@ -26,8 +25,6 @@ public class DataConverterImpl implements DataConverter {
      */
     @Override
     public <T> T convert(final String data, final Class<T> targetClass) {
-        Preconditions.checkNotNull(targetClass, "Target class must be defined");
-
         return CONVERTER.fromJson(data, targetClass);
     }
 

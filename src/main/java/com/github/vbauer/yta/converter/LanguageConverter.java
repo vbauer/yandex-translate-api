@@ -14,7 +14,7 @@ import java.util.Optional;
  */
 
 @ThreadSafe
-public class LanguageConverter extends BasicConverter<LanguageInfo, Optional<Language>> {
+public class LanguageConverter implements BasicConverter<LanguageInfo, Optional<Language>> {
 
     public static final LanguageConverter INSTANCE = new LanguageConverter();
 
@@ -24,7 +24,7 @@ public class LanguageConverter extends BasicConverter<LanguageInfo, Optional<Lan
      */
     @Nonnull
     @Override
-    protected Optional<Language> doForward(@Nonnull final LanguageInfo languageInfo) {
+    public Optional<Language> convert(@Nonnull final LanguageInfo languageInfo) {
         return languageInfo.lang().map(Language::of);
     }
 
