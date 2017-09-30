@@ -35,7 +35,7 @@ class TranslationSpec extends Specification {
             def direction = Direction.of(Language.EN, Language.RU)
             def text = "text"
             def translation = Translation.of(direction, text)
-            def str = translation.toString();
+            def str = translation.toString()
         expect:
             !str.isEmpty()
             str.equals(translation.text())
