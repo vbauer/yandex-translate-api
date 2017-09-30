@@ -35,6 +35,8 @@ public class RestClientImpl implements RestClient {
     public static final int DEFAULT_TIMEOUT = 30000;
 
     private static final String METHOD_POST = "POST";
+    private static final String PARAMETER_DELIMITER = "&";
+    private static final String PARAMETER_ASSIGNMENT = "=";
     private static final String HEADER_CONTENT_TYPE = "Content-Type";
     private static final String HEADER_CONTENT_TYPE_VALUE = "application/x-www-form-urlencoded; charset=UTF-8";
 
@@ -98,13 +100,13 @@ public class RestClientImpl implements RestClient {
     }
 
     private byte[] generatePostBody(final Map<String, Object> params) throws UnsupportedEncodingException {
-        final StringJoiner body = new StringJoiner("&");
+        final StringJoiner body = new StringJoiner(PARAMETER_DELIMITER);
 
         for (final Map.Entry<String, Object> entry : params.entrySet()) {
             final String key = encode(entry.getKey());
             final String value = encode(Objects.toString(entry.getValue(), ""));
 
-            body.add(key + "=" + value);
+            body.add(key + PARAMETER_ASSIGNMENT + value);
         }
 
         return body.toString().getBytes(StandardCharsets.UTF_8);

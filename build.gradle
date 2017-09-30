@@ -23,7 +23,6 @@ configurations.provided.extendsFrom configurations.apt
 
 ext.deps = [
     gson: '2.8.2',
-    unirest: '1.4.9',
     fbAnnotations: '3.0.1',
 
     immutables: '2.5.6',
