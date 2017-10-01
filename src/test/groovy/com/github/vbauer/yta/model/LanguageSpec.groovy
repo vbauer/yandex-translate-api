@@ -14,14 +14,16 @@ import static com.github.vbauer.yta.model.Language.*
 class LanguageSpec extends Specification {
 
     static final LANGUAGES = [
-        EN, RU, TR, UK,
-
-        SW, AZ, HY, ID, KO, BE, JA, KA, CY, KK,
-        IT, RO, HU, MS, MK, FA, DA, ES, FR, LY,
-        GA, SR, TT, SQ, MT, PL, HR, TH, NO, KY,
-        GL, FI, TG, EU, AR, CA, NL, BG, AF, MN,
-        HT, PT, DE, TL, BS, VI, CS, EL, MG, SK,
-        BA, LT, ET, ZH, HE, UZ, LA, SL, SV, IS
+        AZ, SQ, AM, EN, AR, HY, AF, EU, BA, BE,
+        BN, MY, BG, BS, CY, HU, VI, HT, GL, NL,
+        MRJ, EL, KA, GU, DA, HE, YI, ID, GA, IT,
+        IS, ES, KK, KN, CA, KY, ZH, KO, XH, KM,
+        LO, LA, LV, LT, LB, MG, MS, ML, MT, MK,
+        MI, MR, MHR, MN, DE, NE, NO, PA, PAP, FA,
+        PL, PT, RO, RU, CEB, SR, SI, SK, SL, SW,
+        SU, TG, TH, TL, TA, TT, TE, TR, UDM, UZ,
+        UK, UR, FI, FR, HI, HR, CS, SV, GD, ET,
+        EO, JV, JA
     ]
 
 
