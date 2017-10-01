@@ -2,6 +2,7 @@ package com.github.vbauer.yta.service.fraction
 
 import com.github.vbauer.yta.common.AbstractApiSpec
 import com.github.vbauer.yta.model.Language
+import com.github.vbauer.yta.model.LanguageSpec
 
 import static com.github.vbauer.yta.service.fraction.impl.LanguageApiImpl.ATTR_UI
 import static com.github.vbauer.yta.service.fraction.impl.LanguageApiImpl.METHOD_GET_LANGS
@@ -32,6 +33,15 @@ class LanguageApiSpec extends AbstractApiSpec {
         then:
             !allLanguagesEn.directions().empty
             !allLanguagesEn.languages().empty
+
+            LanguageSpec.LANGUAGES.each { l ->
+                def fieldName = l.code().toString().toUpperCase()
+                def field = Language.class.getField(fieldName)
+                assert field != null
+
+                def lang = field.get(null)
+                assert lang == l
+            }
 
         when: "UI parameter is a string"
             def allLanguagesRu = langApi.all("ru")
