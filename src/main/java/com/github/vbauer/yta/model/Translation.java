@@ -41,7 +41,7 @@ public abstract class Translation implements Serializable {
      * @return translation
      */
     @Nonnull
-    public static Translation of(final Direction direction, final String text) {
+    public static Translation of(@Nonnull final Direction direction, @Nonnull final String text) {
         return ImmutableTranslation.of(direction, text);
     }
 

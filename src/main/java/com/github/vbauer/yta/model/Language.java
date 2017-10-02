@@ -5,6 +5,7 @@ import org.immutables.value.Value.Immutable;
 import org.immutables.value.Value.Parameter;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -137,9 +138,8 @@ public abstract class Language implements HasCode<String> {
      * @return language
      */
     @Nonnull
-    public static Language of(final String code, final String name) {
-        final String normalizedCode = code == null ? null : code.toLowerCase();
-        return ImmutableLanguage.of(normalizedCode, Optional.ofNullable(name));
+    public static Language of(@Nonnull final String code, @Nullable final String name) {
+        return ImmutableLanguage.of(code.toLowerCase(), Optional.ofNullable(name));
     }
 
     /**
@@ -149,7 +149,7 @@ public abstract class Language implements HasCode<String> {
      * @return language
      */
     @Nonnull
-    public static Language of(final String code) {
+    public static Language of(@Nonnull final String code) {
         return of(code, null);
     }
 

@@ -4,6 +4,7 @@ import org.immutables.value.Value.Immutable;
 import org.immutables.value.Value.Parameter;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.io.Serializable;
 import java.util.Optional;
 
@@ -45,7 +46,7 @@ public abstract class Direction implements Serializable {
      * @return direction (from source to target)
      */
     @Nonnull
-    public static Direction of(final Language source, final Language target) {
+    public static Direction of(@Nullable final Language source, @Nonnull final Language target) {
         return ImmutableDirection.of(Optional.ofNullable(source), target);
     }
 
@@ -57,7 +58,7 @@ public abstract class Direction implements Serializable {
      * @return direction (from something to target)
      */
     @Nonnull
-    public static Direction of(final Language target) {
+    public static Direction of(@Nonnull final Language target) {
         return of(null, target);
     }
 

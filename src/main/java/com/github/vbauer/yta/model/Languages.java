@@ -41,7 +41,10 @@ public abstract class Languages implements Serializable {
      * @return "languages" object
      */
     @Nonnull
-    public static Languages of(final Collection<Language> languages, final Collection<Direction> directions) {
+    public static Languages of(
+        @Nonnull final Collection<Language> languages,
+        @Nonnull final Collection<Direction> directions
+    ) {
         return ImmutableLanguages.builder()
             .languages(languages)
             .directions(directions)
