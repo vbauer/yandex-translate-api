@@ -3,6 +3,7 @@ package com.github.vbauer.yta.service.fraction.impl;
 import com.github.vbauer.yta.converter.LanguagesConverter;
 import com.github.vbauer.yta.model.Language;
 import com.github.vbauer.yta.model.Languages;
+import com.github.vbauer.yta.model.artificial.ImmutableLanguagesInfo;
 import com.github.vbauer.yta.model.artificial.LanguagesInfo;
 import com.github.vbauer.yta.service.basic.AbstractApi;
 import com.github.vbauer.yta.service.basic.ApiContext;
@@ -57,7 +58,7 @@ public class LanguageApiImpl extends AbstractApi implements LanguageApi {
     @Override
     public Languages all(@Nullable final String ui) {
         final Map<String, Object> data = ui == null ? null : Collections.singletonMap(ATTR_UI, ui);
-        final LanguagesInfo languagesInfo = callMethod(LanguagesInfo.class, METHOD_GET_LANGS, data);
+        final LanguagesInfo languagesInfo = callMethod(ImmutableLanguagesInfo.class, METHOD_GET_LANGS, data);
 
         return LanguagesConverter.INSTANCE.convert(languagesInfo);
     }
