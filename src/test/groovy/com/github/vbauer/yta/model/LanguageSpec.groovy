@@ -3,7 +3,8 @@ package com.github.vbauer.yta.model
 import com.github.vbauer.yta.common.TestUtils
 import spock.lang.Specification
 
-import static com.github.vbauer.yta.model.Language.*
+import static com.github.vbauer.yta.model.Language.ALL
+import static com.github.vbauer.yta.model.Language.of
 
 /**
  * Tests for {@link Language}.
@@ -13,20 +14,6 @@ import static com.github.vbauer.yta.model.Language.*
 
 class LanguageSpec extends Specification {
 
-    static final LANGUAGES = [
-        AZ, SQ, AM, EN, AR, HY, AF, EU, BA, BE,
-        BN, MY, BG, BS, CY, HU, VI, HT, GL, NL,
-        MRJ, EL, KA, GU, DA, HE, YI, ID, GA, IT,
-        IS, ES, KK, KN, CA, KY, ZH, KO, XH, KM,
-        LO, LA, LV, LT, LB, MG, MS, ML, MT, MK,
-        MI, MR, MHR, MN, DE, NE, NO, PA, PAP, FA,
-        PL, PT, RO, RU, CEB, SR, SI, SK, SL, SW,
-        SU, TG, TH, TL, TA, TT, TE, TR, UDM, UZ,
-        UK, UR, FI, FR, HI, HR, CS, SV, GD, ET,
-        EO, JV, JA, EMJ
-    ]
-
-
     def "Check case-insensitive of code param"() {
         expect:
             of("en") == of("EN")
@@ -35,7 +22,7 @@ class LanguageSpec extends Specification {
 
     def "Check factory method with code only"() {
         setup:
-            def code = "en"
+            def code = "unknown"
             def lang = of(code)
         expect:
             code == lang.code()
@@ -69,12 +56,13 @@ class LanguageSpec extends Specification {
             lang.code() != null
             lang.name() != null
         where:
-            lang << LANGUAGES
+            lang << ALL.values()
     }
 
     def "Check count of available languages"() {
         expect:
-            TestUtils.countStaticFields(Language) == LANGUAGES.size()
+            // We skip only the "ALL" field
+            TestUtils.countStaticFields(Language) - 1 == ALL.size()
     }
 
     def "Check toString method"() {

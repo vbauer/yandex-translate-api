@@ -56,7 +56,13 @@ class LanguageApiSpec extends AbstractApiSpec {
 
 
     private static void checkLanguage(final Language language) {
-        def fieldName = language.code().toString().toUpperCase()
+        def code = language.code()
+        assert !code.empty
+
+        def name = language.name()
+        assert name.present
+
+        def fieldName = code.toString().toUpperCase()
         def field
         try {
             field = Language.class.getDeclaredField(fieldName)

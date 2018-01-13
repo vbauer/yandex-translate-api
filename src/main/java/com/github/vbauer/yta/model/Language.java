@@ -6,8 +6,15 @@ import org.immutables.value.Value.Parameter;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Model which represents language.
@@ -114,6 +121,8 @@ public abstract class Language implements HasCode<String> {
     public static final Language JA = of("ja", "Japanese");
     public static final Language EMJ = of("emj", "Emoji");
 
+    public static final Map<String, Language> ALL = buildLanguageMap();
+
 
     /**
      * {@inheritDoc}
@@ -151,7 +160,8 @@ public abstract class Language implements HasCode<String> {
      */
     @Nonnull
     public static Language of(@Nonnull final String code) {
-        return of(code, null);
+        final Language language = ALL.get(code);
+        return language != null ? language : of(code, null);
     }
 
 
@@ -178,6 +188,31 @@ public abstract class Language implements HasCode<String> {
     @Override
     public String toString() {
         return code();
+    }
+
+
+    private static Map<String, Language> buildLanguageMap() {
+        final Collection<Language> languages = createLanguageCollection();
+        return languages.stream().collect(Collectors.toMap(Language::code, Function.identity()));
+    }
+
+    private static Collection<Language> createLanguageCollection() {
+        return Collections.unmodifiableSet(
+            new HashSet<>(
+                Arrays.asList(
+                    AZ, SQ, AM, EN, AR, HY, AF, EU, BA, BE,
+                    BN, MY, BG, BS, CY, HU, VI, HT, GL, NL,
+                    MRJ, EL, KA, GU, DA, HE, YI, ID, GA, IT,
+                    IS, ES, KK, KN, CA, KY, ZH, KO, XH, KM,
+                    LO, LA, LV, LT, LB, MG, MS, ML, MT, MK,
+                    MI, MR, MHR, MN, DE, NE, NO, PA, PAP, FA,
+                    PL, PT, RO, RU, CEB, SR, SI, SK, SL, SW,
+                    SU, TG, TH, TL, TA, TT, TE, TR, UDM, UZ,
+                    UK, UR, FI, FR, HI, HR, CS, SV, GD, ET,
+                    EO, JV, JA, EMJ
+                )
+            )
+        );
     }
 
 }
