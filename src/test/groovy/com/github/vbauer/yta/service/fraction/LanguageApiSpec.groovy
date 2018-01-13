@@ -36,14 +36,7 @@ class LanguageApiSpec extends AbstractApiSpec {
             !dirs.empty
             !langs.empty
 
-            langs.each { l ->
-                def fieldName = l.code().toString().toUpperCase()
-                def field = Language.class.getField(fieldName)
-                assert field != null
-
-                def lang = field.get(null)
-                assert lang == l
-            }
+            langs.each { l -> checkLanguage(l) }
 
         when: "UI parameter is a string"
             def allLanguagesRu = langApi.all("ru")
@@ -59,6 +52,20 @@ class LanguageApiSpec extends AbstractApiSpec {
             constant         | value
             METHOD_GET_LANGS | "/getLangs"
             ATTR_UI          | "ui"
+    }
+
+
+    private static void checkLanguage(final Language language) {
+        def fieldName = language.code().toString().toUpperCase()
+        def field
+        try {
+            field = Language.class.getDeclaredField(fieldName)
+        } catch (final Exception ex) {
+            throw new RuntimeException("Could not file language " + language, ex)
+        }
+
+        def lang = field.get(null)
+        assert lang == language
     }
 
 }
