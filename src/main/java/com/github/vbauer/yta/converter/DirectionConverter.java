@@ -36,14 +36,26 @@ public class DirectionConverter implements BasicConverter<String, Direction> {
      * text representation of the given direction.
      *
      * @param languages collection with languages
-     * @param dir text representation of the direction
+     * @param dir text representation of the direction (ex: "ru-en")
      * @return direction model object
      */
+    @Nonnull
     public Direction convertDirection(final Collection<Language> languages, final String dir) {
-        final String[] parts = dir.split(Direction.SEPARATOR);
+        final String[] parts = getLanguages(dir);
         final String from = parts[0];
         final String to = parts[1];
         return composeDirection(languages, from, to);
+    }
+
+    /**
+     * Get 2 languages by given direction.
+     *
+     * @param dir text representation of the direction (ex: "ru-en")
+     * @return 2 languages
+     */
+    @Nonnull
+    public String[] getLanguages(final String dir) {
+        return dir.split(Direction.SEPARATOR);
     }
 
 
