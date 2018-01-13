@@ -23,7 +23,7 @@ class LanguageSpec extends Specification {
         PL, PT, RO, RU, CEB, SR, SI, SK, SL, SW,
         SU, TG, TH, TL, TA, TT, TE, TR, UDM, UZ,
         UK, UR, FI, FR, HI, HR, CS, SV, GD, ET,
-        EO, JV, JA
+        EO, JV, JA, EMJ
     ]
 
 

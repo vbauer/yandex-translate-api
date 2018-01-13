@@ -112,6 +112,7 @@ public abstract class Language implements HasCode<String> {
     public static final Language EO = of("eo", "Esperanto");
     public static final Language JV = of("jv", "Javanese");
     public static final Language JA = of("ja", "Japanese");
+    public static final Language EMJ = of("emj", "Emoji");
 
 
     /**
