@@ -1,6 +1,6 @@
 package com.github.vbauer.yta.service.basic;
 
-import com.github.vbauer.yta.service.basic.exception.ApiException;
+import com.github.vbauer.yta.service.basic.exception.YTranslateApiException;
 
 import javax.annotation.concurrent.ThreadSafe;
 
@@ -60,13 +60,13 @@ public final class ApiStatus {
 
 
     /**
-     * Check that status is {@link #ERR_OK} and throw {@link ApiException} otherwise.
+     * Check that status is {@link #ERR_OK} and throw {@link YTranslateApiException} otherwise.
      *
      * @param status status code
      */
     public static void check(final int status) {
         if (status != ApiStatus.ERR_OK) {
-            throw new ApiException(status);
+            throw new YTranslateApiException(status);
         }
     }
 

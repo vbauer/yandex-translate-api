@@ -1,7 +1,7 @@
 package com.github.vbauer.yta.service.basic
 
 import com.github.vbauer.yta.common.TestUtils
-import com.github.vbauer.yta.service.basic.exception.ApiException
+import com.github.vbauer.yta.service.basic.exception.YTranslateApiException
 import spock.lang.Specification
 
 /**
@@ -32,7 +32,7 @@ class ApiStatusSpec extends Specification {
         when:
             ApiStatus.check(ApiStatus.ERR_OK)
         then:
-            notThrown ApiException
+            notThrown YTranslateApiException
     }
 
     def "Check-method throws an ApiException"() {
@@ -40,7 +40,7 @@ class ApiStatusSpec extends Specification {
             try {
                 ApiStatus.check(status)
             } catch (final Exception ex) {
-                assert ex instanceof ApiException
+                assert ex instanceof YTranslateApiException
             }
         where:
             status << [

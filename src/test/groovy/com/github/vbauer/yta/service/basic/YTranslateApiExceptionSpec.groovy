@@ -1,24 +1,24 @@
 package com.github.vbauer.yta.service.basic
 
-import com.github.vbauer.yta.service.basic.exception.ApiException
+import com.github.vbauer.yta.service.basic.exception.YTranslateApiException
 import spock.lang.Specification
 
 /**
- * Tests for {@link com.github.vbauer.yta.service.basic.exception.ApiException}.
+ * Tests for {@link YTranslateApiException}.
  *
  * @author Vladislav Bauer
  */
 
-class ApiExceptionSpec extends Specification {
+class YTranslateApiExceptionSpec extends Specification {
 
     def "Check inheritance"() {
         expect:
-            RuntimeException.isAssignableFrom(ApiException)
+            RuntimeException.isAssignableFrom(YTranslateApiException)
     }
 
     def "Check construction"() {
         expect:
-            def ex = new ApiException(status)
+            def ex = new YTranslateApiException(status)
             assert ex.toString().contains(String.valueOf(status))
             assert ex.getStatus() == status
         where:

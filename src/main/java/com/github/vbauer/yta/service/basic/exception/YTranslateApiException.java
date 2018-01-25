@@ -1,11 +1,13 @@
 package com.github.vbauer.yta.service.basic.exception;
 
 /**
+ * Exception class for problems corresponding to Yandex Translate API service.
+ *
  * @author Vladislav Bauer
  */
 
 @SuppressWarnings("serial")
-public class ApiException extends YTranslateException {
+public class YTranslateApiException extends YTranslateException {
 
     /**
      * Possible values are described in {@link com.github.vbauer.yta.service.basic.ApiStatus} class.
@@ -13,7 +15,7 @@ public class ApiException extends YTranslateException {
     private final int status;
 
 
-    public ApiException(final int status) {
+    public YTranslateApiException(final int status) {
         super("Can not retrieve information from server: " + status);
 
         this.status = status;

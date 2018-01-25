@@ -1,7 +1,9 @@
 package com.github.vbauer.yta.service.basic.exception;
 
+import javax.annotation.Nonnull;
+
 /**
- * Basic class for all exceptions.
+ * Basic class for all exceptions corresponding to yandex-translate-api library.
  *
  * @author Vladislav Bauer
  */
@@ -9,16 +11,12 @@ package com.github.vbauer.yta.service.basic.exception;
 @SuppressWarnings("serial")
 public class YTranslateException extends RuntimeException {
 
-    public YTranslateException(final String message) {
+    public YTranslateException(@Nonnull final String message) {
         super(message);
     }
 
-    public YTranslateException(final String message, final Throwable cause) {
+    public YTranslateException(@Nonnull final String message, @Nonnull final Throwable cause) {
         super(message, cause);
-    }
-
-    public YTranslateException(final Throwable cause) {
-        super(cause);
     }
 
 }
