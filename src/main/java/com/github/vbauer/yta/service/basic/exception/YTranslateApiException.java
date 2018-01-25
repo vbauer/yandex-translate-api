@@ -16,7 +16,7 @@ public class YTranslateApiException extends YTranslateException {
 
 
     public YTranslateApiException(final int status) {
-        super("Can not retrieve information from server: " + status);
+        super("Can not retrieve information from Yandex Translate service. Status: " + status);
 
         this.status = status;
     }
@@ -24,6 +24,7 @@ public class YTranslateApiException extends YTranslateException {
 
     /**
      * Get status of error.
+     * See {@link com.github.vbauer.yta.service.basic.ApiStatus}.
      *
      * @return error status
      */

@@ -14,7 +14,7 @@ public final class ApiStatus {
     /**
      * Operation completed successfully.
      */
-    public static final int ERR_OK = 200;
+    public static final int OK = 200;
 
     /**
      * Invalid API key.
@@ -60,12 +60,12 @@ public final class ApiStatus {
 
 
     /**
-     * Check that status is {@link #ERR_OK} and throw {@link YTranslateApiException} otherwise.
+     * Check that status is {@link #OK} and throw {@link YTranslateApiException} otherwise.
      *
      * @param status status code
      */
     public static void check(final int status) {
-        if (status != ApiStatus.ERR_OK) {
+        if (status != ApiStatus.OK) {
             throw new YTranslateApiException(status);
         }
     }

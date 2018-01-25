@@ -18,7 +18,7 @@ class ApiStatusSpec extends Specification {
 
         where:
             value | code
-            200   | ApiStatus.ERR_OK
+            200   | ApiStatus.OK
             401   | ApiStatus.ERR_KEY_INVALID
             402   | ApiStatus.ERR_KEY_BLOCKED
             403   | ApiStatus.ERR_DAILY_REQ_LIMIT_EXCEEDED
@@ -30,7 +30,7 @@ class ApiStatusSpec extends Specification {
 
     def "Check-method with correct status code"() {
         when:
-            ApiStatus.check(ApiStatus.ERR_OK)
+            ApiStatus.check(ApiStatus.OK)
         then:
             notThrown YTranslateApiException
     }

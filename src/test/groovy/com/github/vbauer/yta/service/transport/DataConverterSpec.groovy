@@ -34,7 +34,7 @@ class DataConverterSpec extends Specification {
         setup:
             def model = convert(LanguageInfo)
         expect:
-            model.code() == ApiStatus.ERR_OK
+            model.code() == ApiStatus.OK
             model.lang().get() == EN.code()
     }
 
@@ -50,7 +50,7 @@ class DataConverterSpec extends Specification {
         setup:
             def model = convert(TranslationInfo)
         expect:
-            model.code() == ApiStatus.ERR_OK
+            model.code() == ApiStatus.OK
             model.lang() == "en"
             model.text() == ["Hello, World!"]
     }

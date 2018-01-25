@@ -20,7 +20,7 @@ class YTranslateApiSpec extends Specification {
         then:
             def e = thrown YTranslateException
             def c = e.getCause()
-            c.status != ApiStatus.ERR_OK
+            c.status != ApiStatus.OK
             !c.message.empty
     }
 
