@@ -29,7 +29,7 @@ public abstract class Translation implements Serializable {
      *
      * @return translated text
      */
-    @Parameter(order = 2)
+    @Parameter(order = 1)
     public abstract String text();
 
 
