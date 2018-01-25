@@ -16,7 +16,6 @@ import java.util.Map;
 @ThreadSafe
 public abstract class AbstractApi {
 
-    @Nonnull
     private final ApiContext context;
 
 

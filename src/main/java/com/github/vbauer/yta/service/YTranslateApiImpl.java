@@ -21,13 +21,8 @@ import javax.annotation.concurrent.ThreadSafe;
 @ThreadSafe
 public class YTranslateApiImpl extends AbstractApi implements YTranslateApi {
 
-    @Nonnull
     private final LanguageApi languageService;
-
-    @Nonnull
     private final DetectionApi detectionService;
-
-    @Nonnull
     private final TranslationApi translationService;
 
 
