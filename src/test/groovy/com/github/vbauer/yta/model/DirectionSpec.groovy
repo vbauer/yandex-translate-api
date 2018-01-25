@@ -17,10 +17,16 @@ class DirectionSpec extends Specification {
 
     def "Check factory method with source and target arguments"() {
         when:
-            def direction = Direction.of(Language.RU, Language.EN)
+            def dirRuToEn = Direction.of(Language.RU, Language.EN)
         then:
-            direction.source().get() == Language.RU
-            direction.target() == Language.EN
+            dirRuToEn.source().get() == Language.RU
+            dirRuToEn.target() == Language.EN
+
+        when:
+            def dirSomethingToEn = Direction.of(null, Language.EN)
+        then:
+            !dirSomethingToEn.source().isPresent()
+            dirSomethingToEn.target() == Language.EN
 
         when:
             Direction.of(Language.RU, null)
@@ -42,12 +48,17 @@ class DirectionSpec extends Specification {
     }
 
     def "Check toString method"() {
-        setup:
-            def direction = Direction.of(Language.RU, Language.EN)
-            def str = direction.toString()
-        expect:
-            !str.isEmpty()
-            str.contains(Direction.SEPARATOR)
+        when:
+            def dirRu2En = Direction.of(Language.RU, Language.EN)
+            def strRu2En = dirRu2En.toString()
+        then:
+            strRu2En == Language.RU.code() + Direction.SEPARATOR + Language.EN.code()
+
+        when:
+            def dirSomethingToEn = Direction.of(null, Language.EN)
+            def strSomethingToEn = dirSomethingToEn.toString()
+        then:
+            strSomethingToEn == Language.EN.code()
     }
 
 }
