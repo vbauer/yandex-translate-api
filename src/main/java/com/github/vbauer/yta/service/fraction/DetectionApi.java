@@ -8,9 +8,13 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 /**
+ * <p>
  * Service allows to detects language of specified text.
+ * </p>
  *
- * Official REST API documentation: https://tech.yandex.com/translate/doc/dg/reference/detect-docpage/
+ * <a href="https://tech.yandex.com/translate/doc/dg/reference/detect-docpage/">
+ * Official REST API documentation
+ * </a>
  *
  * @author Vladislav Bauer
  */

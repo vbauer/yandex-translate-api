@@ -7,12 +7,17 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
+ * <p>
  * Service allows to get a list of translation directions.
+ * <br/>
  *
  * The service translates between any of the languages in the list of supported languages.
  * To get this information, set the ui parameter when calling methods.
+ * </p>
  *
- * Official REST API documentation: https://tech.yandex.com/translate/doc/dg/reference/getLangs-docpage/
+ * <a href="https://tech.yandex.com/translate/doc/dg/reference/getLangs-docpage/">
+ * Official REST API documentation
+ * </a>
  *
  * @author Vladislav Bauer
  */

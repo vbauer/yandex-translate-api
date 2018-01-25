@@ -9,9 +9,13 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
+ * <p>
  * Service allows to translate text to the specified language.
+ * </p>
  *
- * Official REST API documentation: https://tech.yandex.com/translate/doc/dg/reference/translate-docpage/
+ * <a href="https://tech.yandex.com/translate/doc/dg/reference/translate-docpage/">
+ * Official REST API documentation
+ * </a>
  *
  * @author Vladislav Bauer
  */
