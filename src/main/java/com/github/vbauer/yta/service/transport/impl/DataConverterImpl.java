@@ -31,7 +31,11 @@ public class DataConverterImpl implements DataConverter {
 
     private static Gson createConverter() {
         final GsonBuilder builder = new GsonBuilder();
-        ServiceLoader.load(TypeAdapterFactory.class).forEach(builder::registerTypeAdapterFactory);
+        final ServiceLoader<TypeAdapterFactory> serviceLoader =
+            ServiceLoader.load(TypeAdapterFactory.class);
+
+        serviceLoader.forEach(builder::registerTypeAdapterFactory);
+
         return builder.create();
     }
 
