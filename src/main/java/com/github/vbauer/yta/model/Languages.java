@@ -22,6 +22,7 @@ public abstract class Languages implements Serializable {
      *
      * @return languages
      */
+    @Nonnull
     public abstract Set<Language> languages();
 
     /**
@@ -30,6 +31,7 @@ public abstract class Languages implements Serializable {
      *
      * @return directions
      */
+    @Nonnull
     public abstract Set<Direction> directions();
 
 

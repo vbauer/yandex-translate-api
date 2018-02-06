@@ -21,6 +21,7 @@ public abstract class Translation implements Serializable {
      *
      * @return direction
      */
+    @Nonnull
     @Parameter(order = 0)
     public abstract Direction direction();
 
@@ -29,6 +30,7 @@ public abstract class Translation implements Serializable {
      *
      * @return translated text
      */
+    @Nonnull
     @Parameter(order = 1)
     public abstract String text();
 

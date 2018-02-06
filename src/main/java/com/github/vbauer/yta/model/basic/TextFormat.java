@@ -32,7 +32,7 @@ public enum TextFormat implements HasCode<String> {
     private final String code;
 
 
-    TextFormat(final String code) {
+    TextFormat(@Nonnull final String code) {
         this.code = code;
     }
 
@@ -52,6 +52,7 @@ public enum TextFormat implements HasCode<String> {
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
     public String code() {
         return code;

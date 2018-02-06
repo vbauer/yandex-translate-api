@@ -127,6 +127,7 @@ public abstract class Language implements HasCode<String> {
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
     @Parameter(order = 0)
     public abstract String code();
@@ -136,6 +137,7 @@ public abstract class Language implements HasCode<String> {
      *
      * @return language name
      */
+    @Nonnull
     @Parameter(order = 1)
     public abstract Optional<String> name();
 

@@ -22,6 +22,7 @@ public interface HasCode<T> extends Serializable {
      *
      * @return code
      */
+    @Nonnull
     T code();
 
 

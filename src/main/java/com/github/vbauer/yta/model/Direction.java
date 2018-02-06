@@ -26,6 +26,7 @@ public abstract class Direction implements Serializable {
      *
      * @return source language
      */
+    @Nonnull
     @Parameter(order = 0)
     public abstract Optional<Language> source();
 
@@ -34,6 +35,7 @@ public abstract class Direction implements Serializable {
      *
      * @return target language
      */
+    @Nonnull
     @Parameter(order = 1)
     public abstract Language target();
 
