@@ -72,7 +72,7 @@ public class RestClientImpl implements RestClient {
 
                 try (
                     InputStream inputStream = connection.getInputStream();
-                    InputStreamReader streamReader = new InputStreamReader(inputStream);
+                    InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
                     BufferedReader bufferedReader = new BufferedReader(streamReader)
                 ) {
                     return bufferedReader.lines().collect(Collectors.joining(""));
@@ -80,7 +80,7 @@ public class RestClientImpl implements RestClient {
             } finally {
                 connection.disconnect();
             }
-        } catch (final Exception ex) {
+        } catch (final IOException | RuntimeException ex) {
             throw new YTranslateException(
                 String.format("Could not call method \"%s\" using %s", method, parameters), ex
             );

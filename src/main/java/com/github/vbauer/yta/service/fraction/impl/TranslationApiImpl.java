@@ -4,6 +4,7 @@ import com.github.vbauer.yta.converter.TranslationConverter;
 import com.github.vbauer.yta.model.Direction;
 import com.github.vbauer.yta.model.Language;
 import com.github.vbauer.yta.model.Translation;
+import com.github.vbauer.yta.model.artificial.ImmutableTranslationInfo;
 import com.github.vbauer.yta.model.artificial.TranslationInfo;
 import com.github.vbauer.yta.model.basic.TextFormat;
 import com.github.vbauer.yta.service.basic.AbstractApi;
@@ -77,7 +78,7 @@ public class TranslationApiImpl extends AbstractApi implements TranslationApi {
         params.put(ATTR_LANG, direction.toString());
         params.put(ATTR_FORMAT, TextFormat.getOrDefault(format).code());
 
-        final TranslationInfo data = callMethod(TranslationInfo.class, METHOD_DETECT, params);
+        final TranslationInfo data = callMethod(ImmutableTranslationInfo.class, METHOD_DETECT, params);
         ApiStatus.check(data.code());
 
         return TranslationConverter.INSTANCE.convert(data);

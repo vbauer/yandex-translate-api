@@ -90,7 +90,3 @@ pom {
         url 'https://travis-ci.org/vbauer/yandex-translate-api'
     }
 }
-
-quality {
-    findbugs = false
-}
