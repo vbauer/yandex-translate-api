@@ -29,16 +29,16 @@ class TranslationApiSpec extends AbstractApiSpec {
         when: "Translate Russian to English"
             def translationRuEn = translateApi.translate("Как дела?", Language.EN)
         then:
-            ["How are you doing?", "How's it going?"].any { it == translationRuEn.text() }
+            ["How are you doing?", "How's it going?", "What's up?"].any { it == translationRuEn.text() }
             translationRuEn.direction() == Direction.of(Language.RU, Language.EN)
 
         when: "Translate English to Russian"
             def enRu = Direction.of(Language.EN, Language.RU)
             def translationEnRu = translateApi.translate("How are you doing?", enRu)
-            def text = translationEnRu.text()
+            def textEnRu = translationEnRu.text()
             def direction = translationEnRu.direction()
         then:
-            ["Как у тебя дела?", "Как поживаешь?", "Как ты делаешь?"].any { it == text }
+            ["Как у тебя дела?", "Как поживаешь?", "Как ты делаешь?"].any { it == textEnRu }
             direction == enRu
 
         when: "Translate Russian to English with HTML"
@@ -46,8 +46,9 @@ class TranslationApiSpec extends AbstractApiSpec {
             def translationRuEnHtml = translateApi.translate(
                 "<span>Привет</span>", ruEn, TextFormat.HTML
             )
+            def textRuEn = translationRuEnHtml.toString()
         then:
-            translationRuEnHtml.toString() == "<span>Hi</span>"
+            ["<span>Hi</span>", "<span>Hey.</span>"].any { it == textRuEn }
             translationRuEnHtml.direction() == ruEn
     }
 
