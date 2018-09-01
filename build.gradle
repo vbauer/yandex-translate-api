@@ -24,7 +24,7 @@ configurations.provided.extendsFrom configurations.annotationProcessor
 ext.deps = [
     gson: '2.8.5',
     fbAnnotations: '3.0.1',
-    immutables: '2.6.1',
+    immutables: '2.7.1',
 
     spock: '1.1-groovy-2.4',
     jpcc: '1.2.0'
