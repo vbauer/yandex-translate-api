@@ -42,8 +42,8 @@ dependencies {
     testCompile "com.pushtorefresh.java-private-constructor-checker:checker:${deps.jpcc}"
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.9'
+wrapper {
+    gradleVersion = '4.10'
     distributionType = Wrapper.DistributionType.ALL
 }
 
