@@ -6,8 +6,6 @@ jdk:
   - openjdk11
 
 sudo: false
-env:
-  - TERM=dumb
 
 before_install:
   - chmod +x gradlew deploy.sh
@@ -28,5 +26,6 @@ cache:
 
 env:
   global:
-  - GH_REF: github.com/vbauer/yandex-translate-api.git
-  - secure: "HBnYn2cZ6Rj+xQTF68q00C4dQ6wiezIDCm1bstidPi14c1U9+41e5iNnFLpssIPfcdFsKA172yDe4qf1lxYtD5lnjYQUSaSXrciei/1I7fkRxUmewRk9+gQSV34z4qXuDngN+agh6if3T2obk2NzWMY00aODeQC6orkJYVbRszqYE74NiI5QuDSOuu0flC/A1nRvn6dYgUQd4gki/NsWBGnj8fIJL2LdA322yzizBjbrK+01rrs1f2gJjGoWyMBzLjgY310FXIgMDEDutJnBuXmI3xCf6DJEVQV5ZYMUvIQ8abPTIRPPWz7fxef6D2UmXiI6LmHvuzGY5AkEhJJsml9dhcWtTP+NvjC/bkVog3thZ/guToVduQSPgZPRNuNzIK0Ng8/lj0ULyD1T1H/5V+CyfN67+vjDSAJqxLWiUcoowqJH/ylR0kSgXimG05BPVFpZ0Ie+D3GlrElIRqP47XqonpM2X3JILTnMWb8BWy30ZGQIHb7w2Y5O/RRPd8B963yTqXNbMP1Fw3nk8MoTpJTKFVXFoyErm26FDtTP5UlV4A67SsTjG0BbdHGghkxjNcsXSiry373PKqtI5Ru2e8i826k3Vv4roWUJyHnySBXqtxFnt5f7vdf4sx646Gs+/B4G5htHenAqhrB5ShOzkCv22/SHEswsNG3gvHFnlVI="
+    - TERM=dumb
+    - GH_REF: github.com/vbauer/yandex-translate-api.git
+    - secure: "HBnYn2cZ6Rj+xQTF68q00C4dQ6wiezIDCm1bstidPi14c1U9+41e5iNnFLpssIPfcdFsKA172yDe4qf1lxYtD5lnjYQUSaSXrciei/1I7fkRxUmewRk9+gQSV34z4qXuDngN+agh6if3T2obk2NzWMY00aODeQC6orkJYVbRszqYE74NiI5QuDSOuu0flC/A1nRvn6dYgUQd4gki/NsWBGnj8fIJL2LdA322yzizBjbrK+01rrs1f2gJjGoWyMBzLjgY310FXIgMDEDutJnBuXmI3xCf6DJEVQV5ZYMUvIQ8abPTIRPPWz7fxef6D2UmXiI6LmHvuzGY5AkEhJJsml9dhcWtTP+NvjC/bkVog3thZ/guToVduQSPgZPRNuNzIK0Ng8/lj0ULyD1T1H/5V+CyfN67+vjDSAJqxLWiUcoowqJH/ylR0kSgXimG05BPVFpZ0Ie+D3GlrElIRqP47XqonpM2X3JILTnMWb8BWy30ZGQIHb7w2Y5O/RRPd8B963yTqXNbMP1Fw3nk8MoTpJTKFVXFoyErm26FDtTP5UlV4A67SsTjG0BbdHGghkxjNcsXSiry373PKqtI5Ru2e8i826k3Vv4roWUJyHnySBXqtxFnt5f7vdf4sx646Gs+/B4G5htHenAqhrB5ShOzkCv22/SHEswsNG3gvHFnlVI="
