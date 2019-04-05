@@ -12,7 +12,7 @@ plugins {
 
 group 'com.github.vbauer'
 version '1.4.1'
-description 'A simple REST client library for Yandex.Translate'
+description 'A simple REST client library for Yandex.Translate'.
 
 repositories {
     mavenLocal()
@@ -31,19 +31,19 @@ ext.deps = [
 ]
 
 dependencies {
-    compile "com.google.code.gson:gson:${deps.gson}"
-    compile "com.google.code.findbugs:annotations:${deps.fbAnnotations}"
+    implementation "com.google.code.gson:gson:${deps.gson}"
+    implementation "com.google.code.findbugs:annotations:${deps.fbAnnotations}"
 
     annotationProcessor "org.immutables:value:${deps.immutables}"
     annotationProcessor "org.immutables:builder:${deps.immutables}"
     annotationProcessor "org.immutables:gson:${deps.immutables}"
 
-    testCompile "org.spockframework:spock-core:${deps.spock}"
-    testCompile "com.pushtorefresh.java-private-constructor-checker:checker:${deps.jpcc}"
+    testImplementation "org.spockframework:spock-core:${deps.spock}"
+    testImplementation "com.pushtorefresh.java-private-constructor-checker:checker:${deps.jpcc}"
 }
 
 wrapper {
-    gradleVersion = '5.1.1'
+    gradleVersion = '5.3.1'
     distributionType = Wrapper.DistributionType.ALL
 }
 
