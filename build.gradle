@@ -12,7 +12,7 @@ plugins {
 
 group 'com.github.vbauer'
 version '1.4.1'
-description 'A simple REST client library for Yandex.Translate'.
+description 'A simple REST client library for Yandex.Translate'
 
 repositories {
     mavenLocal()
