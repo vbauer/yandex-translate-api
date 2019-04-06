@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 /**
  * <p>
  * Service allows to get a list of translation directions.
- * <br/>
+ * <br>
  *
  * The service translates between any of the languages in the list of supported languages.
  * To get this information, set the ui parameter when calling methods.
