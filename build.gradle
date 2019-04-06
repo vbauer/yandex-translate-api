@@ -11,7 +11,7 @@ plugins {
 }
 
 group 'com.github.vbauer'
-version '1.4.1'
+version '1.4.2'
 description 'A simple REST client library for Yandex.Translate'
 
 repositories {
