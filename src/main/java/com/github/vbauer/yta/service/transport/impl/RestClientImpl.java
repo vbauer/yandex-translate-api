@@ -32,7 +32,7 @@ public class RestClientImpl implements RestClient {
 
     public static final String SERVICE_URL = "https://translate.yandex.net/api/v1.5/tr.json";
     public static final String ATTR_KEY = "key";
-    public static final int DEFAULT_TIMEOUT = 30000;
+    public static final int DEFAULT_TIMEOUT = 30_000;
 
     private static final String METHOD_POST = "POST";
     private static final String PARAMETER_DELIMITER = "&";
