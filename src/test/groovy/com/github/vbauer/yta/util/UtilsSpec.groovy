@@ -18,7 +18,7 @@ class UtilsSpec extends Specification {
         when:
             PrivateConstructorChecker
                 .forClasses(ApiStatus)
-                .expectedTypeOfException(UnsupportedOperationException.class)
+                .expectedTypeOfException(UnsupportedOperationException)
                 .check()
         then:
             true

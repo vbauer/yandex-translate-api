@@ -27,6 +27,7 @@ ext.deps = [
     immutables: '2.7.5',
 
     spock: '1.2-groovy-2.5',
+    groovy: '2.5.6',
     jpcc: '1.2.0'
 ]
 
@@ -39,6 +40,7 @@ dependencies {
     annotationProcessor "org.immutables:gson:${deps.immutables}"
 
     testImplementation "org.spockframework:spock-core:${deps.spock}"
+    testImplementation "org.codehaus.groovy:groovy-all:${deps.groovy}"
     testImplementation "com.pushtorefresh.java-private-constructor-checker:checker:${deps.jpcc}"
 }
 
