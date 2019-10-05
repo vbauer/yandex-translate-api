@@ -11,10 +11,10 @@ before_install:
   - chmod +x gradlew deploy.sh
 
 script:
-  - ./gradlew build --stacktrace
+  - ./gradlew build --stacktrace --no-daemon
 
 after_success:
-  - ./gradlew jacocoTestReport coveralls --stacktrace
+  - ./gradlew jacocoTestReport coveralls --stacktrace --no-daemon
   - bash ./deploy.sh
 
 before_cache:
