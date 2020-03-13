@@ -40,6 +40,7 @@ public abstract class Language implements HasCode<String> {
     public static final Language MY = of("my", "Burmese");
     public static final Language BG = of("bg", "Bulgarian");
     public static final Language BS = of("bs", "Bosnian");
+    public static final Language CV = of("cv", "Chuvash");
     public static final Language CY = of("cy", "Welsh");
     public static final Language HU = of("hu", "Hungarian");
     public static final Language VI = of("vi", "Vietnamese");
@@ -203,7 +204,7 @@ public abstract class Language implements HasCode<String> {
             new HashSet<>(
                 Arrays.asList(
                     AZ, SQ, AM, EN, AR, HY, AF, EU, BA, BE,
-                    BN, MY, BG, BS, CY, HU, VI, HT, GL, NL,
+                    BN, MY, BG, BS, CV, CY, HU, VI, HT, GL, NL,
                     MRJ, EL, KA, GU, DA, HE, YI, ID, GA, IT,
                     IS, ES, KK, KN, CA, KY, ZH, KO, XH, KM,
                     LO, LA, LV, LT, LB, MG, MS, ML, MT, MK,
