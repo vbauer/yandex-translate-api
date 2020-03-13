@@ -1,0 +1,11 @@
+com.github.vbauer.yta.converter
+com.github.vbauer.yta.model
+com.github.vbauer.yta.model.artificial
+com.github.vbauer.yta.model.basic
+com.github.vbauer.yta.service
+com.github.vbauer.yta.service.basic
+com.github.vbauer.yta.service.basic.exception
+com.github.vbauer.yta.service.fraction
+com.github.vbauer.yta.service.fraction.impl
+com.github.vbauer.yta.service.transport
+com.github.vbauer.yta.service.transport.impl
